@@ -1,0 +1,48 @@
+[
+  {
+    "timestamp": "2026-04-12T10:18:00Z",
+    "check_type": "auto-restart-check",
+    "cron_id": "d7b68779-2523-49f5-ba1e-6e9437e67f92",
+    "results": {
+      "v31_tpl": {
+        "robot": "V31 Marius TPL",
+        "status": "stopped",
+        "pid": null,
+        "phase": "Waiting...",
+        "robot_running": false,
+        "action": "none",
+        "reason": "Weekend - market closed. Robot not running is expected behavior."
+      },
+      "v32_london_breakout": {
+        "robot": "V32 London Breakout",
+        "status": "stopped",
+        "pid": null,
+        "symbol": "GBPUSD",
+        "signal": "WAIT",
+        "robot_running": false,
+        "action": "none",
+        "reason": "Weekend - market closed. Robot not running is expected behavior."
+      },
+      "v33_ny_breakout": {
+        "robot": "V33 NY Breakout",
+        "status": "stopped",
+        "pid": null,
+        "symbol": "EURUSD",
+        "signal": "WAIT",
+        "session_phase": "PRE_SESSION",
+        "robot_running": false,
+        "action": "none",
+        "reason": "Weekend - market closed. Robot not running is expected behavior."
+      }
+    },
+    "summary": {
+      "total_robots": 3,
+      "running": 0,
+      "stopped": 3,
+      "restarted": 0,
+      "manual_stop_flag": false
+    },
+    "notes": "Sunday 10:18 UTC - Weekend. Market is closed. All trading robots are stopped which is normal behavior. No restart action taken.",
+    "incident_logged": false
+  }
+]

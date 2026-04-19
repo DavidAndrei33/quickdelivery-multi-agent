@@ -1,0 +1,17 @@
+{
+  "id": "BUGFIX-BUG-007-symbol-grid-not-populated",
+  "type": "auto_bugfix",
+  "title": "Fix Symbol Grid Not Populated",
+  "description": "Bug BUG-007-symbol-grid-not-populated assigned automatically",
+  "bug_id": "BUG-007-symbol-grid-not-populated",
+  "bug_file": "/workspace/shared/bugs/BUG-007-symbol-grid-not-populated.md",
+  "assigned_to": "builder-1",
+  "severity": "",
+  "priority": "",
+  "status": "retry",
+  "created_at": "2026-03-28T17:18:15.470948",
+  "deadline_days": 3,
+  "auto_generated": true,
+  "retry_count": 1,
+  "last_retry": "2026-03-29T08:51:39.180900"
+}

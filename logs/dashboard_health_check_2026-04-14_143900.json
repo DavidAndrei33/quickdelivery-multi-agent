@@ -1,0 +1,140 @@
+{
+  "check_id": "6e771d32-d941-4fec-8a49-91bf91d6fb1f",
+  "timestamp": "2026-04-14T14:39:00Z",
+  "status": "healthy",
+  "summary": {
+    "api_endpoints": {
+      "total": 11,
+      "passed": 11,
+      "failed": 0
+    },
+    "javascript_errors": 0,
+    "data_flow": "functional",
+    "real_time_updates": "active"
+  },
+  "api_tests": [
+    {
+      "endpoint": "/health",
+      "status": 200,
+      "response_time_ms": 2.4,
+      "result": "pass"
+    },
+    {
+      "endpoint": "/api/clients",
+      "status": 200,
+      "response_time_ms": 11.1,
+      "result": "pass"
+    },
+    {
+      "endpoint": "/api/positions",
+      "status": 200,
+      "response_time_ms": 3.6,
+      "result": "pass"
+    },
+    {
+      "endpoint": "/api/v31/live_status",
+      "status": 200,
+      "response_time_ms": 114.4,
+      "result": "pass"
+    },
+    {
+      "endpoint": "/api/v32/or_data",
+      "status": 200,
+      "response_time_ms": 8.2,
+      "result": "pass"
+    },
+    {
+      "endpoint": "/api/v33/or_data",
+      "status": 200,
+      "response_time_ms": 17.7,
+      "result": "pass"
+    },
+    {
+      "endpoint": "/api/robots",
+      "status": 200,
+      "response_time_ms": 193.4,
+      "result": "pass"
+    }
+  ],
+  "health_api": {
+    "status": "healthy",
+    "services": [
+      {
+        "name": "PostgreSQL",
+        "status": "healthy",
+        "message": "Connected"
+      },
+      {
+        "name": "MT5 Core Server",
+        "status": "healthy",
+        "message": "Running on port 8001"
+      },
+      {
+        "name": "VPS Bridge 8080",
+        "status": "healthy",
+        "message": "Connected"
+      },
+      {
+        "name": "VPS Bridge 7001",
+        "status": "healthy",
+        "message": "Connected"
+      }
+    ],
+    "system": {
+      "cpu_percent": 85.4,
+      "memory_percent": 62.7,
+      "disk_percent": 80.3
+    }
+  },
+  "javascript_analysis": {
+    "dashboard_functional_js": {
+      "file_exists": true,
+      "size_bytes": 69890,
+      "syntax_check": "valid",
+      "issues": []
+    },
+    "index_html": {
+      "file_exists": true,
+      "size_bytes": 67890,
+      "syntax_check": "valid"
+    }
+  },
+  "real_time_updates": {
+    "polling_intervals": {
+      "header_stats": "1s",
+      "clients": "1s",
+      "positions": "1s",
+      "health": "10s",
+      "statistics": "30s",
+      "history": "5s",
+      "robot_logs": "2s"
+    },
+    "websocket_support": false,
+    "polling_fallback": true,
+    "status": "active"
+  },
+  "data_flow": {
+    "mt5_to_bridge": "healthy",
+    "bridge_to_core": "healthy",
+    "core_to_database": "healthy",
+    "api_to_dashboard": "healthy",
+    "overall": "functional"
+  },
+  "issues": [],
+  "warnings": [
+    {
+      "type": "cpu_usage",
+      "message": "CPU usage at 85.4% - elevated but within acceptable range",
+      "severity": "low"
+    },
+    {
+      "type": "api_response_time",
+      "message": "/api/robots response time 193ms - slightly elevated",
+      "severity": "low"
+    }
+  ],
+  "recommendations": [
+    "Consider optimizing /api/robots endpoint for faster response times",
+    "Monitor CPU usage during market hours when trading activity increases"
+  ]
+}

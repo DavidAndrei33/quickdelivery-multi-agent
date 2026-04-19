@@ -1,0 +1,26 @@
+{
+  "id": "BUGFIX-BUG-004-v33-log-duplicate",
+  "type": "auto_bugfix",
+  "title": "Fix V33 Log Duplicat în Fișier",
+  "description": "Bug BUG-004-v33-log-duplicate assigned automatically",
+  "bug_id": "BUG-004-v33-log-duplicate",
+  "bug_file": "/workspace/shared/bugs/BUG-004-v33-log-duplicate.md",
+  "assigned_to": "builder-1",
+  "severity": "Low",
+  "priority": "P3",
+  "status": "completed",
+  "created_at": "2026-03-28T17:08:55.529851",
+  "completed_at": "2026-03-28T17:10:00Z",
+  "deadline_days": 14,
+  "auto_generated": true,
+  "resolution": {
+    "fixed": true,
+    "fix_applied_by": "auto-fix-agent",
+    "files_modified": [
+      "/root/clawd/agents/brainmaker/v33_ny_breakout_robot.py",
+      "/root/clawd/agents/brainmaker/v33_multi_ny_breakout.py"
+    ],
+    "root_cause": "logging.basicConfig() adăuga handler-e duplicate la fiecare încărcare a modulului",
+    "fix_summary": "Înlocuit basicConfig cu configurare manuală care verifică existența handler-elor"
+  }
+}

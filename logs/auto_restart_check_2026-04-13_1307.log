@@ -1,0 +1,68 @@
+[2026-04-13 13:07 UTC] AUTO-RESTART-CHECK - d7b68779-2523-49f5-ba1e-6e9437e67f92
+================================================================================
+
+CHECK INITIATED: Monday, April 13th, 2026 - 1:07 PM (UTC)
+
+ROBOT STATUS CHECK:
+-------------------
+1. V31 (Marius TPL Fibonacci Strategy):
+   - API Status: success
+   - Robot Running: false
+   - Robot PID: null
+   - Phase: Waiting...
+   - Symbols Analyzed: 0
+   - Setups: 0
+
+2. V32 (London Session Opening Range Breakout):
+   - API Status: success
+   - Robot Running: false
+   - Robot PID: null
+   - Current Symbol: GBPUSD
+   - Current Price: 1.34023
+   - Signal: WAIT
+   - Breakout Detected: false
+
+3. V33 (New York Session Opening Range Breakout):
+   - API Status: success
+   - Robot Running: false
+   - Robot PID: null
+   - Current Symbol: EURUSD
+   - Current Price: 1.16872
+   - Signal: WAIT
+   - Session Phase: PRE_SESSION
+   - Breakout Detected: false
+
+MANUAL STOP CHECK:
+------------------
+- Previous incident log indicates: manual_stop_flag = true
+- Last check (2026-04-12T15:27:00Z): "All trading robots (V31, V32, V33) are stopped for weekend"
+- Market status: Weekend closure (Sunday market open pending)
+
+DECISION:
+---------
+- All 3 trading robots are STOPPED (robot_running: false)
+- Manual stop flag detected from previous checks
+- Market was closed for weekend
+- ACTION: NO AUTO-RESTART performed
+- REASON: Robots appear to be manually stopped (likely for weekend)
+
+RESTART POLICY:
+---------------
+Per instructions: "Do NOT restart if stopped manually by user"
+Manual stop detected in incident history - respecting user intent.
+
+VERIFICATION:
+-------------
+- API endpoints responsive: YES (all return HTTP 200)
+- MT5 Core Server: healthy (port 8001)
+- Dashboard: operational
+- No critical errors detected
+
+CONCLUSION:
+-----------
+Status: SKIPPED (Manual Stop Detected)
+Robots are intentionally stopped. No restart attempted.
+System is healthy. APIs responsive. Ready for manual restart when market opens.
+
+Next check scheduled: Next cron cycle
+================================================================================

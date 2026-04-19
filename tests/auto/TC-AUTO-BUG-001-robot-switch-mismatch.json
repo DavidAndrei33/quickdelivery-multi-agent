@@ -1,0 +1,15 @@
+{
+  "id": "TC-AUTO-BUG-001-robot-switch-mismatch",
+  "title": "Test: BUG-001: Robot Switch Mismatch",
+  "bug_id": "BUG-001-robot-switch-mismatch",
+  "type": "ui_visibility_test",
+  "generated_at": "2026-03-28T17:16:58.633846",
+  "status": "pending",
+  "steps": [
+    "Load dashboard",
+    "Check element visibility",
+    "Verify correct rendering"
+  ],
+  "expected_result": "System should function correctly without errors",
+  "automation_script": "\nasync function test() {\n    const element = await findElement('{selector}');\n    assert(element.visible === true);\n    assert(element.textContent !== '');\n}\n"
+}

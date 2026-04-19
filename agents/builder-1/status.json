@@ -1,0 +1,265 @@
+{
+  "agent": "builder-1",
+  "timestamp": "2026-03-28T17:08:00Z",
+  "task": "BUGFIX-BUG-003-v31-symbols-empty-startup",
+  "status": "failed",
+  "summary": {
+    "endpoints_tested": 6,
+    "endpoints_passed": 6,
+    "fixes_applied": 5
+  },
+  "endpoint_status": {
+    "GET /api/v31/live_status": {
+      "status": "FIXED",
+      "cors_support": true,
+      "response": "Returns all 36 configured symbols at startup with analyzed/pending status"
+    },
+    "GET /api/robot/status?robot=v31": {
+      "status": "WORKING",
+      "cors_support": true,
+      "response": "Returns robot status (running/stopped) and PID"
+    },
+    "POST /api/robot/v31/start": {
+      "status": "WORKING",
+      "cors_support": true,
+      "response": "Starts V31 Marius TPL robot"
+    },
+    "POST /api/robot/v31/stop": {
+      "status": "WORKING",
+      "cors_support": true,
+      "response": "Stops V31 Marius TPL robot"
+    }
+  },
+  "fixes": [
+    {
+      "fix_id": "V31-001",
+      "description": "Ad\u0103ugat 'v31' \u00een robot_configs pentru api_robot_start()",
+      "file": "/workspace/shared/agents/mt5_core_server.py",
+      "changes": [
+        "Ad\u0103ugat config 'v31' care mapeaz\u0103 la v31_marius_tpl_robot.py",
+        "Ad\u0103ugat suport OPTIONS pentru CORS preflight"
+      ]
+    },
+    {
+      "fix_id": "V31-002",
+      "description": "Ad\u0103ugat 'v31' \u00een robot_processes pentru api_robot_stop()",
+      "file": "/workspace/shared/agents/mt5_core_server.py",
+      "changes": [
+        "Ad\u0103ugat mapare 'v31' -> 'v31_marius_tpl_robot.py'",
+        "Ad\u0103ugat suport OPTIONS pentru CORS preflight"
+      ]
+    },
+    {
+      "fix_id": "V31-003",
+      "description": "Ad\u0103ugat 'v31' \u00een robot_processes pentru api_robot_status()",
+      "file": "/workspace/shared/agents/mt5_core_server.py",
+      "changes": [
+        "Ad\u0103ugat mapare 'v31' -> 'v31_marius_tpl_robot.py'",
+        "Ad\u0103ugat suport OPTIONS pentru CORS preflight"
+      ]
+    },
+    {
+      "fix_id": "V31-004",
+      "description": "Ad\u0103ugat CORS support pentru /api/v31/live_status",
+      "file": "/workspace/shared/agents/mt5_core_server.py",
+      "changes": [
+        "Ad\u0103ugat 'OPTIONS' \u00een methods",
+        "Ad\u0103ugat handler OPTIONS pentru CORS preflight"
+      ]
+    },
+    {
+      "fix_id": "BUG-003-v31-symbols-empty-startup",
+      "description": "Fixat simboluri goale la startup V31",
+      "file": "/workspace/shared/agents/mt5_core_server.py",
+      "changes": [
+        "Definit\u0103 constant\u0103 V31_SYMBOLS cu toate cele 32 de simboluri configurate",
+        "Modificat api_v31_live_status() s\u0103 returneze toate simbolurile, nu doar cele analizate",
+        "Ad\u0103ugat flag 'analyzed': true/false per simbol",
+        "Ad\u0103ugat 'total_symbols': 32 \u00een response",
+        "Ad\u0103ugat 'robot_running': true \u00een response"
+      ],
+      "test_result": "PASS - API returneaz\u0103 toate simbolurile la startup"
+    }
+  ],
+  "robot_status": {
+    "v31_marius_tpl": {
+      "file": "/root/clawd/agents/brainmaker/v31_marius_tpl_robot.py",
+      "exists": true,
+      "size_bytes": 75082,
+      "status": "stopped",
+      "can_start": true
+    },
+    "v31_marius_live": {
+      "file": "/root/clawd/agents/brainmaker/v31_marius_live.py",
+      "exists": true,
+      "size_bytes": 33583,
+      "status": "running",
+      "pid": 3673899
+    }
+  },
+  "test_results": {
+    "all_tests_passed": true,
+    "test_details": [
+      {
+        "test": "GET /api/v31/live_status",
+        "result": "PASS",
+        "response_code": 200,
+        "symbols_count": 36,
+        "analyzed_at_startup": 0,
+        "notes": "All 36 symbols returned with PENDING status at startup"
+      },
+      {
+        "test": "OPTIONS /api/v31/live_status",
+        "result": "PASS",
+        "cors_headers": "Present"
+      },
+      {
+        "test": "GET /api/robot/status?robot=v31",
+        "result": "PASS",
+        "response_code": 200
+      },
+      {
+        "test": "POST /api/robot/v31/start",
+        "result": "PASS",
+        "response_code": 200
+      },
+      {
+        "test": "POST /api/robot/v31/stop",
+        "result": "PASS",
+        "response_code": 200
+      },
+      {
+        "test": "OPTIONS /api/robot/v31/start",
+        "result": "PASS",
+        "cors_headers": "Present"
+      }
+    ]
+  },
+  "output_file": "/workspace/shared/agents/builder-1/output/v31_api_test_report.txt",
+  "completed_tasks": [
+    {
+      "bug_id": "BUG-003-v31-symbols-empty-startup",
+      "task_file": "/workspace/shared/tasks/auto/BUGFIX-BUG-003-v31-symbols-empty-startup.json",
+      "completed_at": "2026-03-28T17:10:00Z",
+      "severity": "Low",
+      "fix_id": "BUG-003-v31-symbols-empty-startup"
+    }
+  ],
+  "pending_tasks": [
+    {
+      "bug_id": "BUG-002-v31-de40-price-error",
+      "task_file": "/workspace/shared/tasks/auto/BUGFIX-BUG-002-v31-de40-price-error.json",
+      "assigned_at": "2026-03-28T17:08:55.529429",
+      "severity": "Medium"
+    },
+    {
+      "bug_id": "BUG-004-v33-log-duplicate",
+      "task_file": "/workspace/shared/tasks/auto/BUGFIX-BUG-004-v33-log-duplicate.json",
+      "assigned_at": "2026-03-28T17:08:55.529985",
+      "severity": "Low"
+    },
+    {
+      "bug_id": "BUG-012-connection-always-offline",
+      "task_file": "/workspace/shared/tasks/auto/BUGFIX-BUG-012-connection-always-offline.json",
+      "assigned_at": "2026-03-28T17:18:15.465212",
+      "severity": ""
+    },
+    {
+      "bug_id": "BUG-005-live-analysis-not-updating",
+      "task_file": "/workspace/shared/tasks/auto/BUGFIX-BUG-005-live-analysis-not-updating.json",
+      "assigned_at": "2026-03-28T17:18:15.465889",
+      "severity": ""
+    },
+    {
+      "bug_id": "BUG-011-missing-symbol-analysis",
+      "task_file": "/workspace/shared/tasks/auto/BUGFIX-BUG-011-missing-symbol-analysis.json",
+      "assigned_at": "2026-03-28T17:18:15.467013",
+      "severity": ""
+    },
+    {
+      "bug_id": "BUG-008-missing-api-implementation",
+      "task_file": "/workspace/shared/tasks/auto/BUGFIX-BUG-008-missing-api-implementation.json",
+      "assigned_at": "2026-03-28T17:18:15.468470",
+      "severity": ""
+    },
+    {
+      "bug_id": "BUG-010-v33-timer-logic",
+      "task_file": "/workspace/shared/tasks/auto/BUGFIX-BUG-010-v33-timer-logic.json",
+      "assigned_at": "2026-03-28T17:18:15.469096",
+      "severity": ""
+    },
+    {
+      "bug_id": "BUG-004-missing-status-api-endpoints",
+      "task_file": "/workspace/shared/tasks/auto/BUGFIX-BUG-004-missing-status-api-endpoints.json",
+      "assigned_at": "2026-03-28T17:18:15.470536",
+      "severity": ""
+    },
+    {
+      "bug_id": "BUG-007-symbol-grid-not-populated",
+      "task_file": "/workspace/shared/tasks/auto/BUGFIX-BUG-007-symbol-grid-not-populated.json",
+      "assigned_at": "2026-03-28T17:18:15.471098",
+      "severity": ""
+    },
+    {
+      "bug_id": "BUG-009-v32-timer-logic",
+      "task_file": "/workspace/shared/tasks/auto/BUGFIX-BUG-009-v32-timer-logic.json",
+      "assigned_at": "2026-03-28T17:18:15.471639",
+      "severity": ""
+    },
+    {
+      "bug_id": "BUG-003-missing-robot-api-endpoints",
+      "task_file": "/workspace/shared/tasks/auto/BUGFIX-BUG-003-missing-robot-api-endpoints.json",
+      "assigned_at": "2026-03-28T17:18:15.474345",
+      "severity": ""
+    },
+    {
+      "bug_id": "BUG-014-missing-data-persistence",
+      "task_file": "/workspace/shared/tasks/auto/BUGFIX-BUG-014-missing-data-persistence.json",
+      "assigned_at": "2026-03-28T17:18:15.474957",
+      "severity": ""
+    },
+    {
+      "bug_id": "BUG-102",
+      "task_file": "/workspace/shared/tasks/auto/BUGFIX-BUG-102.json",
+      "assigned_at": "2026-03-29T08:05:27.035525",
+      "severity": "MEDIUM",
+      "priority": "P1"
+    },
+    {
+      "bug_id": "BUG-103",
+      "task_file": "/workspace/shared/tasks/auto/BUGFIX-BUG-103.json",
+      "assigned_at": "2026-03-29T08:05:27.036366",
+      "severity": "MEDIUM",
+      "priority": "P1"
+    },
+    {
+      "bug_id": "BUG-104",
+      "task_file": "/workspace/shared/tasks/auto/BUGFIX-BUG-104.json",
+      "assigned_at": "2026-03-29T08:05:27.037089",
+      "severity": "MEDIUM",
+      "priority": "P1"
+    },
+    {
+      "bug_id": "BUG-105",
+      "task_file": "/workspace/shared/tasks/auto/BUGFIX-BUG-105.json",
+      "assigned_at": "2026-03-29T08:05:27.037818",
+      "severity": "MEDIUM",
+      "priority": "P1"
+    },
+    {
+      "bug_id": "BUG-108",
+      "task_file": "/workspace/shared/tasks/auto/BUGFIX-BUG-108.json",
+      "assigned_at": "2026-03-29T08:05:27.038552",
+      "severity": "MEDIUM",
+      "priority": "P1"
+    },
+    {
+      "bug_id": "BUG-109",
+      "task_file": "/workspace/shared/tasks/auto/BUGFIX-BUG-109.json",
+      "assigned_at": "2026-03-29T08:05:27.039263",
+      "severity": "MEDIUM",
+      "priority": "P1"
+    }
+  ],
+  "last_update": "2026-03-29T08:51:39.178949"
+}

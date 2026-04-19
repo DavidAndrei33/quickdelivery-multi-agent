@@ -1,0 +1,16 @@
+{
+  "id": "TC-AUTO-BUG-002-v31-de40-price-error",
+  "title": "Test: BUG-002: V31 Eroare Analiz\u0103 DE40 - Variabil\u0103 'price' not defined",
+  "bug_id": "BUG-002-v31-de40-price-error",
+  "type": "data_integrity_test",
+  "generated_at": "2026-03-28T17:16:58.634263",
+  "status": "pending",
+  "steps": [
+    "1. Porne\u0219te V31 Marius TPL",
+    "2. A\u0219teapt\u0103 primul ciclu de analiz\u0103",
+    "3. Verific\u0103 log-urile \u00een `/var/log/v31_marius_live.log`",
+    "4. Observ\u0103 eroarea pentru simbolul DE40"
+  ],
+  "expected_result": "Analiza DE40 ar trebui s\u0103 se completeze f\u0103r\u0103 erori, similar cu alte simboluri.",
+  "automation_script": "// Generic test script"
+}

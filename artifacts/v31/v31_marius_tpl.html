@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V31 Marius TPL - Trading Dashboard</title>
+    <link rel="stylesheet" href="v31_marius_tpl.css">
+</head>
+<body>
+    <div id="app">
+        <header class="dashboard-header">
+            <h1>🎯 V31 Marius TPL Dashboard</h1>
+            <div class="connection-status" id="connectionStatus">Disconnected</div>
+        </header>
+        
+        <main class="dashboard-main">
+            <section class="symbol-grid" id="symbolGrid">
+                <h2>Symbol Grid</h2>
+                <div class="grid-container" id="gridContainer">
+                    <!-- Dynamic content loaded by JS -->
+                </div>
+            </section>
+            
+            <section class="trading-panel">
+                <h2>Trading Controls</h2>
+                <div class="controls" id="tradingControls">
+                    <button id="connectBtn" class="btn btn-primary">Connect</button>
+                    <button id="disconnectBtn" class="btn btn-secondary">Disconnect</button>
+                </div>
+            </section>
+            
+            <section class="logs-panel">
+                <h2>Activity Log</h2>
+                <div id="activityLog" class="log-container"></div>
+            </section>
+        </main>
+    </div>
+    
+    <script src="v31_marius_tpl.js"></script>
+</body>
+</html>

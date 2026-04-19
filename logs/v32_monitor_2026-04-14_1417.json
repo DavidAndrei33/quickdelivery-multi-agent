@@ -1,0 +1,53 @@
+{
+  "check_type": "V32 London Breakout Status",
+  "timestamp": "2026-04-14T14:17:00Z",
+  "current_time_utc": "14:17",
+  "status": "MARKET_CLOSED",
+  "anomalies": [],
+  "gbpusd_analysis": {
+    "symbol": "GBPUSD",
+    "current_price": 1.34023,
+    "candle": {
+      "open": 1.33981,
+      "high": 1.34013,
+      "low": 1.3397,
+      "close": 1.34007,
+      "volume": 115
+    },
+    "body_pct": 60.5,
+    "wick_pct": 39.5,
+    "signal": "WAIT"
+  },
+  "or_calculations": {
+    "or_high": null,
+    "or_low": null,
+    "or_range": null,
+    "market_closed": true,
+    "message": "No OR data available - market may be closed or OR not formed yet"
+  },
+  "asia_session": {
+    "asia_high": null,
+    "asia_low": null,
+    "asia_range": null,
+    "is_compressed": false
+  },
+  "session_phase": {
+    "current_phase": "MARKET_CLOSED",
+    "london_session_hours": "07:00-16:00 UTC",
+    "time_until_london_open": "16 hours 43 minutes",
+    "robot_status": "stopped",
+    "robot_pid": null
+  },
+  "breakout_status": {
+    "breakout_detected": false,
+    "breakout_direction": null,
+    "signal": "WAIT"
+  },
+  "system_health": {
+    "mt5_core_server": "running",
+    "api_endpoints": "healthy",
+    "v32_robot": "stopped (expected - market closed)",
+    "active_mt5_clients": 0
+  },
+  "conclusion": "V32 London Breakout is in expected state. Market is closed, robot is stopped. No anomalies detected. London session opens at 07:00 UTC tomorrow."
+}

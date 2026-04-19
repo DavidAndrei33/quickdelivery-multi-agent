@@ -1,0 +1,16 @@
+{
+  "id": "TC-AUTO-BUG-005-robot-id-mapping-fix",
+  "title": "Test: BUG-005: Robot Start/Stop nu func\u021bioneaz\u0103 - ID mapping gre\u0219it",
+  "bug_id": "BUG-005-robot-id-mapping-fix",
+  "type": "api_test",
+  "generated_at": "2026-03-28T17:16:58.632665",
+  "status": "pending",
+  "steps": [
+    "1. Deschide dashboard",
+    "2. Selecteaz\u0103 V31 din dropdown",
+    "3. Apas\u0103 butonul \"Start\"",
+    "4. Observ\u0103 eroarea \u00een consol\u0103: \"Unknown robot\" sau 404"
+  ],
+  "expected_result": "System should function correctly without errors",
+  "automation_script": "\nasync function test() {\n    const response = await fetch('{endpoint}', {\n        method: '{method}'\n    });\n    assert(response.status === 200);\n    const data = await response.json();\n    assert(data.status === 'success');\n}\n"
+}

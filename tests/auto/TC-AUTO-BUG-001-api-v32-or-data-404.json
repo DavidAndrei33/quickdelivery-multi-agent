@@ -1,0 +1,15 @@
+{
+  "id": "TC-AUTO-BUG-001-api-v32-or-data-404",
+  "title": "Test: BUG-001: /api/v32/or_data returneaz\u0103 HTTP 404",
+  "bug_id": "BUG-001-api-v32-or-data-404",
+  "type": "api_test",
+  "generated_at": "2026-03-28T17:16:58.635523",
+  "status": "pending",
+  "steps": [
+    "1. Porne\u0219te MT5 Core Server",
+    "2. Execut\u0103: `curl -s http://localhost:8001/api/v32/or_data`",
+    "3. Observ\u0103 rezultatul"
+  ],
+  "expected_result": "HTTP 200 cu date OR valide:\n```json\n{\n  \"status\": \"success\",\n  \"or_high\": <value>,\n  \"or_low\": <value>,\n  \"or_range\": <value>,\n  ...\n}\n```",
+  "automation_script": "\nasync function test() {\n    const response = await fetch('{endpoint}', {\n        method: '{method}'\n    });\n    assert(response.status === 200);\n    const data = await response.json();\n    assert(data.status === 'success');\n}\n"
+}

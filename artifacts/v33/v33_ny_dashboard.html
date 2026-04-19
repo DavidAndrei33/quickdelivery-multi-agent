@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V33 NY Breakout - Trading Dashboard</title>
+    <link rel="stylesheet" href="v33_ny_styles.css">
+</head>
+<body>
+    <div id="app">
+        <header class="dashboard-header">
+            <h1>🗽 V33 NY Breakout Dashboard</h1>
+            <div class="session-status" id="sessionStatus">Waiting for NY Session</div>
+        </header>
+        
+        <main class="dashboard-main">
+            <section class="breakout-panel">
+                <h2>NY Breakout Signals</h2>
+                <div class="breakout-container" id="breakoutContainer">
+                    <div class="breakout-card" id="breakoutCard">
+                        <h3>USD Pairs</h3>
+                        <div class="breakout-levels">
+                            <div class="level high" id="highLevel">High: --</div>
+                            <div class="level low" id="lowLevel">Low: --</div>
+                        </div>
+                        <div class="breakout-signal" id="breakoutSignal">WAITING</div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="positions-panel">
+                <h2>Active Positions</h2>
+                <div id="positionsList" class="positions-list">
+                    <div class="no-positions">No active positions</div>
+                </div>
+            </section>
+            
+            <section class="logs-panel">
+                <h2>Breakout Log</h2>
+                <div id="breakoutLog" class="log-container"></div>
+            </section>
+        </main>
+    </div>
+    
+    <script src="v33_ny_connector.js"></script>
+</body>
+</html>

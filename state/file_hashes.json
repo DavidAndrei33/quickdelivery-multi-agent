@@ -1,0 +1,18 @@
+{
+  "/root/clawd/agents/brainmaker/dashboard/dashboard_functional_robot_config.js": "64a625eb64eafa39c3bc7d7acdac6112",
+  "/root/clawd/agents/brainmaker/dashboard/dashboard_functional.js": "0841c1479c07a517c5e1a9e2284ff9ae",
+  "/root/clawd/agents/brainmaker/dashboard/auth.js": "07469dccee5f3aaeb5b3512c3b12cdde",
+  "/root/clawd/agents/brainmaker/dashboard/status.json": "3fd4cf0621132e5c646c06a2947bc710",
+  "/root/clawd/agents/brainmaker/dashboard/v32_or_connector.js": "f66473fff70d09b7f61a66db03e8669c",
+  "/root/clawd/agents/brainmaker/dashboard/dashboard_incomplete_config.js": "8ae3a96d0f302ff22cabbe5681fb6007",
+  "/root/clawd/agents/brainmaker/dashboard/index.html": "ea360adc54c3454b1e779e23800dce6b",
+  "/root/clawd/agents/brainmaker/dashboard/login.html": "88c4b4466293405e63e37e9bacb3b1c2",
+  "/root/clawd/agents/brainmaker/dashboard/static/main.css": "fc48007f13a19d931e135cb36a701297",
+  "/root/clawd/agents/brainmaker/dashboard/static/dashboard.css": "562216e48765b9bbb5c44ffca0cb4bc7",
+  "/root/clawd/agents/brainmaker/dashboard/static/mobile.css": "2077650804e9f640fa91d546e9f62aab",
+  "/root/clawd/agents/brainmaker/dashboard/static/dashboard.js": "55c15a2c8f3644f2af0d842be090f981",
+  "/root/clawd/agents/brainmaker/mt5_core_server.py": "30c7154b1c20f1899c7db01a5b37e341",
+  "/root/clawd/agents/brainmaker/v31_marius_tpl_robot.py": "c1907679c7ef4771b0fb683c6cb179dd",
+  "/root/clawd/agents/brainmaker/v32_london_breakout_robot.py": "383fbe65f764525d6d4957716b077530",
+  "/root/clawd/agents/brainmaker/v33_ny_breakout_robot.py": "b60191451c4cb5e79734b0da399fead5"
+}

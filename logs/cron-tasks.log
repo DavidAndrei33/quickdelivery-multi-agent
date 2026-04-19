@@ -1,0 +1,60 @@
+================================================================================
+[2026-04-06T08:46:00Z] CRON: task-coordinator-monitor - Verificare TASKBOARD
+================================================================================
+
+REZULTAT VERIFICARE:
+
+1. TASKBOARD.json principal (/workspace/shared/tasks/TASKBOARD.json):
+   - Structură: Format de research/analysis (nu format task management)
+   - Tasks active: Nu există secțiune 'active' cu assignees
+   - Status: Research complet (80/80 întrebări răspuns)
+   - Next step: "Genereaza test cases complete si pune echipa la treaba"
+
+2. BUGS_TASKS_SUITA1.json (sursă alternativă):
+   - Total task-uri: 9
+   - Toate status: 🔴 BLOCKED - NEEDS CODE
+   - Assignees: builder-1 (5 task-uri), builder-2 (4 task-uri)
+   
+   TASK-URI CU ASSIGNĂRI ACTIVE:
+   ┌─────────┬──────────────────────────────────────┬───────────┬─────────────────────────────┐
+   │ ID      │ Titlu                                │ Assignee  │ Status                      │
+   ├─────────┼──────────────────────────────────────┼───────────┼─────────────────────────────┤
+   │ TASK-101│ Implementare Filtrare Clienți        │ builder-1 │ 🔴 BLOCKED - NEEDS CODE     │
+   │ TASK-102│ WebSocket Real-time pentru Clienți   │ builder-2 │ 🔴 BLOCKED - NEEDS CODE     │
+   │ TASK-103│ Mid Price Calculation                │ builder-1 │ 🔴 BLOCKED - NEEDS CODE     │
+   │ TASK-104│ Indicator Poziție Modificată         │ builder-2 │ 🔴 BLOCKED - NEEDS CODE     │
+   │ TASK-105│ Calcul Profit Configurabil           │ builder-1 │ 🔴 BLOCKED - NEEDS CODE     │
+   │ TASK-106│ Calcul R:R în Istoric                │ builder-2 │ 🔴 BLOCKED - NEEDS CODE     │
+   │ TASK-107│ Modal Detalii Tranzacție             │ builder-1 │ 🔴 BLOCKED - NEEDS CODE     │
+   │ TASK-108│ Tracking Modificări                  │ builder-2 │ 🔴 BLOCKED - NEEDS CODE     │
+   │ BUG-201 │ BUG: Lipsește coloana 'Deschis De'   │ builder-2 │ 🔴 BLOCKED - NEEDS CODE     │
+   └─────────┴──────────────────────────────────────┴───────────┴─────────────────────────────┘
+
+3. SESIUNI ACTIVE:
+   - agent:main:main (Andrei) - activ
+   - agent:main:cron:723f1a94-5950-4b2c-bfb3-b945f479e47d (current) - activ
+   - agent:main:cron:dc16bc80-3e20-4e06-9bc3-e0b7974b3f1a - activ
+   - agent:main:telegram:group:-1003505867325 (g-forex-builder) - activ
+   - agent:main:appdev - inactiv (ultima activitate: 2026-03-11)
+   
+   ⚠️  SESIUNI BUILDER LIPSA:
+   - builder-1: NU EXISTĂ sesiune activă
+   - builder-2: NU EXISTĂ sesiune activă
+   - qa-master: NU EXISTĂ sesiune activă
+
+4. ACȚIUNI ÎNTREPRINSE:
+   ❌ Nu s-au putut trimite notificări - sesiunile builder-1 și builder-2 nu există
+   
+   RECOMANDĂRI:
+   - Creare sesiuni pentru builder-1 și builder-2 folosind sessions_spawn
+   - Sau: Notificare manuală prin canalul Telegram g-forex-builder
+   - Sau: Adăugare hook care să trimită notificări când se creează task-uri noi
+
+5. STATUS CRON:
+   ✅ Verificare completă
+   ⚠️  Necesită atenție: 9 task-uri blocked așteaptă dezvoltare
+   ❌ Nu s-au putut notifica agenții (sesiuni inexistente)
+
+================================================================================
+URMĂTORUL CHECK: 2026-04-06T09:16:00Z (în 30 minute)
+================================================================================

@@ -1,0 +1,35 @@
+========================================
+V31 MARIUS TPL - Backend API Test Report
+========================================
+Timestamp: 2026-03-28T16:52:45+00:00
+
+=== 1. GET /api/v31/live_status ===
+{"analyzed_count":0,"current_symbol":null,"phase":"Waiting...","progress":0,"rejected":[],"rejected_count":0,"setups":[],"setups_count":0,"status":"success","symbols":[],"timestamp":"2026-03-28T16:52:45.630185"}
+
+
+=== 2. OPTIONS /api/v31/live_status (CORS) ===
+HTTP/1.1 200 OK
+Server: Werkzeug/3.1.5 Python/3.10.12
+Date: Sat, 28 Mar 2026 16:52:45 GMT
+Content-Type: application/json
+Content-Length: 16
+
+=== 3. GET /api/robot/status?robot=v31 ===
+{"pid":null,"robot":"v31","status":"stopped"}
+
+
+=== 4. POST /api/robot/v31/start ===
+{"message":"v31 started","pid":3752127,"status":"success"}
+
+
+=== 5. POST /api/robot/v31/stop ===
+{"message":"v31 stopped","pid":3752127,"status":"success"}
+
+
+=== 6. OPTIONS /api/robot/v31/start (CORS) ===
+HTTP/1.1 200 OK
+Server: Werkzeug/3.1.5 Python/3.10.12
+Date: Sat, 28 Mar 2026 16:52:45 GMT
+Content-Type: application/json
+Content-Length: 16
+

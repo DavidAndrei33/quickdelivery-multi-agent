@@ -1,0 +1,17 @@
+{
+  "id": "BUGFIX-BUG-003-symbol-length-validation",
+  "type": "auto_bugfix",
+  "title": "Fix Lips\u0103 validare lungime simbol",
+  "description": "Bug BUG-003-symbol-length-validation assigned automatically",
+  "bug_id": "BUG-003-symbol-length-validation",
+  "bug_file": "/workspace/shared/bugs/BUG-003-symbol-length-validation.md",
+  "assigned_to": "builder-1",
+  "severity": "Medium",
+  "priority": "P2",
+  "status": "retry",
+  "created_at": "2026-03-28T16:21:24.973186",
+  "deadline_days": 5,
+  "auto_generated": true,
+  "retry_count": 1,
+  "last_retry": "2026-03-29T08:51:39.182249"
+}

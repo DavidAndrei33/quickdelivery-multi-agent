@@ -1,0 +1,15 @@
+{
+  "id": "TC-AUTO-BUG-001-stop-endpoint-405",
+  "title": "Test: BUG-REPORT-001: Robot Stop Endpoint Returns 405 Method Not Allowed",
+  "bug_id": "BUG-001-stop-endpoint-405",
+  "type": "api_test",
+  "generated_at": "2026-03-28T17:16:58.636559",
+  "status": "pending",
+  "steps": [
+    "Send request to endpoint",
+    "Verify response status",
+    "Validate response data"
+  ],
+  "expected_result": "```json\n{\"status\": \"success\", \"message\": \"v32_london stopped\", \"pid\": 12345}\n```",
+  "automation_script": "\nasync function test() {\n    const response = await fetch('{endpoint}', {\n        method: '{method}'\n    });\n    assert(response.status === 200);\n    const data = await response.json();\n    assert(data.status === 'success');\n}\n"
+}

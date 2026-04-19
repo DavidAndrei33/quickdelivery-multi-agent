@@ -1,0 +1,44 @@
+{
+  "robots": {
+    "v31_marius_tpl": {
+      "status": "stopped",
+      "robot_running": false,
+      "last_check": "2026-04-14T02:17:00Z",
+      "last_heartbeat": "2026-04-14T02:17:00Z",
+      "error_count": 0,
+      "consecutive_failures": 0,
+      "reason": "API endpoint not available - robot not initialized"
+    },
+    "v32_london_breakout": {
+      "status": "stopped",
+      "robot_running": false,
+      "last_check": "2026-04-14T02:17:00Z",
+      "last_heartbeat": "2026-04-14T02:30:49Z",
+      "error_count": 0,
+      "consecutive_failures": 0,
+      "reason": "Market closed - London session not active (BEFORE_SESSION phase)",
+      "session_phase": "BEFORE_SESSION",
+      "time_remaining_minutes": 270
+    },
+    "v33_ny_breakout": {
+      "status": "stopped",
+      "robot_running": false,
+      "last_check": "2026-04-14T02:17:00Z",
+      "last_heartbeat": "2026-04-14T02:30:49Z",
+      "error_count": 0,
+      "consecutive_failures": 0,
+      "reason": "Market closed - NY session ended (AFTER_SESSION phase)",
+      "session_phase": "AFTER_SESSION"
+    },
+    "mt5_core_server": {
+      "status": "running",
+      "robot_running": true,
+      "last_check": "2026-04-14T02:17:00Z",
+      "last_heartbeat": "2026-04-14T02:29:09Z",
+      "error_count": 0,
+      "consecutive_failures": 0,
+      "pid": 8001
+    }
+  },
+  "last_updated": "2026-04-14T02:17:00Z"
+}

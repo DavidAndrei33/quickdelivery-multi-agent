@@ -1,0 +1,100 @@
+{
+  "task_id": "TASK_CRITIC_ELEMENT_PLAN",
+  "status": "COMPLETED",
+  "timestamp": "2026-03-28T18:17:00Z",
+  "agent": "task-critic",
+  "output": {
+    "document_path": "/workspace/shared/docs/V31_ELEMENT_PLAN.md",
+    "document_size": "27886 bytes",
+    "sections_count": 10,
+    "elements_documented": [
+      {
+        "element": "Buton START",
+        "status": "documented",
+        "details": {
+          "endpoint": "POST /api/robot/v31_tpl/start",
+          "handler": "mt5_core_server.py → start_v31_tpl()",
+          "process": "v31_tpl_main.py via subprocess.Popen",
+          "flow": "Dashboard → API → Proces Python → Robot rulează"
+        }
+      },
+      {
+        "element": "Buton STOP",
+        "status": "documented",
+        "details": {
+          "endpoint": "POST /api/robot/v31_tpl/stop",
+          "handler": "mt5_core_server.py → stop_v31_tpl()",
+          "method": "process.terminate() → process.kill() fallback",
+          "timeout": "5 secunde graceful"
+        }
+      },
+      {
+        "element": "Status Badge",
+        "status": "documented",
+        "details": {
+          "endpoint": "GET /api/robots",
+          "polling": "10 secunde",
+          "states": ["running", "stopped", "error", "starting", "stopping"],
+          "ui_mapping": "Culori + text + iconițe"
+        }
+      },
+      {
+        "element": "Analiză Live",
+        "status": "documented",
+        "details": {
+          "endpoint": "GET /api/v31/live_status",
+          "polling": "5 secunde",
+          "components": [
+            "Progress bar → progress (0-100%)",
+            "Contoare → analyzed_count, setups_count",
+            "Scoruri → scores array (symbol, score, direction, confidence)"
+          ]
+        }
+      },
+      {
+        "element": "Log-uri",
+        "status": "documented",
+        "details": {
+          "source": "DB table robot_logs",
+          "endpoint": "GET /api/robot_logs",
+          "filters": ["level", "symbol", "limit", "offset", "hours", "search"],
+          "levels": ["DEBUG", "INFO", "WARNING", "ERROR"]
+        }
+      },
+      {
+        "element": "Simboluri",
+        "status": "documented",
+        "details": {
+          "count": 32,
+          "endpoint": "GET /api/v31/symbol_status",
+          "polling": "Real-time (5s)",
+          "statuses": ["active", "analyzing", "waiting", "disabled", "error"],
+          "config_file": "v31_config.py → V31_SYMBOLS"
+        }
+      }
+    ]
+  },
+  "document_sections": [
+    "1. Buton START - Flow complet, request/response, cod relevant",
+    "2. Buton STOP - Flow complet, request/response, cod relevant",
+    "3. Status Badge - Polling, mapare stări, implementare frontend",
+    "4. Analiză Live - Progress bar, contoare, scoruri, componente UI",
+    "5. Log-uri - Schema DB, query params, log viewer UI",
+    "6. Simboluri - Lista completă 32 simboluri, statusuri, grid UI",
+    "7. Diagramă Flux Date - Arhitectură completă",
+    "8. API Reference - Sumar endpoints, coduri eroare, CORS",
+    "9. Checklist Implementare - Backend, Frontend, Robot",
+    "10. Note Importante - Securitate, Performance, Debugging"
+  ],
+  "next_steps": [
+    "Review document de către echipa de dezvoltare",
+    "Implementare endpoints în mt5_core_server.py",
+    "Creare componente UI în dashboard",
+    "Testare integrare end-to-end"
+  ],
+  "artifacts": {
+    "main_document": "/workspace/shared/docs/V31_ELEMENT_PLAN.md",
+    "size_kb": 27.2,
+    "format": "Markdown"
+  }
+}

@@ -1,0 +1,78 @@
+[2026-04-13 15:05 UTC] AUTO-RESTART-CHECK - d7b68779-2523-49f5-ba1e-6e9437e67f92
+================================================================================
+
+CHECK INITIATED: Monday, April 13th, 2026 - 3:05 PM (UTC)
+
+ROBOT STATUS CHECK:
+-------------------
+1. V31 (Marius TPL Fibonacci Strategy):
+   - API Status: success
+   - Robot Running: false
+   - Robot PID: null
+   - Phase: Waiting...
+   - Symbols Analyzed: 0
+   - Setups: 0
+
+2. V32 (London Session Opening Range Breakout):
+   - API Status: success
+   - Robot Running: false
+   - Robot PID: null
+   - Current Symbol: GBPUSD
+   - Current Price: 1.34023
+   - Signal: WAIT
+   - Breakout Detected: false
+   - Session Phase: Market closed / After session
+
+3. V33 (New York Session Opening Range Breakout):
+   - API Status: success
+   - Robot Running: false
+   - Robot PID: null
+   - Current Symbol: EURUSD
+   - Current Price: 1.16872
+   - Signal: WAIT
+   - Session Phase: PRE_SESSION
+   - Breakout Detected: false
+
+MANUAL STOP CHECK:
+------------------
+- Previous incident log (2026-04-12T15:27:00Z): manual_stop_flag = true
+- Last check (2026-04-12T21:43:00Z): Robots stopped for weekend
+- Market status: Monday afternoon (markets open but sessions inactive)
+
+DECISION:
+---------
+- All 3 trading robots are STOPPED (robot_running: false)
+- Manual stop flag detected from previous checks (weekend shutdown)
+- Current time: Monday 15:05 UTC
+  - London session: 08:00-08:15 GMT (already passed)
+  - NY session: 13:00-13:15 NY time (17:00-17:15 UTC, not started yet)
+- ACTION: NO AUTO-RESTART performed
+- REASON: Robots appear to be manually stopped for weekend. User needs to manually start them for trading sessions.
+
+RESTART POLICY:
+---------------
+Per instructions: "Do NOT restart if stopped manually by user"
+Manual stop detected in incident history - respecting user intent.
+
+VERIFICATION:
+-------------
+- API endpoints responsive: YES (all return HTTP 200)
+- V31 API: /api/v31/live_status → 200 OK
+- V32 API: /api/v32/breakout_status → 200 OK
+- V33 API: /api/v33/breakout_status → 200 OK
+- MT5 Core Server: healthy (PID 910, port 8001)
+- Dashboard: operational
+- No critical errors detected
+
+CONCLUSION:
+-----------
+Status: SKIPPED (Manual Stop Detected)
+Robots are intentionally stopped. No restart attempted.
+System is healthy. APIs responsive. Ready for manual restart when user decides.
+
+Next Sessions:
+- London: Tomorrow 08:00 GMT
+- NY: Today 17:00 UTC (in ~2 hours)
+
+Next check scheduled: Next cron cycle
+================================================================================

@@ -1,0 +1,62 @@
+#!/bin/bash
+# Pipeline Status Dashboard
+
+echo "═══════════════════════════════════════════════════"
+echo "   🤖 PIPELINE AUTOMAT - STATUS DASHBOARD"
+echo "═══════════════════════════════════════════════════"
+echo ""
+
+# Check Vigilant status
+echo "👁️  VIGILANT (File Watcher):"
+if [ -f /workspace/shared/state/vigilant.pid ] && ps -p $(cat /workspace/shared/state/vigilant.pid) >/dev/null 2>&1; then
+  echo "   ✅ Running (PID: $(cat /workspace/shared/state/vigilant.pid))"
+else
+  echo "   ❌ Stopped"
+fi
+echo ""
+
+# Pipeline state
+echo "📊 PIPELINE STATE:"
+if [ -f /workspace/shared/state/pipeline_state.json ]; then
+  cat /workspace/shared/state/pipeline_state.json | python3 -m json.tool 2>/dev/null || cat /workspace/shared/state/pipeline_state.json
+else
+  echo "   🔄 IDLE - Waiting for code changes"
+fi
+echo ""
+
+# Recent bugs
+echo "🐛 BUG-URI RECENTE:"
+if [ -d /workspace/shared/bugs ]; then
+  ls -lt /workspace/shared/bugs/*.md 2>/dev/null | head -5 | while read line; do
+    filename=$(echo "$line" | awk '{print $NF}')
+    echo "   📄 $(basename $filename)"
+  done
+else
+  echo "   ✅ No bugs reported"
+fi
+echo ""
+
+# Active tasks
+echo "📋 TASK-URI ACTIVE:"
+if [ -d /workspace/shared/tasks/auto ]; then
+  task_count=$(ls /workspace/shared/tasks/auto/*.json 2>/dev/null | wc -l)
+  echo "   📝 $task_count task-uri în queue"
+  ls -lt /workspace/shared/tasks/auto/*.json 2>/dev/null | head -3 | while read line; do
+    filename=$(echo "$line" | awk '{print $NF}')
+    echo "   📌 $(basename $filename)"
+  done
+else
+  echo "   ✅ No active tasks"
+fi
+echo ""
+
+# Recent log
+echo "🕐 ULTIMELE EVENIMENTE:"
+tail -5 /workspace/shared/logs/vigilant.log 2>/dev/null || echo "   No events yet"
+echo ""
+
+echo "═══════════════════════════════════════════════════"
+echo "   Comenzi disponibile:"
+echo "   • vigilantctl start/stop/status"
+echo "   • bash /workspace/shared/bin/pipeline-status"
+echo "═══════════════════════════════════════════════════"

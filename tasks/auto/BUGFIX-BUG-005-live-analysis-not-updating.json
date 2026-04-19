@@ -1,0 +1,17 @@
+{
+  "id": "BUGFIX-BUG-005-live-analysis-not-updating",
+  "type": "auto_bugfix",
+  "title": "Fix Live Analysis Not Updating",
+  "description": "Bug BUG-005-live-analysis-not-updating assigned automatically",
+  "bug_id": "BUG-005-live-analysis-not-updating",
+  "bug_file": "/workspace/shared/bugs/BUG-005-live-analysis-not-updating.md",
+  "assigned_to": "builder-1",
+  "severity": "",
+  "priority": "",
+  "status": "retry",
+  "created_at": "2026-03-28T17:18:15.465724",
+  "deadline_days": 3,
+  "auto_generated": true,
+  "retry_count": 1,
+  "last_retry": "2026-03-29T08:51:39.180533"
+}

@@ -1,0 +1,14 @@
+{
+  "id": "TC-AUTO-BUG-003-symbol-length-validation",
+  "title": "Test: BUG-003: Lips\u0103 validare lungime simbol",
+  "bug_id": "BUG-003-symbol-length-validation",
+  "type": "api_test",
+  "generated_at": "2026-03-28T17:16:58.634127",
+  "status": "pending",
+  "steps": [
+    "1. Execut\u0103: `curl \"http://localhost:8001/api/symbol_analysis?symbol=AAAA...(1000 caractere)\"`",
+    "2. Observ\u0103 c\u0103 returneaz\u0103 HTTP 200 \u00een loc de 400 Bad Request"
+  ],
+  "expected_result": "HTTP 400 cu mesaj: \"Symbol too long (max 20 characters)\"",
+  "automation_script": "\nasync function test() {\n    const response = await fetch('{endpoint}', {\n        method: '{method}'\n    });\n    assert(response.status === 200);\n    const data = await response.json();\n    assert(data.status === 'success');\n}\n"
+}

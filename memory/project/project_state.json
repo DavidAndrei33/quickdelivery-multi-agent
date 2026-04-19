@@ -1,0 +1,248 @@
+{
+  "project_name": "Trading Dashboard Multi-Agent System",
+  "project_slug": "trading-dashboard-v2",
+  "status": "operational",
+  "current_version": "2.1.0",
+  "created_at": "2026-03-28T07:00:00Z",
+  "last_updated": "2026-04-14T18:10:00Z",
+  "updated_by": "ops-1",
+  "last_health_check": {
+    "timestamp": "2026-04-14T18:10:00Z",
+    "status": "healthy",
+    "check_id": "6e771d32-d941-4fec-8a49-91bf91d6fb1f",
+    "api_endpoints": 7,
+    "api_passed": 7,
+    "api_failed": 0,
+    "issues": [],
+    "warnings": [
+      "CPU usage: 63.5% (elevated - monitor)",
+      "Disk usage: 85% (high - cleanup recommended)",
+      "Memory usage: 57.8% (normal)",
+      "JavaScript syntax error fixed in dashboard_functional.js (line 152)"
+    ],
+    "details": {
+      "mt5_core_server": {
+        "status": "✅ HEALTHY",
+        "port": 8001,
+        "response_time": "<2ms",
+        "process_running": true
+      },
+      "vps_bridge": {
+        "status": "✅ HEALTHY",
+        "ports": [8080, 7001],
+        "target": "http://127.0.0.1:8001/update"
+      },
+      "dashboard_frontend": {
+        "html_serving": "✅ OK",
+        "javascript_syntax": "✅ dashboard_functional.js valid (fixed)",
+        "static_files": "✅ OK"
+      },
+      "api_endpoints": {
+        "health": "✅ OK - 200 (2ms)",
+        "clients": "✅ OK - 200 (2ms)",
+        "positions": "✅ OK - 200 (2ms)",
+        "v31_live_status": "✅ OK - 200 (57ms)",
+        "v32_or_data": "✅ OK - 200 (12ms)",
+        "v33_or_data": "✅ OK - 200 (10ms)",
+        "robots": "✅ OK - 200 (156ms)"
+      },
+      "data_flow": "✅ OK - API -> Dashboard functional",
+      "real_time_updates": "✅ OK - Polling active (1s interval)",
+      "javascript_errors": "✅ None - All JS files valid",
+      "system_resources": {
+        "cpu": "63.5% - elevated (monitor)",
+        "memory": "57.8% - normal",
+        "disk": "85% - high (cleanup recommended)",
+        "swap": "N/A - OK"
+      },
+      "trading_robots": {
+        "v29": {"status": "stopped", "pid": null},
+        "v31_tpl": {"status": "running", "pid": 492906},
+        "v32_london": {"status": "running", "pid": 494039},
+        "v33_ny": {"status": "running", "pid": 494549}
+      },
+      "daemons": {
+        "market_structure": {"status": "running", "pid": 1706},
+        "tick_stream": {"status": "running", "pid": 1717},
+        "ohlc_aggregator": {"status": "running", "pid": 1713},
+        "live_market": {"status": "running", "pid": 1704},
+        "execution_health": {"status": "running", "pid": 1702}
+      },
+      "logs": {
+        "recent_errors": 0,
+        "status": "✅ OK - Clean logs"
+      }
+    }
+  },
+  
+  "modules": [
+    {
+      "name": "mt5_core_server",
+      "type": "backend",
+      "status": "operational",
+      "path": "/root/clawd/agents/brainmaker/mt5_core_server.py",
+      "version": "2.0",
+      "dependencies": ["postgresql", "mt5"],
+      "last_modified": "2026-03-28T07:11:00Z"
+    },
+    {
+      "name": "dashboard_frontend",
+      "type": "frontend",
+      "status": "operational",
+      "path": "/root/clawd/agents/brainmaker/dashboard/",
+      "version": "2.0",
+      "dependencies": ["mt5_core_server"],
+      "last_modified": "2026-04-14T18:10:00Z"
+    },
+    {
+      "name": "v31_marius_tpl",
+      "type": "trading_robot",
+      "status": "operational",
+      "description": "Marius TPL Fibonacci Strategy",
+      "api_endpoint": "/api/v31/live_status",
+      "last_modified": "2026-03-28T07:00:00Z"
+    },
+    {
+      "name": "v32_london_breakout",
+      "type": "trading_robot",
+      "status": "operational",
+      "description": "London Session Opening Range Breakout",
+      "api_endpoints": ["/api/v32/or_data", "/api/v32/asia_data", "/api/v32/breakout_status"],
+      "last_modified": "2026-03-28T07:00:00Z"
+    },
+    {
+      "name": "v33_ny_breakout",
+      "type": "trading_robot",
+      "status": "operational",
+      "description": "New York Session Opening Range Breakout",
+      "api_endpoints": ["/api/v33/or_data", "/api/v33/presession_data", "/api/v33/breakout_status"],
+      "last_modified": "2026-03-28T07:11:00Z"
+    },
+    {
+      "name": "multi_agent_system",
+      "type": "orchestration",
+      "status": "operational",
+      "description": "13 agents with task coordination following Agent Team Orchestration best practices",
+      "components": ["hooks", "task_board", "bug_tracking", "cron_jobs", "agent_souls"],
+      "agents": {
+        "orchestrator": {
+          "id": "orchestrator",
+          "name": "Trading Orchestrator",
+          "role": "Orchestrator / Team Lead",
+          "specialty": "Task Routing, Priority Management",
+          "status": "active"
+        },
+        "builders": [
+          {"id": "builder-1", "name": "Core-Developer-1", "specialty": "API Implementation, Backend Logic", "status": "active"},
+          {"id": "builder-2", "name": "Integration-Engineer-1", "specialty": "API Integration, Data Flow", "status": "active"},
+          {"id": "builder-3", "name": "Integration-Engineer-2", "specialty": "MT5 Integration, Real-time Data", "status": "active"},
+          {"id": "builder-4", "name": "Dashboard-Frontend", "specialty": "UI/UX, JavaScript, CSS", "status": "active"},
+          {"id": "builder-5", "name": "Database-Optimizer", "specialty": "PostgreSQL, Query Optimization", "status": "active"},
+          {"id": "builder-6", "name": "Trading-Logic", "specialty": "Trading Algorithms, Risk Management", "status": "active"},
+          {"id": "builder-7", "name": "DevOps-Engineer", "specialty": "Docker, Deployment, Infrastructure", "status": "active"}
+        ],
+        "reviewers": [
+          {"id": "reviewer-1", "name": "Code-Reviewer-1", "specialty": "Code Quality, Architecture", "status": "active"},
+          {"id": "reviewer-2", "name": "Code-Reviewer-2", "specialty": "Security, Performance", "status": "active"},
+          {"id": "reviewer-3", "name": "QA-Tester-1", "specialty": "End-to-End Testing, Bug Discovery", "status": "active"}
+        ],
+        "ops": [
+          {"id": "ops-1", "name": "System-Monitor", "specialty": "Health Checks, Alerts, Cron Jobs", "status": "active"},
+          {"id": "ops-2", "name": "Task-Coordinator", "specialty": "Task Board Maintenance, Reporting", "status": "active"}
+        ]
+      },
+      "workflows": {
+        "task_lifecycle": "Inbox → Assigned → In Progress → Review → Done | Failed",
+        "handoff_protocol": "What was done, Where artifacts are, How to verify, Known issues, What's next",
+        "review_policy": "Every artifact gets reviewed before Done",
+        "escalation_triggers": ["Blocked >10 min", "API down >5 min", ">3 agents blocked", "Critical bug >30 min"]
+      },
+      "last_modified": "2026-04-12T14:35:00Z"
+    }
+  ],
+  
+  "completed_features": [
+    {
+      "id": "FEAT-001",
+      "name": "V32 API Implementation",
+      "completed_at": "2026-03-28T06:54:00Z",
+      "by": "builder-1, builder-3"
+    },
+    {
+      "id": "FEAT-002",
+      "name": "V33 API Implementation",
+      "completed_at": "2026-03-28T06:54:00Z",
+      "by": "builder-1, builder-2"
+    },
+    {
+      "id": "FEAT-003",
+      "name": "Unified Dashboard JS",
+      "completed_at": "2026-03-28T07:13:00Z",
+      "by": "builder-1"
+    },
+    {
+      "id": "FEAT-004",
+      "name": "Multi-Agent System",
+      "completed_at": "2026-03-28T07:28:00Z",
+      "by": "orchestrator"
+    },
+    {
+      "id": "FEAT-005",
+      "name": "OpenClaw Hooks (9 hooks)",
+      "completed_at": "2026-03-28T07:28:00Z",
+      "by": "orchestrator"
+    },
+    {
+      "id": "FEAT-006",
+      "name": "Health Check Dashboard",
+      "completed_at": "2026-03-28T08:10:00Z",
+      "by": "builder-4"
+    },
+    {
+      "id": "FEAT-007",
+      "name": "UI/UX Final - LED Status + Tabs + Responsive",
+      "completed_at": "2026-03-29T12:42:00Z",
+      "by": "builder-4",
+      "features": [
+        "LED Status Indicators (animated pulse)",
+        "Tab Navigation (Overview/Analysis/Trades/Logs/Settings)",
+        "Robot Selector with Icons",
+        "Auto-retry Connection (max 3)",
+        "WebSocket + Polling Fallback",
+        "Responsive Design (Mobile-friendly)",
+        "60 FPS Performance Optimized",
+        "Accordion Sections",
+        "Toast Notifications",
+        "Dark Theme Modern Design"
+      ]
+    }
+  ],
+  
+  "in_progress_features": [],
+  
+  "pending_features": [
+    {
+      "id": "FEAT-PENDING-001",
+      "name": "V34 Tokyo Breakout Robot",
+      "priority": "medium",
+      "dependencies": ["v32_london_breakout", "v33_ny_breakout"],
+      "estimated_effort": "2 days"
+    }
+  ],
+  
+  "failed_tasks": [],
+  
+  "architecture_version": "2.0",
+  "breaking_changes_since_last": false,
+  "migration_required": false,
+  
+  "statistics": {
+    "total_commits": 0,
+    "total_files": 53,
+    "total_lines_of_code": 17000,
+    "test_coverage": "N/A",
+    "active_agents": 13,
+    "open_bugs": 3,
+    "completed_tasks": 9
+  }
+}

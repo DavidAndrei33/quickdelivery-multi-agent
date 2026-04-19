@@ -1,0 +1,12 @@
+{
+  "id": "AUTO-TEST-1774716067",
+  "type": "auto_testing",
+  "title": "Testare automat\u0103 - Modific\u0103ri JavaScript frontend detectate",
+  "change_type": "frontend_js",
+  "changed_files": [
+    "/root/clawd/agents/brainmaker/dashboard/dashboard_functional.js"
+  ],
+  "assigned_to": "qa-master",
+  "status": "pending_spawn",
+  "created_at": "2026-03-28T16:41:07.998143"
+}

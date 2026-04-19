@@ -1,0 +1,45 @@
+═══════════════════════════════════════════════════════════════════════════════
+🤖 AUTO-RESTART CHECK - 2026-04-12 05:25 UTC
+═══════════════════════════════════════════════════════════════════════════════
+
+📊 STATUS VERIFICARE ROBOȚI:
+
+✅ V31 Marius TPL        → RUNNING (PID: 652099)
+✅ V32 London Breakout   → RUNNING (PID: 652100) - standby weekend
+✅ V33 NY Breakout       → RUNNING (PID: 652101) - standby weekend  
+✅ V29 Trading Robot     → RUNNING (PID: 894)
+✅ MT5 Core Server       → RUNNING (PID: 878)
+
+📡 SERVICII GATEWAY:
+✅ Port 19000            → ONLINE (moltbot-gateway)
+✅ Port 19001            → ONLINE (moltbot-gateway)
+⚠️  Port 19002            → OFFLINE (Tarot Bot - nu este robot de trading)
+✅ Port 19003            → ONLINE (moltbot-gateway)
+⚠️  Port 8888             → OFFLINE
+
+═══════════════════════════════════════════════════════════════════════════════
+🔍 ANALIZĂ:
+═══════════════════════════════════════════════════════════════════════════════
+
+1. TOȚI ROBOȚII DE TRADING SUNT OPERAȚIONALI
+   - V31, V32, V33, V29 rulează toți
+   - Sunt conectați la MT5 Core Server (port 8001)
+   - V32 și V33 sunt în standby (weekend - piața Forex e închisă)
+
+2. PORTUL 19002 ESTE PENTRU SERVICIU GATEWAY, NU ROBOT TRADING
+   - Conform /root/clawd/agents/brainmaker/brain_vault/dashboard/server.py
+   - "Tarot Bot" este o intrare în dashboard, nu un robot real
+   - Nu există fișier tarot bot în sistem
+
+3. NU EXISTĂ FIȘIERE DE CONTROL PENTRU OPRIRE MANUALĂ
+   - /workspace/shared/memory/robot_control.json → nu există
+   - /workspace/shared/memory/manual_stops.json → nu există
+
+═══════════════════════════════════════════════════════════════════════════════
+✅ DECIZIE: NICIUN RESTART NECESAR
+═══════════════════════════════════════════════════════════════════════════════
+
+Toți roboții de trading funcționează normal.
+Portul 19002 (Tarot Bot) nu este un robot de trading real.
+
+📝 Log completat: /workspace/shared/logs/auto_restart_2026-04-12_0525.log

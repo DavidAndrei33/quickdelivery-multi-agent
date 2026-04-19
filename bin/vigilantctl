@@ -1,0 +1,41 @@
+#!/bin/bash
+# Vigilant Control Script
+
+case "$1" in
+  start)
+    echo "🚀 Starting Vigilant..."
+    nohup python3 /workspace/shared/hooks/vigilant.py > /workspace/shared/logs/vigilant.log 2>&1 &
+    echo $! > /workspace/shared/state/vigilant.pid
+    echo "✅ Vigilant started (PID: $(cat /workspace/shared/state/vigilant.pid))"
+    ;;
+  stop)
+    if [ -f /workspace/shared/state/vigilant.pid ]; then
+      PID=$(cat /workspace/shared/state/vigilant.pid)
+      echo "🛑 Stopping Vigilant (PID: $PID)..."
+      kill $PID 2>/dev/null
+      rm /workspace/shared/state/vigilant.pid
+      echo "✅ Vigilant stopped"
+    else
+      echo "❌ Vigilant not running"
+    fi
+    ;;
+  status)
+    if [ -f /workspace/shared/state/vigilant.pid ] && ps -p $(cat /workspace/shared/state/vigilant.pid) >/dev/null 2>&1; then
+      echo "✅ Vigilant is running (PID: $(cat /workspace/shared/state/vigilant.pid))"
+      echo ""
+      echo "📊 Recent log entries:"
+      tail -10 /workspace/shared/logs/vigilant.log 2>/dev/null || echo "No logs yet"
+    else
+      echo "❌ Vigilant is not running"
+    fi
+    ;;
+  restart)
+    $0 stop
+    sleep 2
+    $0 start
+    ;;
+  *)
+    echo "Usage: $0 {start|stop|status|restart}"
+    exit 1
+    ;;
+esac

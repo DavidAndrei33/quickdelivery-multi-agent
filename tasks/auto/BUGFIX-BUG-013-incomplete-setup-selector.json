@@ -1,0 +1,17 @@
+{
+  "id": "BUGFIX-BUG-013-incomplete-setup-selector",
+  "type": "auto_bugfix",
+  "title": "Fix Incomplete Setup Robot Selector",
+  "description": "Bug BUG-013-incomplete-setup-selector assigned automatically",
+  "bug_id": "BUG-013-incomplete-setup-selector",
+  "bug_file": "/workspace/shared/bugs/BUG-013-incomplete-setup-selector.md",
+  "assigned_to": "builder-3",
+  "severity": "",
+  "priority": "",
+  "status": "retry",
+  "created_at": "2026-03-28T17:18:15.472047",
+  "deadline_days": 3,
+  "auto_generated": true,
+  "retry_count": 1,
+  "last_retry": "2026-03-29T08:51:39.182089"
+}

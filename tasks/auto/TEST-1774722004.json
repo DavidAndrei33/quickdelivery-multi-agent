@@ -1,0 +1,12 @@
+{
+  "id": "AUTO-TEST-1774722004",
+  "type": "auto_testing",
+  "title": "Testare automat\u0103 - Modific\u0103ri Robot Trading detectate",
+  "change_type": "robot_logic",
+  "changed_files": [
+    "/root/clawd/agents/brainmaker/v31_marius_tpl_robot.py"
+  ],
+  "assigned_to": "qa-master",
+  "status": "pending_spawn",
+  "created_at": "2026-03-28T18:20:04.143089"
+}

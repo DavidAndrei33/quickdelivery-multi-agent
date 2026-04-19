@@ -1,0 +1,80 @@
+{
+  "check_id": "auto-restart-check-d7b68779",
+  "timestamp": "2026-04-12T10:29:00Z",
+  "check_type": "robot_auto_restart",
+  "status": "completed",
+  "robots_checked": [
+    {
+      "id": "v29",
+      "name": "V29 Trading Robot",
+      "expected_status": "running",
+      "actual_status": "running",
+      "pid": 952,
+      "action_taken": "none",
+      "reason": "Robot running normally"
+    },
+    {
+      "id": "v31_live",
+      "name": "V31 Marius Live",
+      "expected_status": "stopped",
+      "actual_status": "stopped",
+      "pid": null,
+      "action_taken": "none",
+      "reason": "Weekend - market closed. Manual restart not required per project state."
+    },
+    {
+      "id": "v31_tpl",
+      "name": "V31 Marius TPL",
+      "expected_status": "stopped",
+      "actual_status": "stopped",
+      "pid": null,
+      "action_taken": "none",
+      "reason": "Weekend - market closed. Manual restart not required per project state."
+    },
+    {
+      "id": "v32_london",
+      "name": "V32 London Breakout",
+      "expected_status": "stopped",
+      "actual_status": "stopped",
+      "pid": null,
+      "action_taken": "none",
+      "reason": "Weekend - market closed. Manual restart not required per project state."
+    },
+    {
+      "id": "v33_ny",
+      "name": "V33 NY Breakout",
+      "expected_status": "stopped",
+      "actual_status": "stopped",
+      "pid": null,
+      "action_taken": "none",
+      "reason": "Weekend - market closed. Manual restart not required per project state."
+    }
+  ],
+  "daemons_checked": [
+    {"name": "Market Structure Daemon", "pid": 1662, "status": "running"},
+    {"name": "Tick Stream Daemon", "pid": 1670, "status": "running"},
+    {"name": "OHLC Aggregator", "pid": 1666, "status": "running"},
+    {"name": "Live Market Daemon", "pid": 1660, "status": "running"},
+    {"name": "Execution Health", "pid": 1657, "status": "running"},
+    {"name": "VPS Bridge 8080", "pid": 1076, "status": "running"},
+    {"name": "VPS Bridge 7001", "pid": 1069, "status": "running"}
+  ],
+  "summary": {
+    "total_robots": 5,
+    "running": 1,
+    "stopped_expected": 4,
+    "stopped_unexpected": 0,
+    "restarted": 0,
+    "restart_attempts": 0,
+    "restart_failures": 0
+  },
+  "notes": [
+    "All stopped robots (V31, V32, V33) are intentionally stopped due to weekend market closure.",
+    "Project state indicates 'V31/V32/V33 roboți opriți (normal pentru weekend)'.",
+    "No manual stop file found - robots were not stopped by user command.",
+    "Auto-restart skipped for stopped robots to respect weekend trading schedule.",
+    "All 7 system daemons are running normally.",
+    "V29 robot continues to run (does not depend on market hours)."
+  ],
+  "next_check": "2026-04-12T10:59:00Z"
+}

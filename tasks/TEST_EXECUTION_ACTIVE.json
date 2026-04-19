@@ -1,0 +1,30 @@
+{
+  "project": "Trading Dashboard Testing",
+  "phase": "EXECUTION_ACTIVE",
+  "start_time": "2026-03-28T22:14:00Z",
+  "team_active": {
+    "qa-master": {
+      "session": "agent:main:subagent:00a19f07-6b7a-4855-9145-5979388729b1",
+      "status": "ACTIVE",
+      "task": "Coordonare echipă + Suita 1: CORE"
+    },
+    "tester-frontend": {
+      "session": "agent:main:subagent:fe34eb2f-072f-4c24-a969-58f1212171ea",
+      "status": "ACTIVE",
+      "task": "Containere 1, 2, 3, 4, 8, 9, 10, 15"
+    },
+    "tester-backend": {
+      "session": "agent:main:subagent:2256989c-e9e5-4044-9ff5-7ed2a5cc39c8",
+      "status": "ACTIVE",
+      "task": "API V31, V32, V33 + Health + Stats + Logs"
+    },
+    "tester-robots": {
+      "session": "agent:main:subagent:97218dbd-e780-4aab-8e24-3d42ab304720",
+      "status": "ACTIVE",
+      "task": "Testare specifică V31 TPL, V32 London, V33 NY"
+    }
+  },
+  "status": "RUNNING",
+  "expected_reports": "La fiecare 30 minute",
+  "next_check": "2026-03-28T22:44:00Z"
+}

@@ -1,0 +1,64 @@
+
+{
+  "check_id": "6e771d32-d941-4fec-8a49-91bf91d6fb1f",
+  "timestamp": "2026-04-13T10:55:30Z",
+  "status": "operational_with_warnings",
+  "summary": {
+    "api_endpoints": 8,
+    "api_passed": 8,
+    "api_failed": 0,
+    "frontend_status": "healthy",
+    "javascript_errors": 0,
+    "data_flow": "functional"
+  },
+  "details": {
+    "mt5_core_server": {
+      "status": "✅ HEALTHY",
+      "port": 8001,
+      "active_clients": 0,
+      "response_time": "<100ms",
+      "pid": 910
+    },
+    "vps_bridge": {
+      "status": "✅ HEALTHY",
+      "port": 8080,
+      "target": "http://127.0.0.1:8001/update",
+      "pid": 1033
+    },
+    "dashboard_frontend": {
+      "html_serving": "✅ OK",
+      "javascript_syntax": "✅ OK - No errors",
+      "static_files": "✅ OK",
+      "responsive_css": "✅ OK"
+    },
+    "api_endpoints": {
+      "health": "✅ OK - /health",
+      "clients": "✅ OK - /clients",
+      "positions": "✅ OK - /positions",
+      "v31_live_status": "✅ OK - /api/v31/live_status",
+      "v32_breakout_status": "✅ OK - /api/v32/breakout_status",
+      "v33_breakout_status": "✅ OK - /api/v33/breakout_status",
+      "command": "✅ OK",
+      "symbol_status": "✅ OK"
+    },
+    "data_flow": "✅ OK - API → Dashboard functional",
+    "real_time_updates": "⚠️ N/A - No MT5 clients connected (weekend)",
+    "javascript_errors": "✅ OK - No critical errors detected",
+    "system_resources": {
+      "cpu": "82.5% - WARNING",
+      "memory": "64% - OK",
+      "disk": "81% - OK"
+    },
+    "logs": {
+      "recent_errors": 0,
+      "status": "✅ OK - Clean logs"
+    }
+  },
+  "issues": [],
+  "warnings": [
+    "No active MT5 clients connected (normal for weekend)",
+    "CPU usage high: 82.5%"
+  ],
+  "checked_by": "ops-1",
+  "next_check": "2026-04-13T11:25:30Z"
+}

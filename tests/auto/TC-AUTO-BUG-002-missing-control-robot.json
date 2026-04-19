@@ -1,0 +1,16 @@
+{
+  "id": "TC-AUTO-BUG-002-missing-control-robot",
+  "title": "Test: BUG-002: Missing controlRobot Function",
+  "bug_id": "BUG-002-missing-control-robot",
+  "type": "ui_click_test",
+  "generated_at": "2026-03-28T17:16:58.636901",
+  "status": "pending",
+  "steps": [
+    "Navigate to dashboard",
+    "Select affected component",
+    "Perform click action",
+    "Verify response"
+  ],
+  "expected_result": "System should function correctly without errors",
+  "automation_script": "\nasync function test() {\n    const element = await findElement('{selector}');\n    await element.click();\n    const result = await waitForResponse();\n    assert(result.success === true);\n}\n"
+}

@@ -1,0 +1,53 @@
+[
+  {
+    "timestamp": "2026-04-13T15:05:00Z",
+    "check_type": "auto-restart-check",
+    "cron_id": "d7b68779-2523-49f5-ba1e-6e9437e67f92",
+    "robots_checked": [
+      {
+        "name": "V31 (Marius TPL)",
+        "endpoint": "http://localhost:8001/api/v31/live_status",
+        "status": "stopped",
+        "robot_running": false,
+        "pid": null,
+        "phase": "Waiting...",
+        "api_responsive": true
+      },
+      {
+        "name": "V32 (London Breakout)",
+        "endpoint": "http://localhost:8001/api/v32/breakout_status",
+        "status": "stopped",
+        "robot_running": false,
+        "pid": null,
+        "symbol": "GBPUSD",
+        "current_price": 1.34023,
+        "signal": "WAIT",
+        "api_responsive": true
+      },
+      {
+        "name": "V33 (NY Breakout)",
+        "endpoint": "http://localhost:8001/api/v33/breakout_status",
+        "status": "stopped",
+        "robot_running": false,
+        "pid": null,
+        "symbol": "EURUSD",
+        "current_price": 1.16872,
+        "session_phase": "PRE_SESSION",
+        "signal": "WAIT",
+        "api_responsive": true
+      }
+    ],
+    "restart_attempted": false,
+    "reason_no_restart": "Manual stop flag detected from weekend shutdown. Per instructions: DO NOT restart if stopped manually by user.",
+    "verification": {
+      "all_api_responsive": true,
+      "v31_api": {"robot_running": false, "api_responsive": true},
+      "v32_api": {"robot_running": false, "api_responsive": true},
+      "v33_api": {"robot_running": false, "api_responsive": true},
+      "mt5_core_server": {"running": true, "pid": 910}
+    },
+    "manual_stop_flag": true,
+    "triggered_by": "cron:d7b68779-2523-49f5-ba1e-6e9437e67f92",
+    "notes": "All trading robots (V31, V32, V33) remain stopped. Manual stop detected from weekend - no auto-restart performed. NY session starts at 17:00 UTC (~2 hours). User should manually start robots before trading sessions."
+  }
+]

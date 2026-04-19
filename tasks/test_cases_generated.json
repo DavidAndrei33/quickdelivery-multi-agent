@@ -1,0 +1,929 @@
+{
+  "metadata": {
+    "version": "3.0",
+    "generated_at": "2026-03-29T07:54:00Z",
+    "total_tests": 90,
+    "containers_covered": 12,
+    "target_containers": [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+  },
+  "summary": {
+    "passed": 0,
+    "failed": 0,
+    "pending": 90,
+    "skipped": 0
+  },
+  "containers": {
+    "container_8": {
+      "name": "Setup-uri Incomplete",
+      "target_tests": 8,
+      "actual_tests": 8,
+      "tests": [
+        {
+          "id": "TC-8.1",
+          "name": "Definire Setup Incomplet",
+          "priority": "HIGH",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "builder-4"
+        },
+        {
+          "id": "TC-8.2",
+          "name": "Expirare Setup",
+          "priority": "MEDIUM",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "builder-4"
+        },
+        {
+          "id": "TC-8.3",
+          "name": "Forțare Trade Manual",
+          "priority": "HIGH",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "builder-4"
+        },
+        {
+          "id": "TC-8.4",
+          "name": "Ignorare/Ștergere Setup",
+          "priority": "MEDIUM",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "builder-4"
+        },
+        {
+          "id": "TC-8.5",
+          "name": "Modificare Parametri Setup",
+          "priority": "MEDIUM",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "builder-4"
+        },
+        {
+          "id": "TC-8.6",
+          "name": "Afișare Informații Complete",
+          "priority": "HIGH",
+          "type": "UI",
+          "status": "PENDING",
+          "assigned_to": "builder-4"
+        },
+        {
+          "id": "TC-8.7",
+          "name": "Setup Respins după Re-analiză",
+          "priority": "MEDIUM",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "builder-4"
+        },
+        {
+          "id": "TC-8.8",
+          "name": "Setup Devine Trade Automat",
+          "priority": "HIGH",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "builder-4"
+        }
+      ]
+    },
+    "container_9": {
+      "name": "Comenzi în Așteptare",
+      "target_tests": 10,
+      "actual_tests": 10,
+      "tests": [
+        {
+          "id": "TC-9.1",
+          "name": "Comandă în Așteptare - Tipuri Diverse",
+          "priority": "HIGH",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "builder-6"
+        },
+        {
+          "id": "TC-9.2",
+          "name": "Comandă Rămâne în Coadă",
+          "priority": "MEDIUM",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "builder-6"
+        },
+        {
+          "id": "TC-9.3",
+          "name": "Timeout pentru Comenzi",
+          "priority": "LOW",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "builder-6"
+        },
+        {
+          "id": "TC-9.4",
+          "name": "Afișare Detalii Comandă",
+          "priority": "HIGH",
+          "type": "UI",
+          "status": "PENDING",
+          "assigned_to": "builder-6"
+        },
+        {
+          "id": "TC-9.5",
+          "name": "Anulare Comandă",
+          "priority": "HIGH",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "builder-6"
+        },
+        {
+          "id": "TC-9.6",
+          "name": "Modificare Parametri Comandă",
+          "priority": "MEDIUM",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "builder-6"
+        },
+        {
+          "id": "TC-9.7",
+          "name": "Forțare Executare Imediată",
+          "priority": "MEDIUM",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "builder-6"
+        },
+        {
+          "id": "TC-9.8",
+          "name": "Comandă Executată Automat",
+          "priority": "HIGH",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "builder-6"
+        },
+        {
+          "id": "TC-9.9",
+          "name": "Sortare și Filtre Comenzi",
+          "priority": "MEDIUM",
+          "type": "UI",
+          "status": "PENDING",
+          "assigned_to": "builder-6"
+        },
+        {
+          "id": "TC-9.10",
+          "name": "Refresh Date în Timp Real",
+          "priority": "MEDIUM",
+          "type": "PERFORMANCE",
+          "status": "PENDING",
+          "assigned_to": "builder-6"
+        }
+      ]
+    },
+    "container_10": {
+      "name": "Performanță pe Simboluri",
+      "target_tests": 10,
+      "actual_tests": 10,
+      "tests": [
+        {
+          "id": "TC-10.1",
+          "name": "Afișare Metrici Per Simbol",
+          "priority": "HIGH",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "builder-4"
+        },
+        {
+          "id": "TC-10.2",
+          "name": "Calcul Win Rate",
+          "priority": "HIGH",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "builder-4"
+        },
+        {
+          "id": "TC-10.3",
+          "name": "Perioadă Implicită Configurabilă",
+          "priority": "MEDIUM",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "builder-4"
+        },
+        {
+          "id": "TC-10.4",
+          "name": "Click pe Simbol - Modal Detalii",
+          "priority": "MEDIUM",
+          "type": "UI",
+          "status": "PENDING",
+          "assigned_to": "builder-4"
+        },
+        {
+          "id": "TC-10.5",
+          "name": "Click pe Simbol - Chart Evoluție",
+          "priority": "MEDIUM",
+          "type": "UI",
+          "status": "PENDING",
+          "assigned_to": "builder-4"
+        },
+        {
+          "id": "TC-10.6",
+          "name": "Click pe Simbol - Filtrare Istoric",
+          "priority": "MEDIUM",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "builder-4"
+        },
+        {
+          "id": "TC-10.7",
+          "name": "Sortare După Win Rate",
+          "priority": "MEDIUM",
+          "type": "UI",
+          "status": "PENDING",
+          "assigned_to": "builder-4"
+        },
+        {
+          "id": "TC-10.8",
+          "name": "Sortare După Profit Total",
+          "priority": "MEDIUM",
+          "type": "UI",
+          "status": "PENDING",
+          "assigned_to": "builder-4"
+        },
+        {
+          "id": "TC-10.9",
+          "name": "Filtrare După Număr Minim Tranzacții",
+          "priority": "LOW",
+          "type": "UI",
+          "status": "PENDING",
+          "assigned_to": "builder-4"
+        },
+        {
+          "id": "TC-10.10",
+          "name": "Export Date Performanță",
+          "priority": "MEDIUM",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "builder-4"
+        }
+      ]
+    },
+    "container_11": {
+      "name": "System Health",
+      "target_tests": 8,
+      "actual_tests": 8,
+      "tests": [
+        {
+          "id": "TC-11.1",
+          "name": "Monitorizare MT5 Core Server",
+          "priority": "HIGH",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "ops-1"
+        },
+        {
+          "id": "TC-11.2",
+          "name": "Monitorizare PostgreSQL",
+          "priority": "HIGH",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "ops-1"
+        },
+        {
+          "id": "TC-11.3",
+          "name": "Monitorizare VPS Bridge",
+          "priority": "HIGH",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "ops-1"
+        },
+        {
+          "id": "TC-11.4",
+          "name": "Monitorizare Roboți Python",
+          "priority": "HIGH",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "ops-1"
+        },
+        {
+          "id": "TC-11.5",
+          "name": "Monitorizare Resurse Sistem",
+          "priority": "MEDIUM",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "ops-1"
+        },
+        {
+          "id": "TC-11.6",
+          "name": "Restart Service din Dashboard",
+          "priority": "HIGH",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "ops-1"
+        },
+        {
+          "id": "TC-11.7",
+          "name": "Auto-Remediere Erori Minore",
+          "priority": "MEDIUM",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "ops-1"
+        },
+        {
+          "id": "TC-11.8",
+          "name": "Istoric Health Checks",
+          "priority": "LOW",
+          "type": "UI",
+          "status": "PENDING",
+          "assigned_to": "ops-1"
+        }
+      ]
+    },
+    "container_12": {
+      "name": "Statistici Trading",
+      "target_tests": 8,
+      "actual_tests": 8,
+      "tests": [
+        {
+          "id": "TC-12.1",
+          "name": "Afișare Profit/Loss Total",
+          "priority": "HIGH",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "builder-1"
+        },
+        {
+          "id": "TC-12.2",
+          "name": "Afișare Win Rate Global",
+          "priority": "HIGH",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "builder-1"
+        },
+        {
+          "id": "TC-12.3",
+          "name": "Afișare Drawdown Maxim",
+          "priority": "HIGH",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "builder-1"
+        },
+        {
+          "id": "TC-12.4",
+          "name": "Afișare Profit Factor",
+          "priority": "MEDIUM",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "builder-1"
+        },
+        {
+          "id": "TC-12.5",
+          "name": "Agregare Per Cont Selectabil",
+          "priority": "MEDIUM",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "builder-1"
+        },
+        {
+          "id": "TC-12.6",
+          "name": "Perioade Predefinite",
+          "priority": "MEDIUM",
+          "type": "UI",
+          "status": "PENDING",
+          "assigned_to": "builder-1"
+        },
+        {
+          "id": "TC-12.7",
+          "name": "Perioadă Custom Date Picker",
+          "priority": "MEDIUM",
+          "type": "UI",
+          "status": "PENDING",
+          "assigned_to": "builder-1"
+        },
+        {
+          "id": "TC-12.8",
+          "name": "Export CSV și Excel",
+          "priority": "LOW",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "builder-1"
+        }
+      ]
+    },
+    "container_13": {
+      "name": "Asociere Conturi",
+      "target_tests": 6,
+      "actual_tests": 6,
+      "tests": [
+        {
+          "id": "TC-13.1",
+          "name": "Link Cont MT5 la Utilizator",
+          "priority": "HIGH",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "builder-3"
+        },
+        {
+          "id": "TC-13.2",
+          "name": "Grupare Conturi",
+          "priority": "MEDIUM",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "builder-3"
+        },
+        {
+          "id": "TC-13.3",
+          "name": "Permisiuni pe Conturi - Admin Vede Toate",
+          "priority": "HIGH",
+          "type": "SECURITY",
+          "status": "PENDING",
+          "assigned_to": "builder-3"
+        },
+        {
+          "id": "TC-13.4",
+          "name": "Permisiuni pe Conturi - User Vede Doar Ale Lui",
+          "priority": "HIGH",
+          "type": "SECURITY",
+          "status": "PENDING",
+          "assigned_to": "builder-3"
+        },
+        {
+          "id": "TC-13.5",
+          "name": "Redenumire Cont - Doar Admin",
+          "priority": "MEDIUM",
+          "type": "SECURITY",
+          "status": "PENDING",
+          "assigned_to": "builder-3"
+        },
+        {
+          "id": "TC-13.6",
+          "name": "Etichetare Tag-uri Custom",
+          "priority": "LOW",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "builder-3"
+        }
+      ]
+    },
+    "container_14": {
+      "name": "Utilizatori și Permisiuni",
+      "target_tests": 6,
+      "actual_tests": 6,
+      "tests": [
+        {
+          "id": "TC-14.1",
+          "name": "Roluri - Admin vs User",
+          "priority": "HIGH",
+          "type": "SECURITY",
+          "status": "PENDING",
+          "assigned_to": "builder-3"
+        },
+        {
+          "id": "TC-14.2",
+          "name": "Capabilități User (View Only)",
+          "priority": "HIGH",
+          "type": "SECURITY",
+          "status": "PENDING",
+          "assigned_to": "builder-3"
+        },
+        {
+          "id": "TC-14.3",
+          "name": "Capabilități Admin (Full Access)",
+          "priority": "HIGH",
+          "type": "SECURITY",
+          "status": "PENDING",
+          "assigned_to": "builder-3"
+        },
+        {
+          "id": "TC-14.4",
+          "name": "Autentificare Username/Password",
+          "priority": "HIGH",
+          "type": "SECURITY",
+          "status": "PENDING",
+          "assigned_to": "builder-3"
+        },
+        {
+          "id": "TC-14.5",
+          "name": "Log Acțiuni Utilizatori",
+          "priority": "MEDIUM",
+          "type": "AUDIT",
+          "status": "PENDING",
+          "assigned_to": "builder-3"
+        },
+        {
+          "id": "TC-14.6",
+          "name": "Audit Trail Complet",
+          "priority": "MEDIUM",
+          "type": "AUDIT",
+          "status": "PENDING",
+          "assigned_to": "builder-3"
+        }
+      ]
+    },
+    "container_15": {
+      "name": "Equity Curve",
+      "target_tests": 8,
+      "actual_tests": 8,
+      "tests": [
+        {
+          "id": "TC-15.1",
+          "name": "Afișare Equity Curve",
+          "priority": "HIGH",
+          "type": "UI",
+          "status": "PENDING",
+          "assigned_to": "builder-4"
+        },
+        {
+          "id": "TC-15.2",
+          "name": "Afișare Drawdown Chart",
+          "priority": "MEDIUM",
+          "type": "UI",
+          "status": "PENDING",
+          "assigned_to": "builder-4"
+        },
+        {
+          "id": "TC-15.3",
+          "name": "Afișare Profit Bar Chart",
+          "priority": "MEDIUM",
+          "type": "UI",
+          "status": "PENDING",
+          "assigned_to": "builder-4"
+        },
+        {
+          "id": "TC-15.4",
+          "name": "Perioadă 1D/1W/1M/3M/6M/1Y/All",
+          "priority": "MEDIUM",
+          "type": "UI",
+          "status": "PENDING",
+          "assigned_to": "builder-4"
+        },
+        {
+          "id": "TC-15.5",
+          "name": "Perioadă Custom Date Range",
+          "priority": "MEDIUM",
+          "type": "UI",
+          "status": "PENDING",
+          "assigned_to": "builder-4"
+        },
+        {
+          "id": "TC-15.6",
+          "name": "Agregare Per Cont Selectabil",
+          "priority": "MEDIUM",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "builder-4"
+        },
+        {
+          "id": "TC-15.7",
+          "name": "Interactivitate - Hover Detalii",
+          "priority": "LOW",
+          "type": "UI",
+          "status": "PENDING",
+          "assigned_to": "builder-4"
+        },
+        {
+          "id": "TC-15.8",
+          "name": "Interactivitate - Click pentru Tranzacții",
+          "priority": "MEDIUM",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "builder-4"
+        }
+      ]
+    },
+    "container_16": {
+      "name": "Gestionare Servicii",
+      "target_tests": 8,
+      "actual_tests": 8,
+      "tests": [
+        {
+          "id": "TC-16.1",
+          "name": "Gestionare Toate Componentele",
+          "priority": "HIGH",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "ops-2"
+        },
+        {
+          "id": "TC-16.2",
+          "name": "Start Service",
+          "priority": "HIGH",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "ops-2"
+        },
+        {
+          "id": "TC-16.3",
+          "name": "Stop Service",
+          "priority": "HIGH",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "ops-2"
+        },
+        {
+          "id": "TC-16.4",
+          "name": "Restart Service",
+          "priority": "HIGH",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "ops-2"
+        },
+        {
+          "id": "TC-16.5",
+          "name": "Vizualizare Status și Config",
+          "priority": "MEDIUM",
+          "type": "UI",
+          "status": "PENDING",
+          "assigned_to": "ops-2"
+        },
+        {
+          "id": "TC-16.6",
+          "name": "Vizualizare Logs Service",
+          "priority": "MEDIUM",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "ops-2"
+        },
+        {
+          "id": "TC-16.7",
+          "name": "Confirmare Modal Acțiuni Critice",
+          "priority": "HIGH",
+          "type": "SECURITY",
+          "status": "PENDING",
+          "assigned_to": "ops-2"
+        },
+        {
+          "id": "TC-16.8",
+          "name": "Update Versiune Service",
+          "priority": "MEDIUM",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "ops-2"
+        }
+      ]
+    },
+    "container_17": {
+      "name": "Roboți Trading",
+      "target_tests": 8,
+      "actual_tests": 8,
+      "tests": [
+        {
+          "id": "TC-17.1",
+          "name": "Afișare Toți Roboții Disponibili",
+          "priority": "HIGH",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "builder-1"
+        },
+        {
+          "id": "TC-17.2",
+          "name": "Status Per Robot",
+          "priority": "HIGH",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "builder-1"
+        },
+        {
+          "id": "TC-17.3",
+          "name": "Statistici Per Robot",
+          "priority": "MEDIUM",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "builder-1"
+        },
+        {
+          "id": "TC-17.4",
+          "name": "Acțiune Globală Start All",
+          "priority": "HIGH",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "builder-1"
+        },
+        {
+          "id": "TC-17.5",
+          "name": "Acțiune Globală Stop All",
+          "priority": "HIGH",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "builder-1"
+        },
+        {
+          "id": "TC-17.6",
+          "name": "Emergency Stop",
+          "priority": "CRITICAL",
+          "type": "SECURITY",
+          "status": "PENDING",
+          "assigned_to": "builder-1"
+        },
+        {
+          "id": "TC-17.7",
+          "name": "Pauză Trading",
+          "priority": "MEDIUM",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "builder-1"
+        },
+        {
+          "id": "TC-17.8",
+          "name": "Configurare Robot Individual",
+          "priority": "MEDIUM",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "builder-1"
+        }
+      ]
+    },
+    "container_18": {
+      "name": "Expert Logs",
+      "target_tests": 5,
+      "actual_tests": 5,
+      "tests": [
+        {
+          "id": "TC-18.1",
+          "name": "Afișare Log-uri EA BrainBridge",
+          "priority": "HIGH",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "builder-6"
+        },
+        {
+          "id": "TC-18.2",
+          "name": "Filtrare După Nivel Log",
+          "priority": "MEDIUM",
+          "type": "UI",
+          "status": "PENDING",
+          "assigned_to": "builder-6"
+        },
+        {
+          "id": "TC-18.3",
+          "name": "Filtrare După Sursă",
+          "priority": "MEDIUM",
+          "type": "UI",
+          "status": "PENDING",
+          "assigned_to": "builder-6"
+        },
+        {
+          "id": "TC-18.4",
+          "name": "Filtrare După Perioadă",
+          "priority": "MEDIUM",
+          "type": "UI",
+          "status": "PENDING",
+          "assigned_to": "builder-6"
+        },
+        {
+          "id": "TC-18.5",
+          "name": "Live Tail Update",
+          "priority": "MEDIUM",
+          "type": "PERFORMANCE",
+          "status": "PENDING",
+          "assigned_to": "builder-6"
+        }
+      ]
+    },
+    "container_19": {
+      "name": "Journal",
+      "target_tests": 5,
+      "actual_tests": 5,
+      "tests": [
+        {
+          "id": "TC-19.1",
+          "name": "Intrări Journal - Toate Tipurile",
+          "priority": "HIGH",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "builder-2"
+        },
+        {
+          "id": "TC-19.2",
+          "name": "Format Tabel cu Detalii",
+          "priority": "MEDIUM",
+          "type": "UI",
+          "status": "PENDING",
+          "assigned_to": "builder-2"
+        },
+        {
+          "id": "TC-19.3",
+          "name": "Filtrare După Tip Intrare",
+          "priority": "MEDIUM",
+          "type": "UI",
+          "status": "PENDING",
+          "assigned_to": "builder-2"
+        },
+        {
+          "id": "TC-19.4",
+          "name": "Filtrare După Perioadă și Utilizator",
+          "priority": "MEDIUM",
+          "type": "UI",
+          "status": "PENDING",
+          "assigned_to": "builder-2"
+        },
+        {
+          "id": "TC-19.5",
+          "name": "Click pe Deal Navigare Istoric",
+          "priority": "MEDIUM",
+          "type": "FUNCTIONAL",
+          "status": "PENDING",
+          "assigned_to": "builder-2"
+        }
+      ]
+    }
+  },
+  "bugs": [
+    {
+      "id": "BUG-001",
+      "title": "Perioada Implicită - Lipsă Configurabilitate",
+      "containers": [10, 12, 15],
+      "severity": "MEDIUM",
+      "description": "Conform Q10.3 și Q15.2, perioada implicită ar trebui să fie configurabilă. Este necesar un endpoint sau o setare în UI pentru a seta perioada default per container.",
+      "assigned_to": "builder-4"
+    },
+    {
+      "id": "BUG-002",
+      "title": "Timeout Comenzi - Comportament Nedefinit",
+      "container": 9,
+      "severity": "LOW",
+      "description": "Conform Q9.3, comenzile 'nu expiră niciodată'. Aceasta este o decizie de design care poate duce la acumularea de comenzi vechi. Ar trebui considerată o limită maximă (ex: 90 zile) sau arhivare automată.",
+      "recommendation": "Implementare sistem de arhivare pentru comenzi >90 zile",
+      "assigned_to": "builder-6"
+    },
+    {
+      "id": "BUG-003",
+      "title": "Redenumire Conturi - Permisiuni Necesare Verificare",
+      "container": 13,
+      "severity": "HIGH",
+      "description": "Conform Q13.3, DOAR admin-ul poate redenumi conturi. Este necesară verificarea explicită că user-ii nu au această capacitate.",
+      "verification_needed": [
+        "Test că user-ul nu vede opțiunea de editare",
+        "Test că API-ul refuză redenumirea de către user",
+        "Test că admin-ul poate redenumi"
+      ],
+      "assigned_to": "builder-3"
+    },
+    {
+      "id": "BUG-004",
+      "title": "Lipsă Alertare Multi-Canal",
+      "container": 11,
+      "severity": "MEDIUM",
+      "description": "Conform Q11.5, alertele ar trebui trimise pe: Dashboard, Email/SMS, Telegram. Este necesară verificarea integrării tuturor canalelor.",
+      "verification_needed": [
+        "Configurare canale de alertare",
+        "Test trimitere alerte pe fiecare canal",
+        "Fallback dacă un canal eșuează"
+      ],
+      "assigned_to": "ops-1"
+    },
+    {
+      "id": "BUG-005",
+      "title": "Lipsă Auto-Remediere Detaliată",
+      "container": 11,
+      "severity": "LOW",
+      "description": "Conform Q11.3, sistemul ar trebui să ofere 'auto-remediere la erori minore'. Este necesară documentarea exactă a ce erori sunt considerate 'minore' și ce acțiuni se iau.",
+      "actions_needed": [
+        "Documentare liste erori minore",
+        "Implementare handlers pentru fiecare",
+        "Testare scenarii"
+      ],
+      "assigned_to": "ops-1"
+    }
+  ],
+  "assignments": {
+    "builder-1": {
+      "count": 11,
+      "tests": ["TC-12.1", "TC-12.2", "TC-12.3", "TC-12.4", "TC-12.5", "TC-12.6", "TC-12.7", "TC-12.8", "TC-17.1", "TC-17.2", "TC-17.3", "TC-17.4", "TC-17.5", "TC-17.6", "TC-17.7", "TC-17.8"],
+      "containers": [12, 17]
+    },
+    "builder-2": {
+      "count": 5,
+      "tests": ["TC-19.1", "TC-19.2", "TC-19.3", "TC-19.4", "TC-19.5"],
+      "containers": [19]
+    },
+    "builder-3": {
+      "count": 12,
+      "tests": ["TC-13.1", "TC-13.2", "TC-13.3", "TC-13.4", "TC-13.5", "TC-13.6", "TC-14.1", "TC-14.2", "TC-14.3", "TC-14.4", "TC-14.5", "TC-14.6"],
+      "containers": [13, 14]
+    },
+    "builder-4": {
+      "count": 26,
+      "tests": ["TC-8.1", "TC-8.2", "TC-8.3", "TC-8.4", "TC-8.5", "TC-8.6", "TC-8.7", "TC-8.8", "TC-10.1", "TC-10.2", "TC-10.3", "TC-10.4", "TC-10.5", "TC-10.6", "TC-10.7", "TC-10.8", "TC-10.9", "TC-10.10", "TC-15.1", "TC-15.2", "TC-15.3", "TC-15.4", "TC-15.5", "TC-15.6", "TC-15.7", "TC-15.8"],
+      "containers": [8, 10, 15]
+    },
+    "builder-6": {
+      "count": 15,
+      "tests": ["TC-9.1", "TC-9.2", "TC-9.3", "TC-9.4", "TC-9.5", "TC-9.6", "TC-9.7", "TC-9.8", "TC-9.9", "TC-9.10", "TC-18.1", "TC-18.2", "TC-18.3", "TC-18.4", "TC-18.5"],
+      "containers": [9, 18]
+    },
+    "ops-1": {
+      "count": 8,
+      "tests": ["TC-11.1", "TC-11.2", "TC-11.3", "TC-11.4", "TC-11.5", "TC-11.6", "TC-11.7", "TC-11.8"],
+      "containers": [11]
+    },
+    "ops-2": {
+      "count": 8,
+      "tests": ["TC-16.1", "TC-16.2", "TC-16.3", "TC-16.4", "TC-16.5", "TC-16.6", "TC-16.7", "TC-16.8"],
+      "containers": [16]
+    }
+  },
+  "test_types": {
+    "FUNCTIONAL": 58,
+    "UI": 26,
+    "SECURITY": 6,
+    "PERFORMANCE": 2,
+    "AUDIT": 2
+  },
+  "priorities": {
+    "CRITICAL": 1,
+    "HIGH": 39,
+    "MEDIUM": 43,
+    "LOW": 7
+  }
+}

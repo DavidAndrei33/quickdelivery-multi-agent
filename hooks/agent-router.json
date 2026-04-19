@@ -1,0 +1,11 @@
+{
+  "id": "agent-router",
+  "enabled": true,
+  "trigger": "message:received",
+  "condition": "channel == 'telegram'",
+  "action": "route_to_agent",
+  "routing": {
+    "account:product-architect": "product-architect",
+    "account:frontend-architect": "frontend-architect"
+  }
+}

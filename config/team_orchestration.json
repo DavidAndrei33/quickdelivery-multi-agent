@@ -1,0 +1,113 @@
+{
+  "system": "Agent Team Orchestration",
+  "version": "1.0",
+  "created": "2026-03-28T07:00:00Z",
+  
+  "agents": {
+    "orchestrator": {
+      "name": "Manifest",
+      "role": "Tech Lead & Orchestrator",
+      "model": "kimi-coding/k2p5",
+      "responsibilities": ["Route tasks", "Track state", "Make priority calls", "Review final output", "Consult Project Brain before decisions"]
+    },
+    "project_brain": {
+      "name": "Project Brain",
+      "role": "Project Continuity Manager",
+      "model": "claude-sonnet-4-20250514",
+      "responsibilities": ["Maintain project_state.json", "Track features", "Prevent breaking changes", "Ensure continuity"]
+    },
+    "builders": [
+      {"id": "builder-1", "name": "Core-Developer-1", "specialty": "API Implementation", "model": "claude-sonnet-4-20250514", "status": "active", "thinking": "off"},
+      {"id": "builder-2", "name": "Core-Developer-2", "specialty": "Dashboard Backend", "model": "gpt-4o", "status": "active", "thinking": "off"},
+      {"id": "builder-3", "name": "Core-Developer-3", "specialty": "Integration", "model": "gpt-4o-mini", "status": "active", "thinking": "off"},
+      {"id": "builder-4", "name": "Dashboard-Frontend-1", "specialty": "UI/UX", "model": "gpt-4o", "status": "active", "thinking": "off"},
+      {"id": "builder-5", "name": "Dashboard-Backend-1", "specialty": "API Design", "model": "claude-sonnet-4-20250514", "status": "active", "thinking": "off"},
+      {"id": "builder-6", "name": "Integration-Engineer-1", "specialty": "MT5 Integration", "model": "gpt-4o-mini", "status": "active", "thinking": "off"},
+      {"id": "builder-7", "name": "Integration-Engineer-2", "specialty": "Data Flow", "model": "gpt-4o-mini", "status": "active", "thinking": "off"}
+    ],
+    "reviewers": [
+      {"id": "reviewer-1", "name": "Code-Reviewer-1", "specialty": "Code Quality", "model": "claude-sonnet-4-20250514", "status": "active"},
+      {"id": "reviewer-2", "name": "Security-Auditor-1", "specialty": "Security", "model": "claude-sonnet-4-20250514", "status": "active"},
+      {"id": "reviewer-3", "name": "QA-Tester-1", "specialty": "Testing", "model": "gpt-4o", "status": "active"}
+    ],
+    "ops": [
+      {"id": "ops-1", "name": "DevOps-Engineer-1", "specialty": "Deployment", "model": "gpt-4o-mini", "status": "active"},
+      {"id": "ops-2", "name": "Database-Admin-1", "specialty": "Database", "model": "gpt-4o", "status": "active"}
+    ]
+  },
+  
+  "project_paths": {
+    "backend_root": "/root/clawd/agents/brainmaker",
+    "dashboard_root": "/root/clawd/agents/brainmaker/dashboard",
+    "main_server": "/root/clawd/agents/brainmaker/mt5_core_server.py",
+    "robots_dir": "/root/clawd/agents/brainmaker",
+    "dashboard_dir": "/root/clawd/agents/brainmaker/dashboard",
+    "logs_dir": "/var/log",
+    "tests_dir": "/root/clawd/agents/brainmaker/tests"
+  },
+
+  "test_configuration": {
+    "test_root": "/root/clawd/agents/brainmaker/tests",
+    "test_pattern": "test_*.py",
+    "auto_test_on_fix": true,
+    "test_before_deploy": true,
+    "test_categories": {
+      "unit": {
+        "path": "/root/clawd/agents/brainmaker/tests/unit",
+        "agent": "qa-tester",
+        "pattern": "test_unit_*.py"
+      },
+      "integration": {
+        "path": "/root/clawd/agents/brainmaker/tests/integration",
+        "agent": "qa-tester",
+        "pattern": "test_integration_*.py"
+      },
+      "api": {
+        "path": "/root/clawd/agents/brainmaker/tests/api",
+        "agent": "qa-tester",
+        "pattern": "test_api_*.py"
+      },
+      "e2e": {
+        "path": "/root/clawd/agents/brainmaker/tests/e2e",
+        "agent": "qa-tester",
+        "pattern": "test_e2e_*.py"
+      }
+    }
+  },
+
+  "communication": {
+    "shared_directories": {
+      "specs": "/workspace/shared/specs",
+      "artifacts": "/workspace/shared/artifacts",
+      "reviews": "/workspace/shared/reviews",
+      "decisions": "/workspace/shared/decisions",
+      "tasks": "/workspace/shared/tasks",
+      "bugs": "/workspace/shared/bugs"
+    },
+    "channels": {
+      "async": "Shared files (primary)",
+      "sync_urgent": "sessions_send",
+      "broadcast": "Task board updates"
+    }
+  },
+  
+  "workflows": {
+    "standard": ["Inbox", "Assigned", "In Progress", "Review", "Done"],
+    "bug_fix": ["Reported", "Assigned", "Fixing", "Testing", "Verified", "Closed"],
+    "api_development": ["Spec", "Review Spec", "Build", "Test", "Review", "Deploy"]
+  },
+  
+  "retry_policy": {
+    "max_attempts": 3,
+    "backoff_seconds": [60, 300, 900],
+    "escalate_after": 3,
+    "auto_retry_on": ["connection_error", "timeout", "transient_failure"]
+  },
+  
+  "quality_gates": {
+    "require_review": true,
+    "require_tests": true,
+    "require_documentation": true,
+    "max_review_rounds": 3
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "id": "builder-customer",
+  "name": "Builder-Customer",
+  "workspace": "/workspace/shared/agents/quickdelivery-team/builders/customer",
+  "model": {
+    "primary": "kimi-coding/k2p5"
+  },
+  "identity": {
+    "name": "Builder-Customer",
+    "emoji": "🛒"
+  },
+  "skills": [
+    "web-quality-skills",
+    "appdev-skill"
+  ]
+}

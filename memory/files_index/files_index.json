@@ -1,0 +1,193 @@
+{
+  "project_root": "/workspace/shared",
+  "last_indexed": "2026-03-29T12:45:00Z",
+  "indexed_by": "builder-4",
+  
+  "backend_files": {
+    "core_server": {
+      "path": "/root/clawd/agents/brainmaker/mt5_core_server.py",
+      "type": "python",
+      "size_bytes": 150000,
+      "lines": 4500,
+      "modules": [
+        "Flask API",
+        "MT5 Integration",
+        "Database Models",
+        "Trading Logic"
+      ],
+      "apis": [
+        "/api/v31/live_status",
+        "/api/v32/or_data",
+        "/api/v32/asia_data",
+        "/api/v32/breakout_status",
+        "/api/v32/trade_stats",
+        "/api/v33/or_data",
+        "/api/v33/presession_data",
+        "/api/v33/breakout_status",
+        "/api/v33/trade_stats",
+        "/api/health"
+      ],
+      "last_modified": "2026-03-28T07:11:00Z",
+      "version": "2.0"
+    },
+    "config": {
+      "team_orchestration": {
+        "path": "/workspace/shared/config/team_orchestration.json",
+        "description": "Agent definitions and roles"
+      },
+      "agent_status": {
+        "path": "/workspace/shared/config/agent_status.json",
+        "description": "Live agent status tracking"
+      },
+      "heartbeat": {
+        "path": "/workspace/shared/config/HEARTBEAT.md",
+        "description": "Heartbeat configuration"
+      }
+    }
+  },
+  
+  "frontend_files": {
+    "dashboard_js": {
+      "path": "/root/clawd/agents/brainmaker/dashboard/dashboard_functional.js",
+      "type": "javascript",
+      "size_bytes": 51000,
+      "lines": 1300,
+      "modules": [
+        "V31 Dashboard",
+        "V32 Dashboard",
+        "V33 Dashboard",
+        "Health Check",
+        "Connection Status",
+        "Common Functions"
+      ],
+      "last_modified": "2026-03-28T08:15:00Z",
+      "version": "2.0"
+    },
+    "dashboard_html": {
+      "path": "/root/clawd/agents/brainmaker/dashboard/index.html",
+      "type": "html",
+      "size_bytes": 134000,
+      "lines": 2500,
+      "sections": [
+        "Health Check",
+        "Robot Trading",
+        "V31 Dashboard",
+        "V32 Dashboard",
+        "V33 Dashboard"
+      ],
+      "last_modified": "2026-03-28T08:15:00Z",
+      "version": "2.0"
+    },
+    "dashboard_final_js": {
+      "path": "/workspace/shared/dashboard/dashboard_final.js",
+      "type": "javascript",
+      "size_bytes": 36936,
+      "lines": 1000,
+      "modules": [
+        "LED Status Manager",
+        "Tab Navigation",
+        "Robot Selector",
+        "Connection Manager",
+        "Toast Notifications",
+        "Performance Optimizations",
+        "Responsive Design"
+      ],
+      "last_modified": "2026-03-29T12:42:00Z",
+      "version": "3.0"
+    },
+    "dashboard_final_html": {
+      "path": "/workspace/shared/dashboard/index.html",
+      "type": "html",
+      "size_bytes": 60056,
+      "lines": 1200,
+      "sections": [
+        "Header with LED Status",
+        "Tab Navigation (Overview/Analysis/Trades/Logs/Settings)",
+        "Robot Selector",
+        "Accordion Sections",
+        "Offline Overlay",
+        "Toast Notifications"
+      ],
+      "last_modified": "2026-03-29T12:38:00Z",
+      "version": "3.0"
+    }
+  },
+  
+  "memory_files": {
+    "project_state": {
+      "path": "/workspace/shared/memory/project/project_state.json",
+      "type": "json",
+      "description": "Single source of truth for project state"
+    },
+    "architecture": {
+      "path": "/workspace/shared/memory/architecture/architecture.md",
+      "type": "markdown",
+      "description": "Architecture documentation"
+    },
+    "features": {
+      "path": "/workspace/shared/memory/features/features.json",
+      "type": "json",
+      "description": "Feature registry"
+    },
+    "files_index": {
+      "path": "/workspace/shared/memory/files_index/files_index.json",
+      "type": "json",
+      "description": "File registry (this file)"
+    },
+    "decisions": {
+      "path": "/workspace/shared/memory/decisions/decisions.md",
+      "type": "markdown",
+      "description": "Decision log"
+    },
+    "versions": {
+      "path": "/workspace/shared/memory/versions/",
+      "type": "directory",
+      "description": "Version history"
+    }
+  },
+  
+  "task_files": {
+    "taskboard": {
+      "path": "/workspace/shared/tasks/TASKBOARD.json",
+      "type": "json",
+      "description": "Main task board"
+    }
+  },
+  
+  "agent_documentation": {
+    "index": "/workspace/shared/docs/agents/INDEX.md",
+    "builder_1": "/workspace/shared/docs/agents/builder-1/README.md",
+    "builder_2": "/workspace/shared/docs/agents/builder-2/README.md",
+    "builder_3": "/workspace/shared/docs/agents/builder-3/README.md",
+    "builder_4": "/workspace/shared/docs/agents/builder-4/README.md",
+    "builder_5": "/workspace/shared/docs/agents/builder-5/README.md",
+    "builder_6": "/workspace/shared/docs/agents/builder-6/README.md",
+    "builder_7": "/workspace/shared/docs/agents/builder-7/README.md",
+    "reviewer_1": "/workspace/shared/docs/agents/reviewer-1/README.md",
+    "reviewer_2": "/workspace/shared/docs/agents/reviewer-2/README.md",
+    "reviewer_3": "/workspace/shared/docs/agents/reviewer-3/README.md",
+    "ops_1": "/workspace/shared/docs/agents/ops-1/README.md",
+    "ops_2": "/workspace/shared/docs/agents/ops-2/README.md"
+  },
+  
+  "hook_files": {
+    "trading_orchestrator": "~/.openclaw/hooks/trading-orchestrator/",
+    "team_orchestrator": "~/.openclaw/hooks/team-orchestrator/",
+    "bug_tracker": "~/.openclaw/hooks/bug-tracker/",
+    "task_coordinator": "~/.openclaw/hooks/task-coordinator/",
+    "agent_recovery": "~/.openclaw/hooks/agent-recovery/",
+    "robot_lifecycle": "~/.openclaw/hooks/robot-lifecycle/",
+    "dashboard_sync": "~/.openclaw/hooks/dashboard-sync/",
+    "emergency_alert": "~/.openclaw/hooks/emergency-alert/",
+    "audit_logger": "~/.openclaw/hooks/audit-logger/"
+  },
+  
+  "statistics": {
+    "total_files_indexed": 50,
+    "total_lines_of_code": 15000,
+    "backend_files": 10,
+    "frontend_files": 5,
+    "documentation_files": 20,
+    "config_files": 10
+  }
+}

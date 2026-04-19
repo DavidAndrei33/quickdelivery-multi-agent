@@ -1,0 +1,63 @@
+[
+  {
+    "timestamp": "2026-04-14T02:17:00Z",
+    "event_type": "auto_restart_check",
+    "cron_id": "d7b68779-2523-49f5-ba1e-6e9437e67f92",
+    "robots_checked": [
+      "v31_marius_tpl",
+      "v32_london_breakout",
+      "v33_ny_breakout",
+      "mt5_core_server"
+    ],
+    "robots_running": ["mt5_core_server"],
+    "robots_stopped": [
+      "v31_marius_tpl",
+      "v32_london_breakout",
+      "v33_ny_breakout"
+    ],
+    "robots_restarted": [],
+    "robots_skipped": [
+      "v31_marius_tpl",
+      "v32_london_breakout",
+      "v33_ny_breakout"
+    ],
+    "restart_attempts": [],
+    "verification_results": {
+      "v31_marius_tpl": {
+        "status": "stopped",
+        "restart_needed": false,
+        "skip_reason": "API endpoint not available - robot not initialized"
+      },
+      "v32_london_breakout": {
+        "status": "stopped",
+        "restart_needed": false,
+        "skip_reason": "Market closed - London session not active"
+      },
+      "v33_ny_breakout": {
+        "status": "stopped",
+        "restart_needed": false,
+        "skip_reason": "Market closed - NY session ended"
+      },
+      "mt5_core_server": {
+        "status": "running",
+        "restart_needed": false,
+        "skip_reason": "Already running - healthy"
+      }
+    },
+    "manual_stop_check": {
+      "manual_stops_list_empty": true,
+      "robots_manually_stopped": []
+    },
+    "market_status": "closed",
+    "market_context": {
+      "time_utc": "02:17",
+      "london_session": "inactive (opens 07:00 UTC)",
+      "ny_session": "ended (closed 22:00 UTC)",
+      "v32_phase": "BEFORE_SESSION",
+      "v33_phase": "AFTER_SESSION"
+    },
+    "action_taken": "none",
+    "notes": "All trading robots (V31, V32, V33) are stopped due to market being closed/off-hours. No manual stop flags detected. MT5 Core Server is running normally. No restart action taken as robots are intentionally stopped for market conditions.",
+    "next_check_recommended": "2026-04-14T06:00:00Z"
+  }
+]

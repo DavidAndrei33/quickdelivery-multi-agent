@@ -1,0 +1,17 @@
+{
+  "id": "BUGFIX-BUG-002-auth-js-missing",
+  "type": "auto_bugfix",
+  "title": "Fix auth.js lipse\u0219te din directorul dashboard",
+  "description": "Bug BUG-002-auth-js-missing assigned automatically",
+  "bug_id": "BUG-002-auth-js-missing",
+  "bug_file": "/workspace/shared/bugs/BUG-002-auth-js-missing.md",
+  "assigned_to": "builder-1",
+  "severity": "High",
+  "priority": "P1",
+  "status": "retry",
+  "created_at": "2026-03-28T16:21:24.975321",
+  "deadline_days": 2,
+  "auto_generated": true,
+  "retry_count": 1,
+  "last_retry": "2026-03-29T08:51:39.186054"
+}

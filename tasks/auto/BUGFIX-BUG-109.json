@@ -1,0 +1,25 @@
+{
+  "id": "BUGFIX-BUG-109",
+  "type": "auto_bugfix",
+  "bug_id": "BUG-109",
+  "title": "Fix NY session timer API missing",
+  "description": "Endpoint /api/v33/session_time nu exist\u0103. Timerul sesiunii NY nu func\u021bioneaz\u0103.",
+  "severity": "MEDIUM",
+  "component": "API",
+  "assigned_to": "builder-1",
+  "work_dir": "/root/clawd/agents/brainmaker",
+  "target_files": [
+    "mt5_core_server.py"
+  ],
+  "test_files": [
+    "tests/api/test_v33_timer.py"
+  ],
+  "status": "retry",
+  "created_at": "2026-03-29T08:05:27.039059",
+  "deadline_days": 2,
+  "auto_generated": true,
+  "priority": "P1",
+  "instructions": "Lucreaz\u0103 DIRECT \u00een /root/clawd/agents/brainmaker.\n\nBUG: NY session timer API missing\nDESCRIERE: Endpoint /api/v33/session_time nu exist\u0103. Timerul sesiunii NY nu func\u021bioneaz\u0103.\n\nPA\u0218I:\n1. Implementeaz\u0103 endpoint-ul lips\u0103 \u00een mt5_core_server.py\n2. Scrie teste \u00een tests/api/test_v33_timer.py\n3. Ruleaz\u0103 testele: python3 -m pytest tests/api/test_v33_timer.py -v\n4. Verific\u0103 func\u021bionalitatea: curl http://localhost:8001/api/109\n5. Marcheaz\u0103 task ca done\n\nNU lucra \u00een /workspace/shared/agents/!",
+  "retry_count": 1,
+  "last_retry": "2026-03-29T08:51:39.181622"
+}

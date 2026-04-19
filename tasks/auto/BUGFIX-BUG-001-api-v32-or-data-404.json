@@ -1,0 +1,17 @@
+{
+  "id": "BUGFIX-BUG-001-api-v32-or-data-404",
+  "type": "auto_bugfix",
+  "title": "Fix /api/v32/or_data returneaz\u0103 HTTP 404",
+  "description": "Bug BUG-001-api-v32-or-data-404 assigned automatically",
+  "bug_id": "BUG-001-api-v32-or-data-404",
+  "bug_file": "/workspace/shared/bugs/BUG-001-api-v32-or-data-404.md",
+  "assigned_to": "builder-1",
+  "severity": "High",
+  "priority": "P1",
+  "status": "retry",
+  "created_at": "2026-03-28T16:21:24.974261",
+  "deadline_days": 2,
+  "auto_generated": true,
+  "retry_count": 1,
+  "last_retry": "2026-03-29T08:51:39.183745"
+}

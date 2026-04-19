@@ -1,0 +1,12 @@
+{
+  "id": "AUTO-TEST-1774774455",
+  "type": "auto_testing",
+  "title": "Testare automat\u0103 - Modific\u0103ri Backend API detectate",
+  "change_type": "backend_api",
+  "changed_files": [
+    "/root/clawd/agents/brainmaker/mt5_core_server.py"
+  ],
+  "assigned_to": "qa-master",
+  "status": "pending_spawn",
+  "created_at": "2026-03-29T08:54:15.853754"
+}

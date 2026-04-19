@@ -1,0 +1,1516 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Trading Dashboard Pro</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ═══════════════════════════════════════════════════════════════════════════
+           CSS VARIABLES & DESIGN TOKENS
+           ═══════════════════════════════════════════════════════════════════════════ */
+        :root {
+            /* Colors - Dark Theme */
+            --bg-primary: #0a0c10;
+            --bg-secondary: #111418;
+            --bg-tertiary: #1a1d24;
+            --bg-card: #151921;
+            --bg-hover: #1e222c;
+            
+            /* Accents */
+            --accent-blue: #3b82f6;
+            --accent-cyan: #06b6d4;
+            --accent-green: #22c55e;
+            --accent-red: #ef4444;
+            --accent-orange: #f97316;
+            --accent-purple: #8b5cf6;
+            --accent-yellow: #eab308;
+            
+            /* Gradients */
+            --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+            --gradient-success: linear-gradient(135deg, #22c55e 0%, #10b981 100%);
+            --gradient-danger: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            --gradient-card: linear-gradient(180deg, rgba(30, 34, 44, 0.8) 0%, rgba(21, 25, 33, 0.9) 100%);
+            
+            /* Text */
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            
+            /* Spacing */
+            --space-xs: 4px;
+            --space-sm: 8px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            
+            /* Border Radius */
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 16px;
+            --radius-xl: 20px;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
+            --shadow-lg: 0 8px 30px rgba(0,0,0,0.5);
+            --shadow-glow-green: 0 0 20px rgba(34, 197, 94, 0.3);
+            --shadow-glow-red: 0 0 20px rgba(239, 68, 68, 0.3);
+            
+            /* Transitions */
+            --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+            
+            /* Z-Index Scale */
+            --z-base: 1;
+            --z-dropdown: 100;
+            --z-sticky: 200;
+            --z-modal: 300;
+            --z-toast: 400;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════════
+           RESET & BASE STYLES
+           ═══════════════════════════════════════════════════════════════════════════ */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════════
+           LED STATUS INDICATOR
+           ═══════════════════════════════════════════════════════════════════════════ */
+        .led-status {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .led-status::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity var(--transition-fast);
+        }
+
+        /* LED Running - Green Pulse */
+        .led-status.running {
+            background: var(--accent-green);
+            box-shadow: 0 0 8px var(--accent-green), 0 0 16px rgba(34, 197, 94, 0.4);
+            animation: ledPulse 1.5s ease-in-out infinite;
+        }
+
+        .led-status.running::before {
+            background: radial-gradient(circle, rgba(34, 197, 94, 0.4) 0%, transparent 70%);
+            animation: ledGlow 1.5s ease-in-out infinite;
+        }
+
+        /* LED Stopped - Red Solid */
+        .led-status.stopped {
+            background: var(--accent-red);
+            box-shadow: 0 0 6px var(--accent-red);
+        }
+
+        /* LED Warning - Yellow Blink */
+        .led-status.warning {
+            background: var(--accent-yellow);
+            box-shadow: 0 0 6px var(--accent-yellow);
+            animation: ledBlink 1s ease-in-out infinite;
+        }
+
+        /* LED Offline - Gray */
+        .led-status.offline {
+            background: var(--text-muted);
+            box-shadow: none;
+        }
+
+        @keyframes ledPulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(0.85); opacity: 0.7; }
+        }
+
+        @keyframes ledGlow {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.5); }
+        }
+
+        @keyframes ledBlink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════════
+           HEADER & NAVIGATION
+           ═══════════════════════════════════════════════════════════════════════════ */
+        .app-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: var(--z-sticky);
+            background: rgba(10, 12, 16, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: var(--space-md) var(--space-lg);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--space-md);
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-md);
+        }
+
+        .logo-icon i {
+            color: white;
+            width: 20px;
+            height: 20px;
+        }
+
+        .logo-text {
+            font-size: 18px;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Connection Status */
+        .connection-status {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-xs) var(--space-sm);
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-lg);
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .connection-status.reconnecting {
+            color: var(--accent-yellow);
+        }
+
+        .connection-status.error {
+            color: var(--accent-red);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════════
+           ROBOT SELECTOR
+           ═══════════════════════════════════════════════════════════════════════════ */
+        .robot-selector {
+            position: relative;
+        }
+
+        .robot-selector-trigger {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-tertiary);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            min-width: 200px;
+        }
+
+        .robot-selector-trigger:hover {
+            background: var(--bg-hover);
+            border-color: rgba(255,255,255,0.15);
+        }
+
+        .robot-selector-trigger.active {
+            border-color: var(--accent-blue);
+        }
+
+        .robot-icon {
+            font-size: 20px;
+            line-height: 1;
+        }
+
+        .robot-info {
+            flex: 1;
+            text-align: left;
+        }
+
+        .robot-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+            display: block;
+        }
+
+        .robot-status {
+            font-size: 11px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .robot-dropdown {
+            position: absolute;
+            top: calc(100% + var(--space-sm));
+            right: 0;
+            min-width: 260px;
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all var(--transition-base);
+            z-index: var(--z-dropdown);
+        }
+
+        .robot-dropdown.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .robot-option {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-md);
+            cursor: pointer;
+            transition: background var(--transition-fast);
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+        }
+
+        .robot-option:last-child {
+            border-bottom: none;
+        }
+
+        .robot-option:hover {
+            background: var(--bg-hover);
+        }
+
+        .robot-option.selected {
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .robot-option-content {
+            flex: 1;
+        }
+
+        .robot-option-name {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .robot-option-desc {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════════
+           MAIN TABS NAVIGATION
+           ═══════════════════════════════════════════════════════════════════════════ */
+        .main-nav {
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            z-index: var(--z-sticky);
+            background: rgba(10, 12, 16, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 0 var(--space-lg);
+        }
+
+        .nav-tabs {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            gap: var(--space-xs);
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .nav-tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .nav-tab {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+            padding: var(--space-md) var(--space-lg);
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid transparent;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            white-space: nowrap;
+            position: relative;
+        }
+
+        .nav-tab:hover {
+            color: var(--text-primary);
+            background: rgba(255,255,255,0.02);
+        }
+
+        .nav-tab.active {
+            color: var(--accent-cyan);
+            border-bottom-color: var(--accent-cyan);
+        }
+
+        .nav-tab i {
+            width: 16px;
+            height: 16px;
+        }
+
+        .nav-tab-badge {
+            background: var(--accent-red);
+            color: white;
+            font-size: 10px;
+            font-weight: 600;
+            padding: 2px 6px;
+            border-radius: 10px;
+            min-width: 18px;
+            text-align: center;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════════
+           MAIN CONTENT AREA
+           ═══════════════════════════════════════════════════════════════════════════ */
+        .main-content {
+            margin-top: 130px;
+            padding: var(--space-lg);
+            min-height: calc(100vh - 130px);
+        }
+
+        .content-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Tab Panels */
+        .tab-panel {
+            display: none;
+            animation: fadeIn var(--transition-base);
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════════
+           CARDS & CONTAINERS
+           ═══════════════════════════════════════════════════════════════════════════ */
+        .card {
+            background: var(--gradient-card);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            margin-bottom: var(--space-md);
+            box-shadow: var(--shadow-md);
+            transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: var(--space-md);
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+        }
+
+        .card-title {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .card-title i {
+            color: var(--accent-cyan);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════════
+           ACCORDION
+           ═══════════════════════════════════════════════════════════════════════════ */
+        .accordion {
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            margin-bottom: var(--space-md);
+        }
+
+        .accordion-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-md);
+            background: var(--bg-tertiary);
+            cursor: pointer;
+            transition: background var(--transition-fast);
+        }
+
+        .accordion-header:hover {
+            background: var(--bg-hover);
+        }
+
+        .accordion-title {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .accordion-icon {
+            transition: transform var(--transition-fast);
+            color: var(--text-muted);
+        }
+
+        .accordion.open .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height var(--transition-slow);
+        }
+
+        .accordion.open .accordion-content {
+            max-height: 2000px;
+        }
+
+        .accordion-body {
+            padding: var(--space-md);
+            background: var(--bg-card);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════════
+           STATS GRID
+           ═══════════════════════════════════════════════════════════════════════════ */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: var(--space-md);
+            margin-bottom: var(--space-lg);
+        }
+
+        .stat-card {
+            background: var(--bg-tertiary);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: var(--radius-md);
+            padding: var(--space-md);
+            text-align: center;
+            transition: transform var(--transition-fast);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255,255,255,0.1);
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .stat-value.positive { color: var(--accent-green); }
+        .stat-value.negative { color: var(--accent-red); }
+
+        .stat-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-change {
+            font-size: 11px;
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        .stat-change.positive { color: var(--accent-green); }
+        .stat-change.negative { color: var(--accent-red); }
+
+        /* ═══════════════════════════════════════════════════════════════════════════
+           TABLES
+           ═══════════════════════════════════════════════════════════════════════════ */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: var(--space-sm) var(--space-md);
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .data-table th {
+            font-weight: 600;
+            color: var(--text-muted);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: var(--bg-tertiary);
+        }
+
+        .data-table tr:hover td {
+            background: rgba(255,255,255,0.02);
+        }
+
+        .data-table td {
+            color: var(--text-secondary);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════════
+           BADGES & LABELS
+           ═══════════════════════════════════════════════════════════════════════════ */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 3px 8px;
+            border-radius: var(--radius-lg);
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .badge-success {
+            background: rgba(34, 197, 94, 0.15);
+            color: var(--accent-green);
+        }
+
+        .badge-danger {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--accent-red);
+        }
+
+        .badge-warning {
+            background: rgba(234, 179, 8, 0.15);
+            color: var(--accent-yellow);
+        }
+
+        .badge-info {
+            background: rgba(59, 130, 246, 0.15);
+            color: var(--accent-blue);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════════
+           BUTTONS
+           ═══════════════════════════════════════════════════════════════════════════ */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-xs);
+            padding: var(--space-sm) var(--space-md);
+            font-size: 13px;
+            font-weight: 500;
+            border: none;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-hover);
+            border-color: rgba(255,255,255,0.2);
+        }
+
+        .btn-success {
+            background: var(--gradient-success);
+            color: white;
+        }
+
+        .btn-danger {
+            background: var(--gradient-danger);
+            color: white;
+        }
+
+        .btn-sm {
+            padding: 6px 12px;
+            font-size: 12px;
+        }
+
+        .btn i {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════════
+           PROGRESS BARS
+           ═══════════════════════════════════════════════════════════════════════════ */
+        .progress-container {
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-lg);
+            height: 8px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-lg);
+            transition: width var(--transition-slow);
+        }
+
+        .progress-bar.success { background: var(--gradient-success); }
+        .progress-bar.danger { background: var(--gradient-danger); }
+
+        /* ═══════════════════════════════════════════════════════════════════════════
+           LOGS & TERMINAL
+           ═══════════════════════════════════════════════════════════════════════════ */
+        .terminal {
+            background: var(--bg-primary);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: var(--radius-md);
+            padding: var(--space-md);
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 12px;
+            line-height: 1.6;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .log-entry {
+            display: flex;
+            gap: var(--space-sm);
+            margin-bottom: 4px;
+            opacity: 0;
+            animation: logSlideIn 0.2s ease forwards;
+        }
+
+        @keyframes logSlideIn {
+            from { opacity: 0; transform: translateX(-10px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .log-timestamp {
+            color: var(--text-muted);
+            flex-shrink: 0;
+        }
+
+        .log-level {
+            width: 50px;
+            flex-shrink: 0;
+            font-weight: 600;
+        }
+
+        .log-level.info { color: var(--accent-blue); }
+        .log-level.success { color: var(--accent-green); }
+        .log-level.warning { color: var(--accent-yellow); }
+        .log-level.error { color: var(--accent-red); }
+
+        .log-message {
+            color: var(--text-secondary);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════════
+           TOAST NOTIFICATIONS
+           ═══════════════════════════════════════════════════════════════════════════ */
+        .toast-container {
+            position: fixed;
+            top: var(--space-lg);
+            right: var(--space-lg);
+            z-index: var(--z-toast);
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+            max-width: 400px;
+        }
+
+        .toast {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: var(--radius-md);
+            padding: var(--space-md);
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-sm);
+            animation: toastSlideIn 0.3s ease;
+        }
+
+        @keyframes toastSlideIn {
+            from { opacity: 0; transform: translateX(100%); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .toast.toast-exit {
+            animation: toastSlideOut 0.3s ease forwards;
+        }
+
+        @keyframes toastSlideOut {
+            from { opacity: 1; transform: translateX(0); }
+            to { opacity: 0; transform: translateX(100%); }
+        }
+
+        .toast-icon {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+
+        .toast-success .toast-icon { color: var(--accent-green); }
+        .toast-error .toast-icon { color: var(--accent-red); }
+        .toast-warning .toast-icon { color: var(--accent-yellow); }
+        .toast-info .toast-icon { color: var(--accent-blue); }
+
+        .toast-content {
+            flex: 1;
+        }
+
+        .toast-title {
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .toast-message {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .toast-close {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 0;
+            display: flex;
+            transition: color var(--transition-fast);
+        }
+
+        .toast-close:hover {
+            color: var(--text-primary);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════════
+           OFFLINE OVERLAY
+           ═══════════════════════════════════════════════════════════════════════════ */
+        .offline-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 12, 16, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 500;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: var(--space-lg);
+            text-align: center;
+            padding: var(--space-lg);
+        }
+
+        .offline-overlay.show {
+            display: flex;
+        }
+
+        .offline-icon {
+            width: 64px;
+            height: 64px;
+            color: var(--accent-red);
+            animation: offlinePulse 2s ease-in-out infinite;
+        }
+
+        @keyframes offlinePulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(0.95); }
+        }
+
+        .offline-title {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .offline-message {
+            color: var(--text-secondary);
+            max-width: 400px;
+        }
+
+        .offline-retry {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            color: var(--accent-yellow);
+            font-size: 14px;
+        }
+
+        .spinner {
+            width: 16px;
+            height: 16px;
+            border: 2px solid transparent;
+            border-top-color: currentColor;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════════
+           RESPONSIVE DESIGN
+           ═══════════════════════════════════════════════════════════════════════════ */
+        @media (max-width: 768px) {
+            :root {
+                --space-lg: 16px;
+                --space-md: 12px;
+            }
+
+            .app-header {
+                padding: var(--space-sm) var(--space-md);
+            }
+
+            .header-content {
+                flex-wrap: wrap;
+            }
+
+            .logo-text {
+                font-size: 16px;
+            }
+
+            .main-nav {
+                top: 60px;
+                padding: 0 var(--space-md);
+            }
+
+            .nav-tab {
+                padding: var(--space-sm) var(--space-md);
+                font-size: 12px;
+            }
+
+            .nav-tab span {
+                display: none;
+            }
+
+            .nav-tab i {
+                width: 20px;
+                height: 20px;
+            }
+
+            .main-content {
+                margin-top: 110px;
+                padding: var(--space-md);
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: var(--space-sm);
+            }
+
+            .stat-value {
+                font-size: 18px;
+            }
+
+            .card {
+                padding: var(--space-md);
+            }
+
+            .card-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .data-table {
+                font-size: 12px;
+            }
+
+            .data-table th,
+            .data-table td {
+                padding: var(--space-xs) var(--space-sm);
+            }
+
+            .robot-selector-trigger {
+                min-width: auto;
+                padding: var(--space-xs) var(--space-sm);
+            }
+
+            .robot-name {
+                font-size: 12px;
+            }
+
+            .toast-container {
+                left: var(--space-md);
+                right: var(--space-md);
+                max-width: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════════
+           LOADING SKELETONS
+           ═══════════════════════════════════════════════════════════════════════════ */
+        .skeleton {
+            background: linear-gradient(90deg, var(--bg-tertiary) 25%, var(--bg-hover) 50%, var(--bg-tertiary) 75%);
+            background-size: 200% 100%;
+            animation: skeleton 1.5s infinite;
+            border-radius: var(--radius-sm);
+        }
+
+        @keyframes skeleton {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .skeleton-text {
+            height: 14px;
+            margin-bottom: 8px;
+        }
+
+        .skeleton-title {
+            height: 20px;
+            width: 60%;
+            margin-bottom: 16px;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════════
+           SCROLLBAR STYLING
+           ═══════════════════════════════════════════════════════════════════════════ */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-lg);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--bg-hover);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════════
+           UTILITY CLASSES
+           ═══════════════════════════════════════════════════════════════════════════ */
+        .text-center { text-align: center; }
+        .text-right { text-align: right; }
+        .text-primary { color: var(--text-primary); }
+        .text-secondary { color: var(--text-secondary); }
+        .text-muted { color: var(--text-muted); }
+        .text-success { color: var(--accent-green); }
+        .text-danger { color: var(--accent-red); }
+        .text-warning { color: var(--accent-yellow); }
+
+        .flex { display: flex; }
+        .flex-col { flex-direction: column; }
+        .items-center { align-items: center; }
+        .justify-between { justify-content: space-between; }
+        .gap-1 { gap: var(--space-xs); }
+        .gap-2 { gap: var(--space-sm); }
+        .gap-3 { gap: var(--space-md); }
+
+        .mb-2 { margin-bottom: var(--space-sm); }
+        .mb-3 { margin-bottom: var(--space-md); }
+        .mb-4 { margin-bottom: var(--space-lg); }
+
+        .hidden { display: none !important; }
+        .invisible { visibility: hidden; }
+
+        /* Focus states for accessibility */
+        button:focus-visible,
+        a:focus-visible {
+            outline: 2px solid var(--accent-blue);
+            outline-offset: 2px;
+        }
+
+        /* Selection color */
+        ::selection {
+            background: rgba(59, 130, 246, 0.3);
+            color: var(--text-primary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Offline Overlay -->
+    <div id="offlineOverlay" class="offline-overlay">
+        <i data-lucide="wifi-off" class="offline-icon"></i>
+        <h2 class="offline-title">Robot Offline</h2>
+        <p id="offlineMessage" class="offline-message">Conexiune pierdută. Se încearcă reconectarea...</p>
+        <div class="offline-retry">
+            <span class="spinner"></span>
+            <span id="retryText">Reconectare... (Încercarea <span id="retryCount">1</span>/3)</span>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Header -->
+    <header class="app-header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo-icon">
+                    <i data-lucide="activity"></i>
+                </div>
+                <span class="logo-text">Trading Pro</span>
+            </div>
+
+            <div class="connection-status" id="connectionStatus">
+                <span class="led-status running" id="connectionLed"></span>
+                <span id="connectionText">Conectat</span>
+            </div>
+
+            <div class="robot-selector">
+                <div class="robot-selector-trigger" id="robotSelectorTrigger">
+                    <span class="robot-icon" id="currentRobotIcon">🤖</span>
+                    <div class="robot-info">
+                        <span class="robot-name" id="currentRobotName">V31 Marius TPL</span>
+                        <span class="robot-status">
+                            <span class="led-status running" id="robotLed"></span>
+                            <span id="robotStatusText">Rulează</span>
+                        </span>
+                    </div>
+                    <i data-lucide="chevron-down" style="width: 16px; height: 16px; color: var(--text-muted);"></i>
+                </div>
+                <div class="robot-dropdown" id="robotDropdown">
+                    <div class="robot-option selected" data-robot="v31" data-icon="🤖">
+                        <span class="robot-icon">🤖</span>
+                        <div class="robot-option-content">
+                            <div class="robot-option-name">V31 Marius TPL</div>
+                            <div class="robot-option-desc">Fibonacci Strategy</div>
+                        </div>
+                        <span class="led-status running"></span>
+                    </div>
+                    <div class="robot-option" data-robot="v32" data-icon="🌅">
+                        <span class="robot-icon">🌅</span>
+                        <div class="robot-option-content">
+                            <div class="robot-option-name">V32 London Breakout</div>
+                            <div class="robot-option-desc">Opening Range Breakout</div>
+                        </div>
+                        <span class="led-status running"></span>
+                    </div>
+                    <div class="robot-option" data-robot="v33" data-icon="🗽">
+                        <span class="robot-icon">🗽</span>
+                        <div class="robot-option-content">
+                            <div class="robot-option-name">V33 NY Breakout</div>
+                            <div class="robot-option-desc">Pre-session Analysis</div>
+                        </div>
+                        <span class="led-status running"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Navigation -->
+    <nav class="main-nav">
+        <div class="nav-tabs">
+            <button class="nav-tab active" data-tab="overview">
+                <i data-lucide="layout-dashboard"></i>
+                <span>Overview</span>
+            </button>
+            <button class="nav-tab" data-tab="analysis">
+                <i data-lucide="bar-chart-3"></i>
+                <span>Analysis</span>
+            </button>
+            <button class="nav-tab" data-tab="trades">
+                <i data-lucide="trending-up"></i>
+                <span>Trades</span>
+                <span class="nav-tab-badge" id="tradesBadge">0</span>
+            </button>
+            <button class="nav-tab" data-tab="logs">
+                <i data-lucide="terminal"></i>
+                <span>Logs</span>
+            </button>
+            <button class="nav-tab" data-tab="settings">
+                <i data-lucide="settings"></i>
+                <span>Settings</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="content-container">
+            
+            <!-- OVERVIEW TAB -->
+            <div id="tab-overview" class="tab-panel active">
+                <!-- Stats Grid -->
+                <div class="stats-grid" id="overviewStats">
+                    <div class="stat-card">
+                        <div class="stat-value" id="statBalance">$0.00</div>
+                        <div class="stat-label">Balance</div>
+                        <div class="stat-change positive" id="statChange">+0.00%</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="statProfit">$0.00</div>
+                        <div class="stat-label">Profit Today</div>
+                        <div class="stat-change positive" id="statProfitChange">+0 trades</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="statWinRate">0%</div>
+                        <div class="stat-label">Win Rate</div>
+                        <div class="stat-change" id="statWinChange">0W / 0L</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="statActive">0</div>
+                        <div class="stat-label">Active Trades</div>
+                        <div class="stat-change" id="statExposure">$0 exposure</div>
+                    </div>
+                </div>
+
+                <!-- Robot Status Accordion -->
+                <div class="accordion open" id="robotStatusAccordion">
+                    <div class="accordion-header">
+                        <div class="accordion-title">
+                            <i data-lucide="cpu" style="width: 16px; height: 16px;"></i>
+                            <span>Robot Status</span>
+                        </div>
+                        <i data-lucide="chevron-down" class="accordion-icon" style="width: 16px; height: 16px;"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body" id="robotStatusContent">
+                            <!-- Dynamic content -->
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-secondary">Status</span>
+                                <span class="badge badge-success" id="robotStatusBadge">ACTIVE</span>
+                            </div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-secondary">Session</span>
+                                <span class="text-primary" id="robotSession">Waiting...</span>
+                            </div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-secondary">Last Update</span>
+                                <span class="text-primary" id="lastUpdate">Just now</span>
+                            </div>
+                            <div class="mb-2">
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-secondary">Progress</span>
+                                    <span class="text-primary" id="progressText">0%</span>
+                                </div>
+                                <div class="progress-container">
+                                    <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Market Overview Accordion -->
+                <div class="accordion" id="marketAccordion">
+                    <div class="accordion-header">
+                        <div class="accordion-title">
+                            <i data-lucide="globe" style="width: 16px; height: 16px;"></i>
+                            <span>Market Overview</span>
+                        </div>
+                        <i data-lucide="chevron-down" class="accordion-icon" style="width: 16px; height: 16px;"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body" id="marketContent">
+                            <div class="stats-grid" id="marketStats">
+                                <!-- Dynamic market data -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ANALYSIS TAB -->
+            <div id="tab-analysis" class="tab-panel">
+                <div class="accordion open">
+                    <div class="accordion-header">
+                        <div class="accordion-title">
+                            <i data-lucide="candlestick-chart" style="width: 16px; height: 16px;"></i>
+                            <span>Technical Analysis</span>
+                        </div>
+                        <i data-lucide="chevron-down" class="accordion-icon" style="width: 16px; height: 16px;"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div id="analysisChart" style="height: 300px;">
+                                <canvas id="mainChart"></canvas>
+                            </div>
+                            <div class="stats-grid mt-4" id="analysisStats">
+                                <!-- Analysis metrics -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion">
+                    <div class="accordion-header">
+                        <div class="accordion-title">
+                            <i data-lucide="search" style="width: 16px; height: 16px;"></i>
+                            <span>Symbol Scanner</span>
+                        </div>
+                        <i data-lucide="chevron-down" class="accordion-icon" style="width: 16px; height: 16px;"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div id="symbolScanner" class="grid gap-3">
+                                <!-- Dynamic symbol list -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TRADES TAB -->
+            <div id="tab-trades" class="tab-panel">
+                <div class="accordion open">
+                    <div class="accordion-header">
+                        <div class="accordion-title">
+                            <i data-lucide="activity" style="width: 16px; height: 16px;"></i>
+                            <span>Active Trades</span>
+                        </div>
+                        <i data-lucide="chevron-down" class="accordion-icon" style="width: 16px; height: 16px;"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div class="table-responsive">
+                                <table class="data-table" id="activeTradesTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Symbol</th>
+                                            <th>Type</th>
+                                            <th>Entry</th>
+                                            <th>Current</th>
+                                            <th>P/L</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="activeTradesBody">
+                                        <!-- Dynamic trades -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion">
+                    <div class="accordion-header">
+                        <div class="accordion-title">
+                            <i data-lucide="history" style="width: 16px; height: 16px;"></i>
+                            <span>Trade History</span>
+                        </div>
+                        <i data-lucide="chevron-down" class="accordion-icon" style="width: 16px; height: 16px;"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div class="table-responsive">
+                                <table class="data-table" id="tradeHistoryTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Time</th>
+                                            <th>Symbol</th>
+                                            <th>Type</th>
+                                            <th>Result</th>
+                                            <th>P/L</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tradeHistoryBody">
+                                        <!-- Dynamic history -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LOGS TAB -->
+            <div id="tab-logs" class="tab-panel">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <i data-lucide="file-text"></i>
+                            <span>System Logs</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <button class="btn btn-secondary btn-sm" onclick="clearLogs()">
+                                <i data-lucide="trash-2"></i>
+                                Clear
+                            </button>
+                            <button class="btn btn-secondary btn-sm" onclick="downloadLogs()">
+                                <i data-lucide="download"></i>
+                                Export
+                            </button>
+                        </div>
+                    </div>
+                    <div class="terminal" id="logTerminal">
+                        <!-- Dynamic logs -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- SETTINGS TAB -->
+            <div id="tab-settings" class="tab-panel">
+                <div class="accordion open">
+                    <div class="accordion-header">
+                        <div class="accordion-title">
+                            <i data-lucide="sliders" style="width: 16px; height: 16px;"></i>
+                            <span>General Settings</span>
+                        </div>
+                        <i data-lucide="chevron-down" class="accordion-icon" style="width: 16px; height: 16px;"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div class="mb-4">
+                                <label class="text-secondary" style="display: block; margin-bottom: 8px;">Update Interval</label>
+                                <select class="btn btn-secondary" style="width: 100%; justify-content: space-between;" id="updateInterval">
+                                    <option value="1000">1 second (Real-time)</option>
+                                    <option value="5000">5 seconds</option>
+                                    <option value="10000">10 seconds</option>
+                                    <option value="30000">30 seconds</option>
+                                </select>
+                            </div>
+                            <div class="mb-4">
+                                <label class="text-secondary" style="display: block; margin-bottom: 8px;">Notifications</label>
+                                <div class="flex items-center justify-between" style="padding: 12px; background: var(--bg-tertiary); border-radius: var(--radius-md);">
+                                    <span>Enable notifications</span>
+                                    <button class="btn btn-primary btn-sm" id="notifToggle" onclick="toggleNotifications()">On</button>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="text-secondary" style="display: block; margin-bottom: 8px;">Theme</label>
+                                <div class="flex items-center justify-between" style="padding: 12px; background: var(--bg-tertiary); border-radius: var(--radius-md);">
+                                    <span>Dark mode</span>
+                                    <button class="btn btn-primary btn-sm">Active</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion">
+                    <div class="accordion-header">
+                        <div class="accordion-title">
+                            <i data-lucide="shield" style="width: 16px; height: 16px;"></i>
+                            <span>Risk Management</span>
+                        </div>
+                        <i data-lucide="chevron-down" class="accordion-icon" style="width: 16px; height: 16px;"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div class="mb-4">
+                                <label class="text-secondary" style="display: block; margin-bottom: 8px;">Max Daily Loss</label>
+                                <input type="number" class="btn btn-secondary" style="width: 100%; text-align: left;" placeholder="500" id="maxDailyLoss">
+                            </div>
+                            <div class="mb-4">
+                                <label class="text-secondary" style="display: block; margin-bottom: 8px;">Risk per Trade (%)</label>
+                                <input type="number" class="btn btn-secondary" style="width: 100%; text-align: left;" placeholder="2" id="riskPerTrade">
+                            </div>
+                            <div>
+                                <label class="text-secondary" style="display: block; margin-bottom: 8px;">Auto Stop</label>
+                                <div class="flex items-center justify-between" style="padding: 12px; background: var(--bg-tertiary); border-radius: var(--radius-md);">
+                                    <span>Stop trading on max loss</span>
+                                    <button class="btn btn-primary btn-sm">On</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="dashboard_final.js"></script>
+</body>
+</html>

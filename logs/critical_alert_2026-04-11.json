@@ -1,0 +1,56 @@
+{
+  "timestamp": "2026-04-11T19:33:00Z",
+  "alert_type": "CRITICAL_CONDITIONS_DETECTED",
+  "severity": "HIGH",
+  "conditions": [
+    {
+      "type": "ALL_MT5_CLIENTS_DISCONNECTED",
+      "severity": "CRITICAL",
+      "details": {
+        "active_clients": 0,
+        "total_known_clients": 3,
+        "disconnected_clients": [
+          {"login": 52715350, "name": "David Andrei Guta", "status": "disconnected"},
+          {"login": 52734586, "name": "David Andrei Guta", "status": "disabled"},
+          {"login": 105403333, "name": "Alex Bughi", "status": "disconnected"}
+        ]
+      },
+      "impact": "Nu există conexiune activă cu MT5. Roboții nu pot executa tranzacții.",
+      "action_required": "Verifică dacă MT5 este pornit și BrainBridge EA este activat în MetaTrader."
+    },
+    {
+      "type": "HIGH_MEMORY_USAGE",
+      "severity": "WARNING",
+      "details": {
+        "memory_used_percent": 89.6,
+        "memory_used_gb": 6.77,
+        "memory_total_gb": 7.56
+      },
+      "impact": "Sistemul folosește aproape 90% din memorie. Poate afecta performanța.",
+      "action_required": "Monitorizează - dacă depășește 95%, repornește serviciile non-esențiale."
+    },
+    {
+      "type": "HIGH_CPU_USAGE",
+      "severity": "WARNING", 
+      "details": {
+        "cpu_percent": 78.0
+      },
+      "impact": "CPU la 78% - utilizare intensă detectată.",
+      "action_required": "Normal în timpul procesării de date - monitorizează trendul."
+    }
+  ],
+  "system_status": {
+    "mt5_core_server": "running",
+    "postgresql": "connected",
+    "vps_bridge_8080": "connected",
+    "vps_bridge_7001": "connected",
+    "disk_usage_percent": 79.2,
+    "disk_free_gb": 36
+  },
+  "recommendations": [
+    "1. DESCHIDE MetaTrader 5 și activează BrainBridge EA",
+    "2. Verifică conexiunea internet pe mașina cu MT5",
+    "3. Asigură-te că porturile 8001 și 8080 sunt accesibile",
+    "4. Dacă problema persistă, verifică log-urile MT5 din tab-ul Experts"
+  ]
+}

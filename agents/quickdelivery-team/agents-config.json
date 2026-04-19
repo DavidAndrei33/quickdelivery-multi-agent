@@ -1,0 +1,111 @@
+{
+  "agents": {
+    "list": [
+      {
+        "id": "product-architect",
+        "name": "Product-Architect",
+        "workspace": "/workspace/shared/agents/quickdelivery-team/product-architect",
+        "model": { "primary": "kimi-coding/k2p5" },
+        "identity": { "name": "Product-Architect", "emoji": "🎯" }
+      },
+      {
+        "id": "frontend-architect",
+        "name": "Frontend-Architect",
+        "workspace": "/workspace/shared/agents/quickdelivery-team/frontend-architect",
+        "model": { "primary": "kimi-coding/k2p5" },
+        "identity": { "name": "Frontend-Architect", "emoji": "🎨" }
+      },
+      {
+        "id": "backend-architect",
+        "name": "Backend-Architect",
+        "workspace": "/workspace/shared/agents/quickdelivery-team/backend-architect",
+        "model": { "primary": "kimi-coding/k2p5" },
+        "identity": { "name": "Backend-Architect", "emoji": "⚙️" }
+      },
+      {
+        "id": "builder-customer",
+        "name": "Builder-Customer",
+        "workspace": "/workspace/shared/agents/quickdelivery-team/builders/customer",
+        "model": { "primary": "kimi-coding/k2p5" },
+        "identity": { "name": "Builder-Customer", "emoji": "🛒" },
+        "skills": ["web-quality-skills", "appdev-skill"]
+      },
+      {
+        "id": "builder-admin",
+        "name": "Builder-Admin",
+        "workspace": "/workspace/shared/agents/quickdelivery-team/builders/admin",
+        "model": { "primary": "kimi-coding/k2p5" },
+        "identity": { "name": "Builder-Admin", "emoji": "📊" },
+        "skills": ["web-quality-skills", "appdev-skill"]
+      },
+      {
+        "id": "builder-rider",
+        "name": "Builder-Rider",
+        "workspace": "/workspace/shared/agents/quickdelivery-team/builders/rider",
+        "model": { "primary": "kimi-coding/k2p5" },
+        "identity": { "name": "Builder-Rider", "emoji": "🛵" },
+        "skills": ["web-quality-skills", "appdev-skill"]
+      },
+      {
+        "id": "builder-store",
+        "name": "Builder-Store",
+        "workspace": "/workspace/shared/agents/quickdelivery-team/builders/store",
+        "model": { "primary": "kimi-coding/k2p5" },
+        "identity": { "name": "Builder-Store", "emoji": "🏪" },
+        "skills": ["web-quality-skills", "appdev-skill"]
+      },
+      {
+        "id": "builder-mobile",
+        "name": "Builder-Mobile",
+        "workspace": "/workspace/shared/agents/quickdelivery-team/builders/mobile",
+        "model": { "primary": "kimi-coding/k2p5" },
+        "identity": { "name": "Builder-Mobile", "emoji": "📱" },
+        "skills": ["web-quality-skills", "appdev-skill"]
+      },
+      {
+        "id": "builder-api",
+        "name": "Builder-API",
+        "workspace": "/workspace/shared/agents/quickdelivery-team/builders/api",
+        "model": { "primary": "kimi-coding/k2p5" },
+        "identity": { "name": "Builder-API", "emoji": "🔌" },
+        "skills": ["appdev-skill"]
+      },
+      {
+        "id": "reviewer-frontend",
+        "name": "Reviewer-Frontend",
+        "workspace": "/workspace/shared/agents/quickdelivery-team/reviewers/frontend",
+        "model": { "primary": "kimi-coding/k2p5" },
+        "identity": { "name": "Reviewer-Frontend", "emoji": "👁️" }
+      },
+      {
+        "id": "reviewer-backend",
+        "name": "Reviewer-Backend",
+        "workspace": "/workspace/shared/agents/quickdelivery-team/reviewers/backend",
+        "model": { "primary": "kimi-coding/k2p5" },
+        "identity": { "name": "Reviewer-Backend", "emoji": "🔍" }
+      },
+      {
+        "id": "reviewer-security",
+        "name": "Reviewer-Security",
+        "workspace": "/workspace/shared/agents/quickdelivery-team/reviewers/security",
+        "model": { "primary": "kimi-coding/k2p5" },
+        "identity": { "name": "Reviewer-Security", "emoji": "🔒" },
+        "skills": ["1sec-security"]
+      },
+      {
+        "id": "devops-quickdelivery",
+        "name": "DevOps-QuickDelivery",
+        "workspace": "/workspace/shared/agents/quickdelivery-team/devops",
+        "model": { "primary": "kimi-coding/k2p5" },
+        "identity": { "name": "DevOps-QD", "emoji": "🚀" }
+      },
+      {
+        "id": "qa-tester",
+        "name": "QA-Tester",
+        "workspace": "/workspace/shared/agents/quickdelivery-team/qa-tester",
+        "model": { "primary": "kimi-coding/k2p5" },
+        "identity": { "name": "QA-Tester", "emoji": "🧪" }
+      }
+    ]
+  }
+}

@@ -1,0 +1,314 @@
+{
+  "test_suite": "UI/UX Final Dashboard Tests",
+  "version": "3.0",
+  "created_at": "2026-03-29T12:45:00Z",
+  "tests": [
+    {
+      "id": "TEST-UI-001",
+      "name": "LED Status Indicator - Running State",
+      "description": "LED should show green pulse animation when robot is running",
+      "status": "passed",
+      "checks": [
+        "LED element exists (8px circle)",
+        "Green color (#22c55e)",
+        "Pulse animation active (1.5s infinite)",
+        "Glow effect visible"
+      ]
+    },
+    {
+      "id": "TEST-UI-002",
+      "name": "LED Status Indicator - Stopped State",
+      "description": "LED should show solid red when robot is stopped",
+      "status": "passed",
+      "checks": [
+        "Red color (#ef4444)",
+        "Solid state (no animation)",
+        "Box shadow visible"
+      ]
+    },
+    {
+      "id": "TEST-UI-003",
+      "name": "LED Status Indicator - Warning State",
+      "description": "LED should blink yellow when reconnecting",
+      "status": "passed",
+      "checks": [
+        "Yellow color (#eab308)",
+        "Blink animation (1s infinite)",
+        "Warning status text displayed"
+      ]
+    },
+    {
+      "id": "TEST-UI-004",
+      "name": "Tab Navigation - Overview",
+      "description": "Overview tab should display correctly",
+      "status": "passed",
+      "checks": [
+        "Tab button visible with icon",
+        "Click switches to Overview panel",
+        "Stats grid displays 4 cards",
+        "Robot Status accordion visible"
+      ]
+    },
+    {
+      "id": "TEST-UI-005",
+      "name": "Tab Navigation - Analysis",
+      "description": "Analysis tab should display chart and scanner",
+      "status": "passed",
+      "checks": [
+        "Chart canvas element exists",
+        "Technical Analysis accordion opens",
+        "Symbol Scanner section visible"
+      ]
+    },
+    {
+      "id": "TEST-UI-006",
+      "name": "Tab Navigation - Trades",
+      "description": "Trades tab should display active trades and history",
+      "status": "passed",
+      "checks": [
+        "Active Trades table exists",
+        "Trade History accordion available",
+        "Badge count shows active trades"
+      ]
+    },
+    {
+      "id": "TEST-UI-007",
+      "name": "Tab Navigation - Logs",
+      "description": "Logs tab should display terminal output",
+      "status": "passed",
+      "checks": [
+        "Terminal container exists",
+        "Log entries display correctly",
+        "Clear and Export buttons work"
+      ]
+    },
+    {
+      "id": "TEST-UI-008",
+      "name": "Tab Navigation - Settings",
+      "description": "Settings tab should display configuration options",
+      "status": "passed",
+      "checks": [
+        "Update interval dropdown",
+        "Notifications toggle",
+        "Risk management section"
+      ]
+    },
+    {
+      "id": "TEST-UI-009",
+      "name": "Tab State Persistence",
+      "description": "Last active tab should be saved and restored",
+      "status": "passed",
+      "checks": [
+        "localStorage saves active tab",
+        "Tab restored on page reload",
+        "Smooth transition animation"
+      ]
+    },
+    {
+      "id": "TEST-UI-010",
+      "name": "Robot Selector - Display",
+      "description": "Robot selector should show current robot with icon",
+      "status": "passed",
+      "checks": [
+        "Trigger shows robot icon (🤖 🌅 🗽)",
+        "Robot name displayed",
+        "LED status indicator visible",
+        "Dropdown opens on click"
+      ]
+    },
+    {
+      "id": "TEST-UI-011",
+      "name": "Robot Selector - Switching",
+      "description": "Switching robots should update UI without page refresh",
+      "status": "passed",
+      "checks": [
+        "Dropdown closes after selection",
+        "UI updates immediately",
+        "No page refresh",
+        "Data loads for selected robot"
+      ]
+    },
+    {
+      "id": "TEST-UI-012",
+      "name": "Robot Selector - Status Updates",
+      "description": "Robot status should update every second",
+      "status": "passed",
+      "checks": [
+        "Status updates at 1s interval",
+        "LED changes with status",
+        "Last seen time updates",
+        "Offline detection works"
+      ]
+    },
+    {
+      "id": "TEST-UI-013",
+      "name": "Error Handling - Auto Retry",
+      "description": "Connection errors should trigger auto-retry (max 3)",
+      "status": "passed",
+      "checks": [
+        "Retry counter displays (1/3, 2/3, 3/3)",
+        "Reconectare message shown",
+        "2 second delay between retries",
+        "Fallback to polling after max attempts"
+      ]
+    },
+    {
+      "id": "TEST-UI-014",
+      "name": "Error Handling - Offline Overlay",
+      "description": "Offline overlay should appear when connection lost",
+      "status": "passed",
+      "checks": [
+        "Overlay appears after 30s offline",
+        "WiFi-off icon displayed",
+        "Retry status visible",
+        "Overlay hides on reconnect"
+      ]
+    },
+    {
+      "id": "TEST-UI-015",
+      "name": "Error Handling - Polling Fallback",
+      "description": "Polling should work when WebSocket fails",
+      "status": "passed",
+      "checks": [
+        "Polling starts after WS failure",
+        "1 second update interval",
+        "Data updates correctly",
+        "Can switch back to WS"
+      ]
+    },
+    {
+      "id": "TEST-UI-016",
+      "name": "Performance - 60 FPS",
+      "description": "UI should maintain 60 FPS during updates",
+      "status": "passed",
+      "checks": [
+        "requestAnimationFrame used",
+        "No layout thrashing",
+        "Smooth animations",
+        "16ms frame target"
+      ]
+    },
+    {
+      "id": "TEST-UI-017",
+      "name": "Performance - Debounce/Throttle",
+      "description": "Scroll and resize events should be debounced/throttled",
+      "status": "passed",
+      "checks": [
+        "Scroll debounced at 150ms",
+        "Resize throttled at 100ms",
+        "No excessive re-renders"
+      ]
+    },
+    {
+      "id": "TEST-UI-018",
+      "name": "Performance - Lazy Loading",
+      "description": "Inactive tabs should not load content",
+      "status": "passed",
+      "checks": [
+        "Tab content loads on first switch",
+        "Chart only initializes in Analysis tab",
+        "No unnecessary API calls"
+      ]
+    },
+    {
+      "id": "TEST-UI-019",
+      "name": "Responsive - Desktop (1200px+)",
+      "description": "Layout should work correctly on desktop",
+      "status": "passed",
+      "checks": [
+        "Full navigation visible",
+        "4-column stats grid",
+        "Cards display side by side",
+        "All tabs with text labels"
+      ]
+    },
+    {
+      "id": "TEST-UI-020",
+      "name": "Responsive - Tablet (768px)",
+      "description": "Layout should adapt to tablet screens",
+      "status": "passed",
+      "checks": [
+        "2-column stats grid",
+        "Compact header layout",
+        "Tab icons only (no text)",
+        "Reduced padding"
+      ]
+    },
+    {
+      "id": "TEST-UI-021",
+      "name": "Responsive - Mobile (480px)",
+      "description": "Layout should work on mobile devices",
+      "status": "passed",
+      "checks": [
+        "Single column layout",
+        "Full-width buttons",
+        "Touch-friendly tap targets (44px+)",
+        "Stacked cards"
+      ]
+    },
+    {
+      "id": "TEST-UI-022",
+      "name": "Styling - Dark Theme",
+      "description": "Dark theme should be applied consistently",
+      "status": "passed",
+      "checks": [
+        "Background color (#0a0c10)",
+        "Card gradients visible",
+        "Text colors correct",
+        "Border colors subtle"
+      ]
+    },
+    {
+      "id": "TEST-UI-023",
+      "name": "Styling - Animations",
+      "description": "Animations should be smooth and performant",
+      "status": "passed",
+      "checks": [
+        "CSS transitions defined",
+        "Tab switch animation (fadeIn)",
+        "Toast slide animation",
+        "LED pulse animation"
+      ]
+    },
+    {
+      "id": "TEST-UI-024",
+      "name": "Accordion - Functionality",
+      "description": "Accordion sections should expand/collapse",
+      "status": "passed",
+      "checks": [
+        "Click header toggles section",
+        "Chevron icon rotates",
+        "Smooth expand/collapse",
+        "Multiple accordions can be open"
+      ]
+    },
+    {
+      "id": "TEST-UI-025",
+      "name": "Toast Notifications",
+      "description": "Toast notifications should display correctly",
+      "status": "passed",
+      "checks": [
+        "Success toast (green)",
+        "Error toast (red)",
+        "Info toast (blue)",
+        "Warning toast (yellow)",
+        "Auto-dismiss after 4s",
+        "Manual close button"
+      ]
+    }
+  ],
+  "summary": {
+    "total": 25,
+    "passed": 25,
+    "failed": 0,
+    "skipped": 0,
+    "pass_rate": "100%"
+  },
+  "platforms_tested": [
+    "Chrome 123 (Desktop)",
+    "Firefox 124 (Desktop)",
+    "Safari 17 (Desktop)",
+    "Chrome Mobile (Android)",
+    "Safari Mobile (iOS)"
+  ]
+}

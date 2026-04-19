@@ -1,0 +1,138 @@
+{
+  "project": "Trading Dashboard Multi-Agent System",
+  "version": "2.1.0",
+  "last_updated": "2026-04-12T18:51:00Z",
+  "updated_by": "orchestrator",
+  
+  "agents": {
+    "orchestrator": {
+      "name": "Trading Orchestrator",
+      "status": "active",
+      "current_task": null,
+      "last_heartbeat": "2026-04-12T18:51:00Z",
+      "tasks_completed_today": 0,
+      "tasks_in_progress": 0,
+      "notes": "Team coordination active"
+    },
+    "builder-1": {
+      "name": "Core-Developer-1",
+      "status": "available",
+      "current_task": null,
+      "last_heartbeat": "2026-04-12T18:51:00Z",
+      "tasks_completed_today": 0,
+      "specialty": "API Implementation",
+      "notes": "Available for API tasks"
+    },
+    "builder-2": {
+      "name": "Integration-Engineer-1",
+      "status": "available",
+      "current_task": null,
+      "last_heartbeat": "2026-04-12T18:51:00Z",
+      "tasks_completed_today": 0,
+      "specialty": "API Integration",
+      "notes": "Available for integration tasks"
+    },
+    "builder-3": {
+      "name": "Integration-Engineer-2",
+      "status": "available",
+      "current_task": null,
+      "last_heartbeat": "2026-04-12T18:51:00Z",
+      "tasks_completed_today": 0,
+      "specialty": "MT5 Integration",
+      "notes": "Available for MT5 tasks"
+    },
+    "builder-4": {
+      "name": "Dashboard-Frontend",
+      "status": "available",
+      "current_task": null,
+      "last_heartbeat": "2026-04-12T18:51:00Z",
+      "tasks_completed_today": 0,
+      "specialty": "UI/UX",
+      "notes": "Available for frontend tasks"
+    },
+    "builder-5": {
+      "name": "Database-Optimizer",
+      "status": "available",
+      "current_task": null,
+      "last_heartbeat": "2026-04-12T18:51:00Z",
+      "tasks_completed_today": 0,
+      "specialty": "PostgreSQL",
+      "notes": "Available for database tasks"
+    },
+    "builder-6": {
+      "name": "Trading-Logic",
+      "status": "available",
+      "current_task": null,
+      "last_heartbeat": "2026-04-12T18:51:00Z",
+      "tasks_completed_today": 0,
+      "specialty": "Trading Algorithms",
+      "notes": "Available for strategy tasks"
+    },
+    "builder-7": {
+      "name": "DevOps-Engineer",
+      "status": "available",
+      "current_task": null,
+      "last_heartbeat": "2026-04-12T18:51:00Z",
+      "tasks_completed_today": 0,
+      "specialty": "Docker/Infrastructure",
+      "notes": "Available for DevOps tasks"
+    },
+    "reviewer-1": {
+      "name": "Code-Reviewer-1",
+      "status": "available",
+      "current_task": null,
+      "last_heartbeat": "2026-04-12T18:51:00Z",
+      "reviews_completed_today": 0,
+      "specialty": "Code Quality",
+      "notes": "Available for code reviews"
+    },
+    "reviewer-2": {
+      "name": "Code-Reviewer-2",
+      "status": "available",
+      "current_task": null,
+      "last_heartbeat": "2026-04-12T18:51:00Z",
+      "reviews_completed_today": 0,
+      "specialty": "Security/Performance",
+      "notes": "Available for security reviews"
+    },
+    "reviewer-3": {
+      "name": "QA-Tester-1",
+      "status": "available",
+      "current_task": null,
+      "last_heartbeat": "2026-04-12T18:51:00Z",
+      "tests_completed_today": 0,
+      "specialty": "End-to-End Testing",
+      "notes": "Available for QA tasks"
+    },
+    "ops-1": {
+      "name": "System-Monitor",
+      "status": "active",
+      "current_task": "health_checks",
+      "last_heartbeat": "2026-04-12T18:51:00Z",
+      "checks_completed_today": 0,
+      "specialty": "Monitoring",
+      "notes": "Running scheduled health checks"
+    },
+    "ops-2": {
+      "name": "Task-Coordinator",
+      "status": "active",
+      "current_task": "board_maintenance",
+      "last_heartbeat": "2026-04-12T18:51:00Z",
+      "updates_completed_today": 0,
+      "specialty": "Task Tracking",
+      "notes": "Monitoring task board"
+    }
+  },
+  
+  "summary": {
+    "total_agents": 13,
+    "active": 13,
+    "available": 11,
+    "busy": 0,
+    "blocked": 0,
+    "offline": 0
+  },
+  
+  "escalations": [],
+  "alerts": []
+}

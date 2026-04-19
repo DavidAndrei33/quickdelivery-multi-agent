@@ -1,0 +1,134 @@
+{
+  "agents": {
+    "list": [
+      {
+        "id": "product-architect",
+        "name": "Product-Architect",
+        "workspace": "/workspace/shared/agents/product-architect",
+        "port": 18791,
+        "model": {"primary": "kimi-coding/k2p5"},
+        "identity": {"name": "Product-Architect", "emoji": "🎯"},
+        "role": "orchestrator",
+        "telegram": "@ProductArchitectbot"
+      },
+      {
+        "id": "frontend-architect",
+        "name": "Frontend-Architect",
+        "workspace": "/workspace/shared/agents/frontend-architect",
+        "port": 18792,
+        "model": {"primary": "kimi-coding/k2p5"},
+        "identity": {"name": "Frontend-Architect", "emoji": "🎨"},
+        "role": "architect",
+        "telegram": "@FrontendArchitectbot"
+      },
+      {
+        "id": "backend-architect",
+        "name": "Backend-Architect",
+        "workspace": "/workspace/shared/agents/backend-architect",
+        "port": 18793,
+        "model": {"primary": "kimi-coding/k2p5"},
+        "identity": {"name": "Backend-Architect", "emoji": "⚙️"},
+        "role": "architect",
+        "telegram": "@BackendArchitectbot"
+      },
+      {
+        "id": "builder-modules",
+        "name": "Builder-Modules",
+        "workspace": "/workspace/shared/agents/builder-modules",
+        "port": 18794,
+        "model": {"primary": "kimi-coding/k2p5"},
+        "identity": {"name": "Builder-Modules", "emoji": "🛠️"},
+        "role": "builder",
+        "telegram": "@BuilderModulesBot",
+        "heartbeat": {
+          "every": "2m",
+          "prompt": "Check for new tasks in /workspace/shared/.task-drops/builder-modules/ directory. If any JSON task files exist with status 'pending', read and execute them, then report completion to Andrei (310970306)."
+        }
+      },
+      {
+        "id": "builder-mobile",
+        "name": "Builder-Mobile",
+        "workspace": "/workspace/shared/agents/builder-mobile",
+        "port": 18795,
+        "model": {"primary": "kimi-coding/k2p5"},
+        "identity": {"name": "Builder-Mobile", "emoji": "📱"},
+        "role": "builder",
+        "telegram": "@BuilderMobilebot",
+        "heartbeat": {
+          "every": "2m",
+          "prompt": "Check for new tasks in /workspace/shared/.task-drops/builder-mobile/ directory. If any JSON task files exist with status 'pending', read and execute them, then report completion to Andrei (310970306)."
+        }
+      },
+      {
+        "id": "reviewer-all",
+        "name": "Reviewer-All",
+        "workspace": "/workspace/shared/agents/reviewer-all",
+        "port": 18796,
+        "model": {"primary": "kimi-coding/k2p5"},
+        "identity": {"name": "Reviewer-All", "emoji": "👁️"},
+        "role": "reviewer",
+        "telegram": "@ReviewerAllbot",
+        "heartbeat": {
+          "every": "5m",
+          "prompt": "Check for new review tasks in /workspace/shared/.task-drops/reviewer-all/ directory. If any JSON task files exist with status 'pending', perform code review and report findings to Andrei (310970306)."
+        }
+      },
+      {
+        "id": "operations-all",
+        "name": "Operations-All",
+        "workspace": "/workspace/shared/agents/operations-all",
+        "port": 18797,
+        "model": {"primary": "kimi-coding/k2p5"},
+        "identity": {"name": "Operations-All", "emoji": "🚀"},
+        "role": "operations",
+        "telegram": "@operatioooooooonsaaabot",
+        "heartbeat": {
+          "every": "5m",
+          "prompt": "Check for new deploy/ops tasks in /workspace/shared/.task-drops/operations-all/ directory. If any JSON task files exist with status 'pending', execute deployment or QA tasks and report to Andrei (310970306)."
+        }
+      },
+      {
+        "id": "specialists-all",
+        "name": "Specialists-All",
+        "workspace": "/workspace/shared/agents/specialists-all",
+        "port": null,
+        "model": {"primary": "kimi-coding/k2p5"},
+        "identity": {"name": "Specialists-All", "emoji": "🔬"},
+        "role": "research",
+        "telegram": "@Specialistibot",
+        "heartbeat": {
+          "every": "5m",
+          "prompt": "Check for new research/analysis tasks in /workspace/shared/.task-drops/specialists-all/ directory. If any JSON task files exist with status 'pending', execute research and report findings to Andrei (310970306)."
+        }
+      }
+    ]
+  },
+  "gateway": {
+    "port": 18788,
+    "mode": "local",
+    "hooks": {
+      "task-assigned": {
+        "endpoint": "/task-assigned",
+        "method": "POST",
+        "description": "Trigger task assignment to specific agent"
+      }
+    }
+  },
+  "taskDrops": {
+    "basePath": "/workspace/shared/.task-drops",
+    "agents": [
+      "product-architect",
+      "frontend-architect",
+      "backend-architect",
+      "builder-modules",
+      "builder-mobile",
+      "reviewer-all",
+      "operations-all",
+      "specialists-all"
+    ]
+  },
+  "notification": {
+    "defaultRecipient": 310970306,
+    "channels": ["telegram"]
+  }
+}

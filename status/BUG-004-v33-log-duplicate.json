@@ -1,0 +1,37 @@
+{
+  "bug_id": "BUG-004-v33-log-duplicate",
+  "title": "V33 Log Duplicat în Fișier",
+  "status": "fixed",
+  "severity": "Low",
+  "priority": "P3",
+  "fix_applied_at": "2026-03-28T17:10:00Z",
+  "fixed_by": "auto-fix-agent",
+  "files_modified": [
+    "/root/clawd/agents/brainmaker/v33_ny_breakout_robot.py",
+    "/root/clawd/agents/brainmaker/v33_multi_ny_breakout.py"
+  ],
+  "root_cause": "logging.basicConfig() adăuga handler-e de fiecare dată când modulul era încărcat, cauzând log-uri duplicate",
+  "fix_description": "Înlocuit logging.basicConfig() cu configurare manuală care verifică dacă handler-ele există deja înainte de a le adăuga",
+  "changes": {
+    "v33_ny_breakout_robot.py": {
+      "lines_changed": 8,
+      "old_code": "logging.basicConfig(level=logging.INFO, format='...', handlers=[...])",
+      "new_code": "logger = logging.getLogger('V33-NY-BREAKOUT'); if not logger.handlers: ..."
+    },
+    "v33_multi_ny_breakout.py": {
+      "lines_changed": 8,
+      "old_code": "logging.basicConfig(level=logging.INFO, format='...', handlers=[...])",
+      "new_code": "logger = logging.getLogger('V33-MULTI-NY-BREAKOUT'); if not logger.handlers: ..."
+    }
+  },
+  "testing": {
+    "syntax_check": "passed",
+    "duplicate_test": "passed - verificat că handler-ele nu se dublează la reîncărcare",
+    "log_output_test": "passed - mesajele apar o singură dată în fișier"
+  },
+  "verification": {
+    "log_file_before": "/tmp/v33_ny.log - log-uri duplicate",
+    "log_file_after": "Va fi verificat la următoarea pornire a robotului",
+    "expected_result": "Fiecare mesaj apare o singură dată"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "id": "TC-AUTO-BUG-006-missing-load-robot-logs",
+  "title": "Test: BUG-006: Missing loadRobotLogs Function",
+  "bug_id": "BUG-006-missing-load-robot-logs",
+  "type": "api_test",
+  "generated_at": "2026-03-28T17:16:58.634540",
+  "status": "pending",
+  "steps": [
+    "Send request to endpoint",
+    "Verify response status",
+    "Validate response data"
+  ],
+  "expected_result": "System should function correctly without errors",
+  "automation_script": "\nasync function test() {\n    const response = await fetch('{endpoint}', {\n        method: '{method}'\n    });\n    assert(response.status === 200);\n    const data = await response.json();\n    assert(data.status === 'success');\n}\n"
+}

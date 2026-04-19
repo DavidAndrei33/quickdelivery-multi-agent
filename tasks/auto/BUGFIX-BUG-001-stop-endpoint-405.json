@@ -1,0 +1,17 @@
+{
+  "id": "BUGFIX-BUG-001-stop-endpoint-405",
+  "type": "auto_bugfix",
+  "title": "Fix BUG-REPORT-001: Robot Stop Endpoint Returns 405 Method Not Allowed",
+  "description": "Bug BUG-001-stop-endpoint-405 assigned automatically",
+  "bug_id": "BUG-001-stop-endpoint-405",
+  "bug_file": "/workspace/shared/bugs/BUG-001-stop-endpoint-405.md",
+  "assigned_to": "builder-1",
+  "severity": "",
+  "priority": "",
+  "status": "retry",
+  "created_at": "2026-03-28T16:21:24.974955",
+  "deadline_days": 3,
+  "auto_generated": true,
+  "retry_count": 1,
+  "last_retry": "2026-03-29T08:51:39.181468"
+}

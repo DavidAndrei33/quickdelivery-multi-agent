@@ -1,0 +1,73 @@
+[2026-04-12T06:46:00Z] CRITICAL ALERT MONITOR CHECK
+================================================
+Timestamp: 2026-04-12T06:46:00Z
+Session: cron:dc16bc80-3e20-4e06-9bc3-e0b7974b3f1a
+
+=== MARGIN LEVEL CHECK ===
+Status: ✅ NO ACTIVE CLIENTS
+- All 3 MT5 accounts are DISCONNECTED (inactive)
+- No open positions from connected clients
+- Margin level: N/A (no active trading accounts)
+
+=== OPEN POSITIONS CHECK ===
+Status: ⚠️ WARNING
+- API reports 4 open positions
+- Clients API reports 0 active clients with positions
+- Open P&L: -$1.52
+- This discrepancy needs investigation
+
+=== ROBOT ERRORS CHECK ===
+Status: ✅ OK
+- V31 Robot: Running (PID 652099) - Phase: Waiting... (normal weekend)
+- V32 Robot: Running (PID 652100) - Signal: WAIT
+- V33 Robot: Running (PID 652101) - Signal: WAIT
+- All 3 robots operational
+
+=== SYSTEM RESOURCES ===
+Status: ⚠️ WARNING
+- CPU: 82.1% (HIGH - spike during health check)
+- Memory: 84.7% (6.4G/7.6G) - CRITICAL THRESHOLD
+- Disk: 80.6% (115.83G/149.92G) - Monitor
+
+=== API STATUS ===
+Status: ✅ HEALTHY
+- MT5 Core Server: Running on port 8001
+- PostgreSQL: Connected
+- VPS Bridge 8080: Connected
+- VPS Bridge 7001: Connected
+- 13/16 endpoints functional (81%)
+
+=== BUG TRACKING ===
+Status: 8 OPEN BUGS (all MEDIUM severity)
+- BUG-102: V32 Robot API endpoint missing
+- BUG-103: V33 Robot API endpoint missing
+- BUG-104: Robot switch endpoint not implemented
+- BUG-105: Strategy text update endpoint missing
+- BUG-108: London session timer API missing
+- BUG-109: NY session timer API missing
+- BUG-20260328073014: Unknown
+- Plus 2 more undocumented
+
+=== TRADING STATISTICS ===
+- Total Trades: 963
+- Win Rate: 8.1%
+- Profit Factor: 0.38
+- Total Profit: -$61.50
+- Max Drawdown: -$2.38
+
+=== CRITICAL CONDITIONS FOUND ===
+1. ⚠️ MEMORY USAGE: 84.7% (approaching critical)
+2. ⚠️ DISK USAGE: 80.6% (monitor closely)
+3. ⚠️ NO ACTIVE MT5 CLIENTS: All 3 accounts disconnected
+4. ⚠️ POSITIONS DISCREPANCY: 4 open positions but 0 active clients
+
+=== ACTIONS RECOMMENDED ===
+1. Investigate positions discrepancy (4 positions vs 0 active clients)
+2. Monitor memory usage - consider restart if >90%
+3. Check MT5 client connectivity on VPS
+4. Consider log rotation to free disk space
+
+ALERT LEVEL: MEDIUM
+No immediate critical alerts requiring instant notification.
+System operational but requires attention on resource usage.
+================================================

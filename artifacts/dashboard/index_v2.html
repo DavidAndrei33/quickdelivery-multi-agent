@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trading Dashboard v2.0</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --success-color: #27ae60;
+            --danger-color: #e74c3c;
+            --warning-color: #f39c12;
+            --bg-color: #1a1a2e;
+            --card-bg: #16213e;
+            --text-color: #ecf0f1;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+        }
+
+        .dashboard-header {
+            background: var(--card-bg);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .dashboard-header h1 {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+        }
+
+        .connection-status {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            background: var(--danger-color);
+        }
+
+        .connection-status.connected {
+            background: var(--success-color);
+        }
+
+        .dashboard-main {
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .panel {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .panel h2 {
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .robot-versions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .version-card {
+            background: var(--bg-color);
+            padding: 1rem;
+            border-radius: 6px;
+            min-width: 150px;
+            text-align: center;
+            border: 1px solid #333;
+            transition: border-color 0.3s;
+        }
+
+        .version-card:hover {
+            border-color: var(--secondary-color);
+        }
+
+        .version-card a {
+            color: var(--text-color);
+            text-decoration: none;
+        }
+
+        .version-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #666;
+            color: white;
+        }
+
+        .log-container {
+            height: 200px;
+            overflow-y: auto;
+            background: var(--bg-color);
+            padding: 1rem;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.85rem;
+        }
+
+        .log-entry {
+            padding: 0.25rem 0;
+            border-bottom: 1px solid #333;
+        }
+
+        .queue-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .stat-card {
+            background: var(--bg-color);
+            padding: 1rem;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <header class="dashboard-header">
+            <h1>📊 Trading Dashboard v2.0</h1>
+            <div class="connection-status" id="connectionStatus">Disconnected</div>
+        </header>
+        
+        <main class="dashboard-main">
+            <section class="panel">
+                <h2>Robot Versions</h2>
+                <div class="robot-versions">
+                    <div class="version-card">
+                        <a href="v31/v31_marius_tpl.html">
+                            <h3>V31</h3>
+                            <p>Marius TPL</p>
+                        </a>
+                    </div>
+                    <div class="version-card">
+                        <a href="v32/v32_london_dashboard.html">
+                            <h3>V32</h3>
+                            <p>London Breakout</p>
+                        </a>
+                    </div>
+                    <div class="version-card">
+                        <a href="v33/v33_ny_dashboard.html">
+                            <h3>V33</h3>
+                            <p>NY Breakout</p>
+                        </a>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="panel">
+                <h2>Queue Statistics</h2>
+                <div class="queue-stats">
+                    <div class="stat-card">
+                        <div class="stat-value" id="pendingCount">0</div>
+                        <div class="stat-label">Pending</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="executedCount">0</div>
+                        <div class="stat-label">Executed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="failedCount">0</div>
+                        <div class="stat-label">Failed</div>
+                    </div>
+                </div>
+                <div style="margin-top: 1rem;">
+                    <button id="connectBtn" class="btn btn-primary">Connect</button>
+                    <button id="refreshBtn" class="btn btn-secondary">Refresh</button>
+                </div>
+            </section>
+            
+            <section class="panel">
+                <h2>Activity Log</h2>
+                <div id="activityLog" class="log-container"></div>
+            </section>
+        </main>
+    </div>
+    
+    <script src="dashboard_v2.js"></script>
+</body>
+</html>

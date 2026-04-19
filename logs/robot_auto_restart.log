@@ -1,0 +1,10 @@
+
+[2026-04-14T04:38:00Z] [INFO] [cron:d7b68779-2523-49f5-ba1e-6e9437e67f92] Auto-restart check completed
+[2026-04-14T04:38:00Z] [INFO] Checked robots: 4 total
+[2026-04-14T04:38:00Z] [INFO] Running: 1 (mt5_core_server)
+[2026-04-14T04:38:00Z] [INFO] Stopped: 3 (v31_marius_tpl, v32_london_breakout, v33_ny_breakout)
+[2026-04-14T04:38:00Z] [INFO] Manual stops: 0
+[2026-04-14T04:38:00Z] [INFO] Action: NO RESTART - All stopped robots in expected market-closed state
+[2026-04-14T04:38:00Z] [INFO] V31: API not initialized (requires manual setup)
+[2026-04-14T04:38:00Z] [INFO] V32: BEFORE_SESSION, London opens in ~270 min
+[2026-04-14T04:38:00Z] [INFO] V33: AFTER_SESSION, NY session ended

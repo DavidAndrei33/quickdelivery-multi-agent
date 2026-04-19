@@ -1,0 +1,17 @@
+{
+  "id": "BUGFIX-BUG-011-missing-symbol-analysis",
+  "type": "auto_bugfix",
+  "title": "Fix Missing Symbol Analysis Endpoint",
+  "description": "Bug BUG-011-missing-symbol-analysis assigned automatically",
+  "bug_id": "BUG-011-missing-symbol-analysis",
+  "bug_file": "/workspace/shared/bugs/BUG-011-missing-symbol-analysis.md",
+  "assigned_to": "builder-1",
+  "severity": "",
+  "priority": "",
+  "status": "retry",
+  "created_at": "2026-03-28T17:18:15.466468",
+  "deadline_days": 3,
+  "auto_generated": true,
+  "retry_count": 1,
+  "last_retry": "2026-03-29T08:51:39.186220"
+}

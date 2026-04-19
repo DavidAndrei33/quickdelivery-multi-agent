@@ -1,0 +1,26 @@
+{
+  "id": "AUTO-TEST-1774715412",
+  "type": "auto_testing",
+  "title": "Testare automat\u0103 - Modific\u0103ri cod detectate",
+  "change_type": "general",
+  "changed_files": [
+    "/root/clawd/agents/brainmaker/dashboard/dashboard_functional_robot_config.js",
+    "/root/clawd/agents/brainmaker/dashboard/dashboard_functional.js",
+    "/root/clawd/agents/brainmaker/dashboard/auth.js",
+    "/root/clawd/agents/brainmaker/dashboard/v32_or_connector.js",
+    "/root/clawd/agents/brainmaker/dashboard/dashboard_incomplete_config.js",
+    "/root/clawd/agents/brainmaker/dashboard/index.html",
+    "/root/clawd/agents/brainmaker/dashboard/login.html",
+    "/root/clawd/agents/brainmaker/dashboard/static/main.css",
+    "/root/clawd/agents/brainmaker/dashboard/static/dashboard.css",
+    "/root/clawd/agents/brainmaker/dashboard/static/mobile.css",
+    "/root/clawd/agents/brainmaker/dashboard/static/dashboard.js",
+    "/root/clawd/agents/brainmaker/mt5_core_server.py",
+    "/root/clawd/agents/brainmaker/v31_marius_tpl_robot.py",
+    "/root/clawd/agents/brainmaker/v32_london_breakout_robot.py",
+    "/root/clawd/agents/brainmaker/v33_ny_breakout_robot.py"
+  ],
+  "assigned_to": "qa-master",
+  "status": "pending_spawn",
+  "created_at": "2026-03-28T16:30:12.352385"
+}

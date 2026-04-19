@@ -1,0 +1,29 @@
+[2026-04-12 21:43:00 UTC] Auto-Restart Check - Cron: d7b68779-2523-49f5-ba1e-6e9437e67f92
+================================================================================
+
+ROBOTS STATUS CHECK:
+- V31 (Marius TPL): STOPPED (robot_running: false, phase: "Waiting...")
+- V32 (London Breakout): STOPPED (robot_running: false, session: AFTER_SESSION)
+- V33 (NY Breakout): STOPPED (robot_running: false, session: AFTER_SESSION)
+
+MARKET STATUS:
+- Day: Sunday (Weekend)
+- Market: CLOSED
+- Next Open: Sunday 22:00 UTC (Forex) / Monday 00:00 UTC (Other)
+
+MANUAL STOP FLAG: Not found (no /workspace/shared/config/manual_stop_flag.json)
+
+DECISION: NO RESTART
+- Reason: Weekend - market closed. Robots stopped automatically due to weekend schedule.
+- Per instructions: DO NOT restart if stopped manually by user or during weekend.
+- All API endpoints responding correctly (HTTP 200).
+
+VERIFICATION:
+- V31 API: ✅ Responsive, robot_running: false (expected)
+- V32 API: ✅ Responsive, robot_running: false (expected)
+- V33 API: ✅ Responsive, robot_running: false (expected)
+
+ACTION TAKEN: None - Weekend mode, no restart required.
+
+NEXT CHECK: 2026-04-13T06:00:00Z (Monday pre-market)
+================================================================================

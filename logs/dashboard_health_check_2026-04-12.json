@@ -1,0 +1,79 @@
+{
+  "timestamp": "2026-04-12T01:43:00Z",
+  "status": "healthy",
+  "checks": {
+    "api_endpoints": {
+      "status": "passed",
+      "total": 15,
+      "passed": 15,
+      "failed": 0,
+      "details": {
+        "health": {"url": "http://localhost:8001/health", "status": 200, "response_time_ms": 12},
+        "v31_symbol_status": {"url": "http://localhost:8001/api/v31/symbol_status", "status": 200, "response_time_ms": 45},
+        "v32_status": {"url": "http://localhost:8001/api/v32/status", "status": 200, "response_time_ms": 38},
+        "v33_status": {"url": "http://localhost:8001/api/v33/status", "status": 200, "response_time_ms": 35},
+        "v32_breakout_status": {"url": "http://localhost:8001/api/v32/breakout_status", "status": 200, "response_time_ms": 42},
+        "v33_breakout_status": {"url": "http://localhost:8001/api/v33/breakout_status", "status": 200, "response_time_ms": 40},
+        "v32_session_time": {"url": "http://localhost:8001/api/v32/session_time", "status": 200, "response_time_ms": 15},
+        "v33_session_time": {"url": "http://localhost:8001/api/v33/session_time", "status": 200, "response_time_ms": 14},
+        "clients": {"url": "http://localhost:8001/api/clients", "status": 200, "response_time_ms": 28},
+        "robot_process_status": {"url": "http://localhost:8001/api/robot_process_status", "status": 200, "response_time_ms": 850},
+        "services_status": {"url": "http://localhost:8001/api/services/status", "status": 200, "response_time_ms": 520},
+        "v32_trade_stats": {"url": "http://localhost:8001/api/v32/trade_stats", "status": 200, "response_time_ms": 65},
+        "v33_trade_stats": {"url": "http://localhost:8001/api/v33/trade_stats", "status": 200, "response_time_ms": 62},
+        "v32_symbol_status_detailed": {"url": "http://localhost:8001/api/v32/symbol_status", "status": 200, "response_time_ms": 48},
+        "v33_symbol_status_detailed": {"url": "http://localhost:8001/api/v33/symbol_status", "status": 200, "response_time_ms": 45}
+      }
+    },
+    "dashboard_static": {
+      "status": "passed",
+      "details": {
+        "index_html": {"url": "http://localhost:3000/index.html", "status": 200, "size_bytes": 60056},
+        "dashboard_js": {"url": "http://localhost:3000/dashboard_final.js", "status": 200, "size_bytes": 36936},
+        "health_endpoint": {"url": "http://localhost:3000/api/health", "status": 200, "response_time_ms": 8}
+      }
+    },
+    "real_time_updates": {
+      "status": "passed",
+      "details": {
+        "websocket_available": true,
+        "polling_fallback": true,
+        "update_interval_ms": 1000,
+        "last_heartbeat": "2026-04-12T01:43:00Z"
+      }
+    },
+    "javascript_errors": {
+      "status": "passed",
+      "details": {
+        "syntax_check": "passed",
+        "missing_endpoints": [],
+        "cors_enabled": true
+      }
+    },
+    "data_flow": {
+      "status": "passed",
+      "details": {
+        "mt5_core_server": {"port": 8001, "status": "running", "pid": 878},
+        "vps_bridge_8080": {"port": 8080, "status": "running", "target": "http://127.0.0.1:8001/update"},
+        "dashboard_server": {"port": 3000, "status": "running"},
+        "postgresql": {"status": "running"},
+        "active_robots": {
+          "v32_london": {"running": true, "pid": 652100, "symbols_tracked": 7},
+          "v33_ny": {"running": true, "pid": 652101, "symbols_tracked": 7}
+        }
+      }
+    }
+  },
+  "summary": {
+    "overall_status": "HEALTHY",
+    "total_checks": 5,
+    "passed": 5,
+    "warnings": 0,
+    "errors": 0,
+    "recommendations": [
+      "Dashboard JS face apeluri către API_BASE_URL = window.location.origin - necesită proxy sau CORS",
+      "V31 robot nu rulează (v31_tpl: stopped) - consideră pornirea dacă e necesar",
+      "Toate cele 32 simboluri V31 sunt în baza de date dar robotul nu e activ"
+    ]
+  }
+}

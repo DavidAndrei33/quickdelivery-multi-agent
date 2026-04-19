@@ -1,0 +1,15 @@
+{
+  "id": "TC-AUTO-BUG-004-v33-log-duplicate",
+  "title": "Test: BUG-004: V33 Log Duplicat \u00een Fi\u0219ier",
+  "bug_id": "BUG-004-v33-log-duplicate",
+  "type": "data_integrity_test",
+  "generated_at": "2026-03-28T17:16:58.637034",
+  "status": "pending",
+  "steps": [
+    "Step 1",
+    "Step 2",
+    "Step 3"
+  ],
+  "expected_result": "System should function correctly without errors",
+  "automation_script": "// Generic test script"
+}

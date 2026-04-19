@@ -1,0 +1,14 @@
+{
+  "id": "TC-AUTO-BUG-002-auth-js-missing",
+  "title": "Test: BUG-002: auth.js lipse\u0219te din directorul dashboard",
+  "bug_id": "BUG-002-auth-js-missing",
+  "type": "general_test",
+  "generated_at": "2026-03-28T17:16:58.636762",
+  "status": "pending",
+  "steps": [
+    "1. Verific\u0103 existen\u021ba directorului: `ls /workspace/shared/agents/dashboard/`",
+    "2. Sau: `curl http://localhost:8001/auth.js`"
+  ],
+  "expected_result": "Fi\u0219ierul auth.js ar trebui s\u0103 existe \u00een /workspace/shared/agents/dashboard/",
+  "automation_script": "// Generic test script"
+}

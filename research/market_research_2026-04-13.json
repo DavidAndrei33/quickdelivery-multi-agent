@@ -1,0 +1,51 @@
+{
+  "report_id": "MR-2026-04-13-2306",
+  "timestamp": "2026-04-13T23:06:00Z",
+  "pairs": {
+    "GBPUSD": {
+      "price": 1.35130,
+      "change_24h": -0.42,
+      "volatility": 0.10,
+      "technical_signal": "NEUTRAL",
+      "trend_weekly": "UNKNOWN",
+      "trend_monthly": "UNKNOWN",
+      "key_support": 1.3450,
+      "key_resistance": 1.3600,
+      "recommendation": "WAIT"
+    },
+    "EURUSD": {
+      "price": 1.17632,
+      "change_24h": -0.31,
+      "volatility": 0.08,
+      "technical_signal": "NEUTRAL",
+      "trend_weekly": "BULLISH",
+      "trend_monthly": "BULLISH",
+      "trend_yearly": "BULLISH",
+      "key_support": 1.1700,
+      "key_resistance": 1.1850,
+      "recommendation": "BULLISH_ON_RETRACEMENT"
+    }
+  },
+  "market_status": "CLOSED_WEEKEND",
+  "next_open": "2026-04-14T00:00:00Z",
+  "high_impact_events": [
+    {
+      "day": "Wednesday",
+      "event": "UK CPI / Retail Sales",
+      "impact": "HIGH"
+    },
+    {
+      "day": "Thursday", 
+      "event": "ECB Meeting Minutes",
+      "impact": "MEDIUM"
+    },
+    {
+      "day": "Friday",
+      "event": "US Retail Sales",
+      "impact": "HIGH"
+    }
+  ],
+  "overall_sentiment": "NEUTRAL",
+  "risk_level": "MODERATE",
+  "generated_by": "market-research-cron"
+}

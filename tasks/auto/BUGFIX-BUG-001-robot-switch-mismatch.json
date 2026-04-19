@@ -1,0 +1,17 @@
+{
+  "id": "BUGFIX-BUG-001-robot-switch-mismatch",
+  "type": "auto_bugfix",
+  "title": "Fix Robot Switch Mismatch",
+  "description": "Bug BUG-001-robot-switch-mismatch assigned automatically",
+  "bug_id": "BUG-001-robot-switch-mismatch",
+  "bug_file": "/workspace/shared/bugs/BUG-001-robot-switch-mismatch.md",
+  "assigned_to": "dashboard-frontend",
+  "severity": "",
+  "priority": "",
+  "status": "retry",
+  "created_at": "2026-03-28T17:18:15.467483",
+  "deadline_days": 3,
+  "auto_generated": true,
+  "retry_count": 1,
+  "last_retry": "2026-03-29T08:51:39.184660"
+}

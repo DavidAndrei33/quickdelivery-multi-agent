@@ -1,0 +1,25 @@
+[2026-04-12 12:33 UTC] Robot Auto-Restart Check - Andrei
+
+STATUS CHECK:
+- V31 (Marius TPL): robot_running=false, phase="Waiting..."
+- V32 (London Breakout): robot_running=false, signal="WAIT"
+- V33 (NY Breakout): robot_running=false, session_phase="PRE_SESSION"
+- Market Status: Weekend (Sunday) - Market închis
+- Manual Stop Flag: Not present
+
+DECISION: NO ACTION REQUIRED
+
+Rationale:
+1. Toți roboții raportează status "success" via API (port 8001)
+2. Roboții sunt opriți pentru că este weekend (market închis)
+3. Nu există flag de oprire manuală
+4. Conform project_state.json, acesta este comportamentul normal:
+   - "Weekend - market închis (OR data unavailable pentru V32/V33)"
+   - "V31/V32/V33 roboți opriți (normal pentru weekend)"
+
+API Endpoints responsive:
+- /api/v31/live_status: ✅ OK
+- /api/v32/breakout_status: ✅ OK  
+- /api/v33/breakout_status: ✅ OK
+
+No restart needed. Robots will auto-start when market opens.

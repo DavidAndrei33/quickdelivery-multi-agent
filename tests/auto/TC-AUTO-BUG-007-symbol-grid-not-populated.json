@@ -1,0 +1,16 @@
+{
+  "id": "TC-AUTO-BUG-007-symbol-grid-not-populated",
+  "title": "Test: BUG-007: Symbol Grid Not Populated",
+  "bug_id": "BUG-007-symbol-grid-not-populated",
+  "type": "ui_click_test",
+  "generated_at": "2026-03-28T17:16:58.635282",
+  "status": "pending",
+  "steps": [
+    "Navigate to dashboard",
+    "Select affected component",
+    "Perform click action",
+    "Verify response"
+  ],
+  "expected_result": "System should function correctly without errors",
+  "automation_script": "\nasync function test() {\n    const element = await findElement('{selector}');\n    await element.click();\n    const result = await waitForResponse();\n    assert(result.success === true);\n}\n"
+}

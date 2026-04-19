@@ -1,0 +1,34 @@
+[
+  {
+    "timestamp": "2026-04-12T18:00:00Z",
+    "check_type": "auto-restart-check",
+    "robots_checked": [
+      {
+        "name": "V31 (Marius TPL)",
+        "endpoint": "http://localhost:8001/api/v31/live_status",
+        "status": "stopped",
+        "robot_running": false,
+        "action_taken": "none - weekend market closed"
+      },
+      {
+        "name": "V32 (London Breakout)",
+        "endpoint": "http://localhost:8001/api/v32/breakout_status",
+        "status": "stopped",
+        "robot_running": false,
+        "action_taken": "none - weekend market closed"
+      },
+      {
+        "name": "V33 (NY Breakout)",
+        "endpoint": "http://localhost:8001/api/v33/breakout_status",
+        "status": "stopped",
+        "robot_running": false,
+        "action_taken": "none - weekend market closed"
+      }
+    ],
+    "market_status": "closed - sunday",
+    "restart_attempted": false,
+    "reason_no_restart": "Weekend - market closed. Robots stopped manually or automatically due to weekend. Per instructions: DO NOT restart if stopped manually by user or during weekend.",
+    "verification": "All API endpoints responding correctly (HTTP 200). Robots reporting status as 'robot_running: false' with normal weekend phase messages.",
+    "next_check": "2026-04-13T06:00:00Z (Monday pre-market)"
+  }
+]

@@ -1,0 +1,79 @@
+{
+  "check_type": "V32_London_Breakout_Monitor",
+  "timestamp": "2026-04-11T21:20:00Z",
+  "checked_by": "cron-monitor-v32-london",
+  "status": "COMPLETED",
+  
+  "gbpusd_analysis": {
+    "symbol": "GBPUSD",
+    "current_status": "NO_ACTIVE_DATA",
+    "last_or_high": null,
+    "last_or_low": null,
+    "or_size_pips": null,
+    "breakouts_detected": 0,
+    "note": "No OR data available - London session ended"
+  },
+  
+  "or_calculations": {
+    "status": "NO_DATA",
+    "last_calculated_or_high": "1.15456000 (EURUSD - last record)",
+    "last_calculated_or_low": "1.15420000 (EURUSD - last record)",
+    "calculation_method": "3 candles M5 (08:00-08:15 London time)",
+    "validation": "OR data exists in v32_incomplete_setups but for EURUSD, not GBPUSD",
+    "anomaly": "Last V32 activity was on 2026-04-03 (8 days ago) for EURUSD with OR too wide (36.0 pips)"
+  },
+  
+  "session_phase": {
+    "current_phase": "AFTER_SESSION",
+    "london_time": "22:20:13",
+    "is_active": false,
+    "status_text": "Ended",
+    "time_remaining": "0 minutes",
+    "next_session": "2026-04-12 08:00 London time (06:00 UTC)",
+    "validation": "CORRECT - London session runs 08:00-10:30 (extended to 11:00 for A+ setups)"
+  },
+  
+  "robot_status": {
+    "process_running": false,
+    "log_file": "/var/log/v32_london_breakout.log - NOT ACCESSIBLE",
+    "last_db_activity": "2026-04-03 15:59:44 UTC",
+    "days_since_last_activity": 8
+  },
+  
+  "anomalies_detected": [
+    {
+      "severity": "MEDIUM",
+      "type": "NO_RECENT_ACTIVITY",
+      "description": "V32 robot has not recorded any data in the last 8 days",
+      "last_activity": "2026-04-03",
+      "expected": "Daily OR calculations during London session"
+    },
+    {
+      "severity": "LOW", 
+      "type": "SYMBOL_MISMATCH",
+      "description": "Last OR data in DB is for EURUSD, not GBPUSD (V32's primary symbol)",
+      "expected_symbol": "GBPUSD",
+      "actual_symbol": "EURUSD"
+    },
+    {
+      "severity": "INFO",
+      "type": "SESSION_TIMING_CORRECT",
+      "description": "Current time (22:20 London) is correctly identified as AFTER_SESSION",
+      "london_session_hours": "08:00-10:30 (extended 11:00 for A+)"
+    }
+  ],
+  
+  "recommendations": [
+    "1. Verify V32 London Breakout robot is running: ps aux | grep v32_london",
+    "2. Check MT5 EA connection and BrainBridge status",
+    "3. Review V32 logs: /var/log/v32_london_breakout.log",
+    "4. Verify GBPUSD data is being received from MT5",
+    "5. Check if London session trading is enabled in configuration"
+  ],
+  
+  "api_endpoints_verified": {
+    "/api/v32_status": "WORKING - Returns GBPUSD status (no active data)",
+    "/api/v32/session_status": "WORKING - Returns correct AFTER_SESSION phase",
+    "/health": "WORKING - Server healthy, 0 active clients"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "id": "BUGFIX-BUG-003-v31-symbols-empty-startup",
+  "type": "auto_bugfix",
+  "title": "Fix V31 Symbols Empty la Startup",
+  "description": "Bug BUG-003-v31-symbols-empty-startup assigned automatically",
+  "bug_id": "BUG-003-v31-symbols-empty-startup",
+  "bug_file": "/workspace/shared/bugs/BUG-003-v31-symbols-empty-startup.md",
+  "assigned_to": "builder-1",
+  "severity": "Low",
+  "priority": "P3",
+  "status": "completed",
+  "created_at": "2026-03-28T17:08:55.528782",
+  "completed_at": "2026-03-28T17:10:00Z",
+  "deadline_days": 14,
+  "auto_generated": true,
+  "fix_details": {
+    "file_modified": "/workspace/shared/agents/mt5_core_server.py",
+    "function_modified": "api_v31_live_status()",
+    "changes": [
+      "Definită constantă V31_SYMBOLS cu toate cele 32 de simboluri",
+      "Modificat să returneze toate simbolurile (nu doar cele analizate)",
+      "Adăugat flag 'analyzed': true/false per simbol",
+      "Adăugat 'total_symbols': 32 în response",
+      "Adăugat 'robot_running': true în response"
+    ]
+  },
+  "test_result": "PASS - API returnează toate cele 32 simboluri la startup"
+}

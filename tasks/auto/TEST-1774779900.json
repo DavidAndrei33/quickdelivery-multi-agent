@@ -1,0 +1,12 @@
+{
+  "id": "AUTO-TEST-1774779900",
+  "type": "auto_testing",
+  "title": "Testare automat\u0103 - Modific\u0103ri UI/HTML detectate",
+  "change_type": "frontend_ui",
+  "changed_files": [
+    "/root/clawd/agents/brainmaker/dashboard/index.html"
+  ],
+  "assigned_to": "qa-master",
+  "status": "pending_spawn",
+  "created_at": "2026-03-29T10:25:00.484088"
+}

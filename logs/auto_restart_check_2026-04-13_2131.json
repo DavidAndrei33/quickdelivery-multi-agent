@@ -1,0 +1,64 @@
+[
+  {
+    "timestamp": "2026-04-13T21:31:00Z",
+    "check_type": "auto-restart-check",
+    "cron_id": "d7b68779-2523-49f5-ba1e-6e9437e67f92",
+    "robots_checked": [
+      {
+        "name": "V31 (Marius TPL)",
+        "endpoint": "http://localhost:8001/api/v31/live_status",
+        "status": "stopped",
+        "robot_running": false,
+        "pid": null,
+        "phase": "Waiting...",
+        "api_responsive": true,
+        "action": "SKIP"
+      },
+      {
+        "name": "V32 (London Breakout)",
+        "endpoint": "http://localhost:8001/api/v32/breakout_status",
+        "status": "stopped",
+        "robot_running": false,
+        "pid": null,
+        "symbol": "GBPUSD",
+        "current_price": 1.34023,
+        "signal": "WAIT",
+        "api_responsive": true,
+        "action": "SKIP",
+        "reason": "London session closed (08:00-16:00 GMT)"
+      },
+      {
+        "name": "V33 (NY Breakout)",
+        "endpoint": "http://localhost:8001/api/v33/breakout_status",
+        "status": "stopped",
+        "robot_running": false,
+        "pid": null,
+        "symbol": "EURUSD",
+        "current_price": 1.16872,
+        "session_phase": "AFTER_SESSION",
+        "phase_description": "After NY Session",
+        "signal": "WAIT",
+        "api_responsive": true,
+        "action": "SKIP",
+        "reason": "NY session closed (AFTER_SESSION phase)"
+      }
+    ],
+    "restart_attempted": false,
+    "restart_performed": false,
+    "reason_no_restart": "All robots stopped due to market/session closure. Current time 21:31 UTC - London session closed (08:00-16:00), NY session closed (AFTER_SESSION). No manual stop flag detected. Robots will auto-activate when sessions open.",
+    "verification": {
+      "all_api_responsive": true,
+      "v31_api": {"robot_running": false, "api_responsive": true},
+      "v32_api": {"robot_running": false, "api_responsive": true},
+      "v33_api": {"robot_running": false, "api_responsive": true},
+      "mt5_core_server": {"running": true, "pid": 910}
+    },
+    "market_context": {
+      "current_time_utc": "21:31",
+      "day_of_week": "Monday",
+      "london_session": "closed (08:00-16:00 GMT)",
+      "ny_session": "closed (AFTER_SESSION phase)"
+    },
+    "notes": "All trading robots (V31, V32, V33) are stopped but this is EXPECTED behavior. Market is closed for the day. APIs are responsive. MT5 Core Server is running. No action required - robots will be active during next trading session."
+  }
+]

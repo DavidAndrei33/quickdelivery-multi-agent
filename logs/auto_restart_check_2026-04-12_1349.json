@@ -1,0 +1,64 @@
+[
+  {
+    "timestamp": "2026-04-12T13:49:00Z",
+    "check_type": "auto-restart-check",
+    "cron_id": "d7b68779-2523-49f5-ba1e-6e9437e67f92",
+    "results": {
+      "v29_trading_robot": {
+        "robot": "V29 Trading Robot",
+        "status": "running",
+        "pid": 952,
+        "action": "none",
+        "reason": "Robot running normally"
+      },
+      "v31_live": {
+        "robot": "V31 Marius Live",
+        "status": "stopped",
+        "pid": null,
+        "action": "none",
+        "reason": "Weekend - market closed. Robot not running is expected behavior."
+      },
+      "v31_tpl": {
+        "robot": "V31 Marius TPL",
+        "status": "stopped",
+        "pid": null,
+        "action": "none",
+        "reason": "Weekend - market closed. Robot not running is expected behavior."
+      },
+      "v32_london_breakout": {
+        "robot": "V32 London Breakout",
+        "status": "stopped",
+        "pid": null,
+        "action": "none",
+        "reason": "Weekend - market closed. Robot not running is expected behavior."
+      },
+      "v33_ny_breakout": {
+        "robot": "V33 NY Breakout",
+        "status": "stopped",
+        "pid": null,
+        "action": "none",
+        "reason": "Weekend - market closed. Robot not running is expected behavior."
+      },
+      "infrastructure_daemons": {
+        "market_structure_daemon": {"status": "running", "pid": 1662},
+        "tick_stream_daemon": {"status": "running", "pid": 1670},
+        "ohlc_aggregator": {"status": "running", "pid": 1666},
+        "live_market_daemon": {"status": "running", "pid": 1660},
+        "execution_health": {"status": "running", "pid": 1657},
+        "vps_bridge_8080": {"status": "running", "pid": 1076},
+        "vps_bridge_7001": {"status": "running", "pid": 1069}
+      }
+    },
+    "summary": {
+      "total_robots": 5,
+      "running": 1,
+      "stopped": 4,
+      "restarted": 0,
+      "manual_stop_flag": false,
+      "clients_connected": 0,
+      "infrastructure_daemons_running": 7
+    },
+    "notes": "Sunday 13:49 UTC - Weekend. Market is closed. All trading robots (except V29) are stopped which is normal behavior. V29 runs continuously. Infrastructure daemons all operational. No restart action taken.",
+    "incident_logged": false
+  }
+]

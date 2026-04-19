@@ -1,0 +1,14 @@
+BUG-URI FIXATE - 2026-03-29 08:11 UTC
+=====================================
+
+✅ BUG-102: V32 Robot API endpoint (/api/v32/status) - FIXAT
+✅ BUG-103: V33 Robot API endpoint (/api/v33/status) - FIXAT
+✅ BUG-104: Robot switch endpoint (/api/robot/switch) - FIXAT
+✅ BUG-105: Strategy text update endpoint - FIXAT
+✅ BUG-108: London session timer API (/api/v32/session_time) - FIXAT
+✅ BUG-109: NY session timer API (/api/v33/session_time) - FIXAT
+
+Toate testele au trecut cu succes.
+Server restartat și funcțional.
+
+Raport complet: BUG_FIXES_REPORT.md

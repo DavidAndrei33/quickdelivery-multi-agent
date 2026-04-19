@@ -1,0 +1,17 @@
+{
+  "id": "BUGFIX-BUG-005-robot-id-mapping-fix",
+  "type": "auto_bugfix",
+  "title": "Fix Robot Start/Stop nu func\u021bioneaz\u0103 - ID mapping gre\u0219it",
+  "description": "Bug BUG-005-robot-id-mapping-fix assigned automatically",
+  "bug_id": "BUG-005-robot-id-mapping-fix",
+  "bug_file": "/workspace/shared/bugs/BUG-005-robot-id-mapping-fix.md",
+  "assigned_to": "dashboard-frontend",
+  "severity": "High",
+  "priority": "P1",
+  "status": "retry",
+  "created_at": "2026-03-28T17:08:55.527783",
+  "deadline_days": 2,
+  "auto_generated": true,
+  "retry_count": 1,
+  "last_retry": "2026-03-29T08:51:39.185015"
+}

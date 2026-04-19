@@ -1,0 +1,95 @@
+{
+  "tasks": [
+    {
+      "id": "TASK-005",
+      "title": "Redesign Taskboard - UI/UX Modern",
+      "description": "Creare interfață modernă, profesională și intuitivă pentru Taskboard-ul multi-agent. Obiectiv: înlocuire design actual cu UI premium, animații fluide, și experiență utilizator de nivel SaaS enterprise.",
+      "status": "assigned",
+      "priority": "high",
+      "project": "multi-agent-system",
+      "assignment": {
+        "created_by": "manifest-orchestrator",
+        "assigned_to": "product-architect",
+        "reviewer": "frontend-architect"
+      },
+      "requirements": {
+        "functional": [
+          "Kanban board cu drag & drop fluid",
+          "Sistem de notificări real-time",
+          "Dashboard analytics (charts, stats)",
+          "Filtrare și căutare avansată",
+          "Timp tracking per task",
+          "Comentarii și atașamente",
+          "Mobile-first responsive design",
+          "Dark/Light mode toggle"
+        ],
+        "non_functional": [
+          "Timp de încărcare < 2 secunde",
+          "Animăți 60fps",
+          "Accessibility WCAG 2.1 AA",
+          "SEO friendly",
+          "PWA ready (offline mode)"
+        ]
+      },
+      "design_specifications": {
+        "style": "Modern SaaS / Enterprise",
+        "color_palette": {
+          "primary": "Gradient violet-blue (similar Linear.app)",
+          "secondary": "Neon accents",
+          "background": "Glassmorphism / blur effects",
+          "text": "High contrast readability"
+        },
+        "typography": "Inter or SF Pro Display",
+        "components": [
+          "Glass cards with subtle shadows",
+          "Smooth micro-interactions",
+          "Skeleton loading states",
+          "Toast notifications",
+          "Modal transitions",
+          "Hover effects elegant"
+        ],
+        "layout": "Dashboard sidebar + Kanban main area",
+        "inspiration": [
+          "Linear.app - clean minimal design",
+          "Notion - flexibility and blocks",
+          "Jira - enterprise features",
+          "Trello - simplicity",
+          "Monday.com - visual appeal"
+        ]
+      },
+      "deliverables": [
+        "Figma mockups (high fidelity)",
+        "Design system documentation",
+        "Component library (React/Vue)",
+        "Prototype interactiv",
+        "Responsive breakpoints spec",
+        "Animation specifications"
+      ],
+      "timeline": {
+        "design_phase": "3 zile",
+        "review_feedback": "1 zi",
+        "revisions": "2 zile",
+        "handoff": "1 zi",
+        "total": "7 zile lucrătoare"
+      },
+      "dependencies": {
+        "blocked_by": [],
+        "blocks": ["TASK-006-implementation"]
+      },
+      "acceptance_criteria": [
+        "Design aprobat de Andrei (client)",
+        "Frontend-Architect aprobă implementabilitatea",
+        "Toate componentele sunt în Design System",
+        "Mobile responsiveness verificat",
+        "Accessibility audit trecut"
+      ],
+      "progress": {
+        "percentage": 0,
+        "current_phase": "kickoff",
+        "updates": []
+      },
+      "created_at": "2026-04-19T07:55:00Z",
+      "due_date": "2026-04-26T23:59:59Z"
+    }
+  ]
+}

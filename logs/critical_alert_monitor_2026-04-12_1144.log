@@ -1,0 +1,61 @@
+[2026-04-12T11:44:00Z] CRITICAL ALERT MONITOR CHECK
+================================================
+Timestamp: 2026-04-12T11:44:00Z
+Session: cron:dc16bc80-3e20-4e06-9bc3-e0b7974b3f1a
+
+=== MARGIN LEVEL CHECK ===
+Status: ✅ NO ACTIVE CLIENTS
+- All MT5 accounts are DISCONNECTED (inactive)
+- No open positions from connected clients
+- Margin level: N/A (no active trading accounts)
+- Note: Weekend - market closed, no trading activity expected
+
+=== OPEN POSITIONS CHECK ===
+Status: ✅ OK
+- API reports 0 open positions
+- No active positions in the system
+- Open P&L: $0.00
+
+=== ROBOT ERRORS CHECK ===
+Status: ✅ OK
+- V31 Robot: Stopped (robot_running: false) - Normal for weekend
+- V32 Robot: Stopped (robot_running: false) - Normal for weekend  
+- V33 Robot: Stopped (robot_running: false) - Normal for weekend
+- All 3 robots operational (waiting for market open)
+- V32 Signal: WAIT | V33 Signal: WAIT
+
+=== SYSTEM RESOURCES ===
+Status: ⚠️ WARNING
+- CPU: HIGH LOAD (5.95, 5.32, 4.60) - 3+ load average
+- Memory: 78.9% (6.0G/7.6G used) - Elevated but stable
+- Disk: 76.7% (115G/150G used) - OK
+- Swap: 0B (no swap configured)
+
+=== API STATUS ===
+Status: ✅ HEALTHY
+- MT5 Core Server: Running on port 8001
+- Health endpoint: Responding correctly
+- API endpoints: Functional
+- Last health check: 2026-04-12T08:26:00Z
+
+=== TRADING STATISTICS ===
+- Total Trades: 100+ in history
+- Last trade: 2026-04-06 (6 days ago - normal for weekend)
+- No recent trading activity (expected)
+
+=== CRITICAL CONDITIONS FOUND ===
+1. ⚠️ CPU LOAD: HIGH (5.95) - Above normal, monitor
+2. ⚠️ MEMORY USAGE: 78.9% - Elevated but not critical
+3. ✅ NO ACTIVE MT5 CLIENTS: Expected (weekend)
+4. ✅ NO OPEN POSITIONS: Safe state
+
+=== ACTIONS RECOMMENDED ===
+1. Monitor CPU load - investigate if sustained >5.0
+2. Memory usage stable but high - consider cleanup if >85%
+3. All systems operational for weekend
+4. Robots will auto-start at market open (Sunday 22:00 UTC)
+
+ALERT LEVEL: LOW
+No critical alerts requiring immediate action.
+System in safe weekend state.
+================================================

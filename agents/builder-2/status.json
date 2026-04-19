@@ -1,0 +1,85 @@
+{
+  "agent": "builder-2",
+  "task": "V32 London Breakout Backend API Verification",
+  "timestamp": "2026-03-28T16:52:00Z",
+  "status": "completed",
+  "results": {
+    "endpoints_tested": [
+      {
+        "endpoint": "GET /api/v32/breakout_status",
+        "status": "working",
+        "response_code": 200,
+        "issues": [],
+        "notes": "Returns signal, candle data, breakout detection. OR data null when robot stopped (expected)"
+      },
+      {
+        "endpoint": "GET /api/v32/or_data",
+        "status": "working",
+        "response_code": 200,
+        "issues": ["Returns null OR data when session not active (expected behavior)"],
+        "notes": "Returns OR high/low/range. Null data when robot not running or outside London session"
+      },
+      {
+        "endpoint": "GET /api/v32/asia_data",
+        "status": "working",
+        "response_code": 200,
+        "issues": ["Returns null Asia data when session not active (expected behavior)"],
+        "notes": "Returns Asia high/low/range and compression status. Multi-source fallback logic implemented"
+      },
+      {
+        "endpoint": "POST /api/robot/v32_london/start",
+        "status": "working",
+        "response_code": 200,
+        "issues": [],
+        "notes": "Robot started successfully with PID assignment"
+      },
+      {
+        "endpoint": "POST /api/robot/v32_london/stop",
+        "status": "working",
+        "response_code": 200,
+        "issues": [],
+        "notes": "Robot stopped gracefully with SIGTERM"
+      }
+    ],
+    "additional_endpoints": {
+      "GET /api/v32/session_status": "working - returns London session phase and time remaining",
+      "GET /api/v32/symbol_status": "working - returns per-symbol analysis status for 7 GBP pairs",
+      "GET /api/v32/trade_stats": "working - returns daily trade statistics (wins/losses/PnL)"
+    }
+  },
+  "issues_found": [
+    {
+      "severity": "low",
+      "issue": "POST /api/robot/control has bug - returns wrong robot message",
+      "details": "Endpoint returns 'v31_tpl was not running' when trying to control v32_london",
+      "recommendation": "Fix robot_id parameter handling in /api/robot/control endpoint"
+    },
+    {
+      "severity": "info",
+      "issue": "OR/Asia data null outside London session hours",
+      "details": "Current time 16:49 London time is after session end (10:30). Data only available during active session.",
+      "recommendation": "This is expected behavior - robot calculates OR only during 08:00-08:15 London time"
+    }
+  ],
+  "verification_summary": {
+    "total_endpoints": 8,
+    "working": 8,
+    "failed": 0,
+    "issues": 1,
+    "robot_tested": true,
+    "robot_status_after_test": "stopped"
+  },
+  "opening_range_calculation": {
+    "status": "not_verified_due_to_session_timing",
+    "reason": "Current time is outside London session (08:00-10:30). OR calculated from first 3 M5 candles (08:00-08:15).",
+    "calculation_logic": "OR high = max(high of first 3 candles), OR low = min(low of first 3 candles)",
+    "max_acceptable_range": "25 pips"
+  },
+  "asia_session_data": {
+    "status": "not_verified_due_to_session_timing", 
+    "reason": "Asia session data (00:00-08:00 London) already passed for today",
+    "data_sources": ["robot_symbol_status table", "v32_symbol_status table", "ohlc_data M30", "robot_logs"],
+    "compression_threshold": "< 40 pips or < 50% of OR range"
+  },
+  "conclusion": "All V32 London Breakout APIs are functional. Robot starts/stops correctly. Data availability depends on London session timing (08:00-10:30). Recommend testing OR calculation during live London session for full verification."
+}
