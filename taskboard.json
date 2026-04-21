@@ -1,0 +1,139 @@
+{
+  "id": "quickdelivery",
+  "name": "QuickDelivery",
+  "description": "Food delivery platform",
+  "status": "active",
+  "created_at": "2026-04-19T18:00:00Z",
+  "updated_at": "2026-04-19T18:00:00Z",
+  "taskboard": {
+    "tasks": [
+      {
+        "id": "TASK-001",
+        "title": "Configure Docker Environment",
+        "description": "",
+        "type": "devops",
+        "priority": "high",
+        "assignee": "operations-all",
+        "requirements": [],
+        "acceptance_criteria": [],
+        "projectId": "quickdelivery",
+        "status": "inbox",
+        "created_by": "product-architect",
+        "created_at": "2026-04-19T18:30:03.397Z",
+        "updated_at": "2026-04-19T18:30:03.397Z"
+      },
+      {
+        "id": "TASK-002",
+        "title": "Test Notification System",
+        "description": "",
+        "type": "feature",
+        "priority": "high",
+        "assignee": "operations-all",
+        "requirements": [],
+        "acceptance_criteria": [],
+        "projectId": "quickdelivery",
+        "status": "inbox",
+        "created_by": "product-architect",
+        "created_at": "2026-04-20T04:29:44.158Z",
+        "updated_at": "2026-04-20T04:29:44.158Z"
+      },
+      {
+        "id": "TASK-003",
+        "title": "Test CI/CD Pipeline",
+        "description": "",
+        "type": "devops",
+        "priority": "medium",
+        "assignee": "operations-all",
+        "requirements": [],
+        "acceptance_criteria": [],
+        "projectId": "quickdelivery",
+        "status": "inbox",
+        "created_by": "product-architect",
+        "created_at": "2026-04-20T04:30:53.050Z",
+        "updated_at": "2026-04-20T04:30:53.050Z"
+      },
+      {
+        "id": "TASK-004",
+        "title": "Setup Monitoring Dashboard",
+        "description": "",
+        "type": "devops",
+        "priority": "high",
+        "assignee": "operations-all",
+        "requirements": [],
+        "acceptance_criteria": [],
+        "projectId": "quickdelivery",
+        "status": "inbox",
+        "created_by": "product-architect",
+        "created_at": "2026-04-20T05:04:47.623Z",
+        "updated_at": "2026-04-20T05:04:47.623Z"
+      },
+      {
+        "id": "TASK-005",
+        "title": "Test Event Bus Integration",
+        "description": "",
+        "type": "devops",
+        "priority": "high",
+        "assignee": "operations-all",
+        "requirements": [],
+        "acceptance_criteria": [],
+        "projectId": "quickdelivery",
+        "status": "inbox",
+        "created_by": "product-architect",
+        "created_at": "2026-04-20T05:53:56.785Z",
+        "updated_at": "2026-04-20T05:53:56.786Z"
+      },
+      {
+        "id": "TASK-006",
+        "title": "Test Manual",
+        "description": "",
+        "type": "feature",
+        "priority": "high",
+        "assignee": "operations-all",
+        "requirements": [],
+        "acceptance_criteria": [],
+        "projectId": "quickdelivery",
+        "status": "inbox",
+        "created_by": "product-architect",
+        "created_at": "2026-04-20T05:55:42.907Z",
+        "updated_at": "2026-04-20T05:55:42.908Z"
+      }
+    ],
+    "columns": [
+      "inbox",
+      "todo",
+      "in_progress",
+      "review",
+      "done"
+    ],
+    "next_task_id": 7
+  },
+  "settings": {
+    "auto_assign": false,
+    "require_review": true,
+    "slack_notifications": false
+  },
+  "environments": {
+    "dev": {
+      "url": "http://localhost:3000",
+      "status": "ready"
+    },
+    "staging": {
+      "url": "https://staging.quickdelivery.homes",
+      "status": "not_deployed"
+    },
+    "prod": {
+      "url": "https://quickdelivery.homes",
+      "status": "live"
+    }
+  },
+  "team": [
+    "product-architect",
+    "backend-architect",
+    "frontend-architect",
+    "builder-modules",
+    "builder-mobile",
+    "reviewer-all",
+    "operations-all",
+    "specialists-all"
+  ]
+}

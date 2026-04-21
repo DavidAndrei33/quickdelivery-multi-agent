@@ -1,0 +1,154 @@
+version: '3.8'
+
+services:
+  # API Backend
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: quickdelivery-api
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - DATABASE_URL=postgres://quickdelivery:quickdelivery@db:5432/quickdelivery
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - db
+      - redis
+    networks:
+      - quickdelivery-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Customer Frontend
+  customer:
+    build:
+      context: ./frontend/customer
+      dockerfile: Dockerfile
+    container_name: quickdelivery-customer
+    ports:
+      - "3001:3000"
+    environment:
+      - NODE_ENV=production
+      - REACT_APP_API_URL=http://api:3000
+    depends_on:
+      - api
+    networks:
+      - quickdelivery-network
+
+  # Rider App
+  rider:
+    build:
+      context: ./frontend/rider
+      dockerfile: Dockerfile
+    container_name: quickdelivery-rider
+    ports:
+      - "3002:3000"
+    environment:
+      - NODE_ENV=production
+      - REACT_APP_API_URL=http://api:3000
+    depends_on:
+      - api
+    networks:
+      - quickdelivery-network
+
+  # Store Panel
+  store:
+    build:
+      context: ./frontend/store
+      dockerfile: Dockerfile
+    container_name: quickdelivery-store
+    ports:
+      - "3003:3000"
+    environment:
+      - NODE_ENV=production
+      - REACT_APP_API_URL=http://api:3000
+    depends_on:
+      - api
+    networks:
+      - quickdelivery-network
+
+  # Admin Panel
+  admin:
+    build:
+      context: ./frontend/admin
+      dockerfile: Dockerfile
+    container_name: quickdelivery-admin
+    ports:
+      - "3004:3000"
+    environment:
+      - NODE_ENV=production
+      - REACT_APP_API_URL=http://api:3000
+    depends_on:
+      - api
+    networks:
+      - quickdelivery-network
+
+  # PostgreSQL Database
+  db:
+    image: postgres:15-alpine
+    container_name: quickdelivery-db
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=quickdelivery
+      - POSTGRES_PASSWORD=quickdelivery
+      - POSTGRES_DB=quickdelivery
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - quickdelivery-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U quickdelivery"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: quickdelivery-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - quickdelivery-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+  # Nginx Reverse Proxy
+  nginx:
+    image: nginx:alpine
+    container_name: quickdelivery-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - customer
+      - rider
+      - store
+      - admin
+      - api
+    networks:
+      - quickdelivery-network
+
+volumes:
+  postgres-data:
+  redis-data:
+
+networks:
+  quickdelivery-network:
+    driver: bridge
