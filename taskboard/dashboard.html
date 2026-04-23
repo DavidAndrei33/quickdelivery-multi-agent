@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Taskboard — Echipa 9 Agenți</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b0f19;
+    --bg-elevated: #111827;
+    --bg-card: rgba(17,24,39,0.7);
+    --bg-hover: rgba(255,255,255,0.04);
+    --border: rgba(255,255,255,0.08);
+    --border-hover: rgba(255,255,255,0.15);
+    --text: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --accent: #3b82f6;
+    --accent-glow: rgba(59,130,246,0.3);
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --info: #06b6d4;
+    --glass: rgba(17,24,39,0.6);
+    --glass-border: rgba(255,255,255,0.06);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  html { scroll-behavior:smooth; }
+  body {
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    min-height:100vh;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  .ambient {
+    position:fixed; inset:0; pointer-events:none; z-index:0;
+    background:
+      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(59,130,246,0.15), transparent),
+      radial-gradient(ellipse 60% 40% at 80% 100%, rgba(16,185,129,0.08), transparent);
+  }
+  .app { position:relative; z-index:1; max-width:1440px; margin:0 auto; padding:20px; }
+  .header {
+    display:flex; align-items:center; justify-content:space-between;
+    gap:16px; flex-wrap:wrap; margin-bottom:28px;
+    padding-bottom:20px; border-bottom:1px solid var(--border);
+  }
+  .header-left { display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+  .logo {
+    width:44px; height:44px; border-radius:12px;
+    background:linear-gradient(135deg,var(--accent),#8b5cf6);
+    display:grid; place-items:center; font-size:1.4rem;
+    box-shadow:0 4px 20px var(--accent-glow);
+  }
+  .header-title h1 { font-size:1.3rem; font-weight:700; letter-spacing:-0.02em; }
+  .header-title p { font-size:0.78rem; color:var(--text-secondary); margin-top:2px; }
+  .header-right {
+    display:flex; align-items:center; gap:10px;
+  }
+  .search-box {
+    position:relative;
+  }
+  .search-box input {
+    background:var(--bg-elevated);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:9px 14px 9px 36px;
+    color:var(--text);
+    font-size:0.85rem;
+    width:220px;
+    outline:none;
+    transition:all .2s;
+  }
+  .search-box input:focus {
+    border-color:var(--accent);
+    box-shadow:0 0 0 3px var(--accent-glow);
+  }
+  .search-box input::placeholder { color:var(--text-muted); }
+  .search-box svg {
+    position:absolute; left:11px; top:50%; transform:translateY(-50%);
+    width:16px; height:16px; color:var(--text-muted);
+  }
+  .project-select {
+    background:var(--bg-elevated);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:9px 14px;
+    color:var(--text);
+    font-size:0.85rem;
+    font-weight:500;
+    cursor:pointer;
+    outline:none;
+    transition:all .2s;
+    min-width:200px;
+  }
+  .project-select:focus {
+    border-color:var(--accent);
+    box-shadow:0 0 0 3px var(--accent-glow);
+  }
+  .project-select option {
+    background:var(--bg-elevated);
+    color:var(--text);
+  }
+  .btn {
+    background:var(--bg-elevated);
+    border:1px solid var(--border);
+    color:var(--text);
+    padding:9px 14px;
+    border-radius:10px;
+    font-size:0.8rem;
+    font-weight:500;
+    cursor:pointer;
+    display:inline-flex; align-items:center; gap:6px;
+    transition:all .2s;
+  }
+  .btn:hover { background:var(--bg-hover); border-color:var(--border-hover); }
+  .btn-primary {
+    background:linear-gradient(135deg,var(--accent),#6366f1);
+    border:none; color:#fff;
+  }
+  .btn-primary:hover { opacity:0.9; transform:translateY(-1px); }
+  .btn-success {
+    background:linear-gradient(135deg,var(--success),#34d399);
+    border:none; color:#fff;
+  }
+  .btn-success:hover { opacity:0.9; transform:translateY(-1px); }
+  .stats-grid {
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px; margin-bottom:28px;
+  }
+  .stat-card {
+    background:var(--glass);
+    backdrop-filter:blur(20px);
+    border:1px solid var(--glass-border);
+    border-radius:16px;
+    padding:20px;
+    position:relative;
+    overflow:hidden;
+    transition:transform .3s, box-shadow .3s;
+  }
+  .stat-card::before {
+    content:'';
+    position:absolute; top:0; left:0; right:0; height:3px;
+    background:linear-gradient(90deg,var(--accent),#8b5cf6);
+    opacity:0.6;
+  }
+  .stat-card:hover {
+    transform:translateY(-3px);
+    box-shadow:0 20px 40px rgba(0,0,0,0.3);
+  }
+  .stat-card.success::before { background:var(--success); }
+  .stat-card.warning::before { background:var(--warning); }
+  .stat-card.danger::before { background:var(--danger); }
+  .stat-header {
+    display:flex; align-items:center; justify-content:space-between;
+    margin-bottom:12px;
+  }
+  .stat-icon {
+    width:36px; height:36px; border-radius:10px;
+    background:var(--bg-elevated);
+    display:grid; place-items:center;
+    font-size:1.1rem;
+  }
+  .stat-badge {
+    font-size:0.7rem; font-weight:600;
+    padding:3px 8px; border-radius:20px;
+    background:rgba(255,255,255,0.05);
+    color:var(--text-secondary);
+  }
+  .stat-value {
+    font-size:2rem; font-weight:800; letter-spacing:-0.03em;
+    line-height:1;
+  }
+  .stat-label {
+    font-size:0.8rem; color:var(--text-secondary);
+    margin-top:6px;
+  }
+  .stat-bar {
+    margin-top:14px;
+    height:6px; border-radius:3px;
+    background:rgba(255,255,255,0.06);
+    overflow:hidden;
+  }
+  .stat-bar-fill {
+    height:100%; border-radius:3px;
+    background:linear-gradient(90deg,var(--accent),#6366f1);
+    transition:width 1s cubic-bezier(0.4,0,0.2,1);
+  }
+  .stat-bar-fill.success { background:var(--success); }
+  .stat-bar-fill.warning { background:var(--warning); }
+  .stat-bar-fill.danger { background:var(--danger); }
+  .tabs {
+    display:flex; gap:4px;
+    background:var(--bg-elevated);
+    border-radius:12px;
+    padding:4px;
+    margin-bottom:24px;
+    width:fit-content;
+    border:1px solid var(--border);
+  }
+  .tab {
+    padding:8px 16px;
+    border-radius:10px;
+    font-size:0.82rem; font-weight:500;
+    cursor:pointer; color:var(--text-secondary);
+    transition:all .2s; border:none; background:transparent;
+    white-space:nowrap;
+  }
+  .tab.active {
+    background:var(--bg);
+    color:var(--text);
+    box-shadow:0 2px 8px rgba(0,0,0,0.2);
+  }
+  .kanban-view { display:none; }
+  .kanban-view.active { display:block; }
+  .kanban {
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:14px;
+  }
+  .column {
+    display:flex; flex-direction:column;
+    gap:10px;
+    min-height:200px;
+  }
+  .column-header {
+    display:flex; align-items:center; justify-content:space-between;
+    padding:10px 12px;
+    background:var(--bg-elevated);
+    border:1px solid var(--border);
+    border-radius:12px;
+    position:sticky; top:0; z-index:5;
+  }
+  .column-title {
+    display:flex; align-items:center; gap:8px;
+    font-size:0.8rem; font-weight:600;
+    text-transform:uppercase; letter-spacing:0.06em;
+  }
+  .column-dot {
+    width:8px; height:8px; border-radius:50%;
+  }
+  .column-count {
+    font-size:0.72rem; font-weight:700;
+    background:rgba(255,255,255,0.06);
+    padding:3px 8px; border-radius:20px;
+    color:var(--text-secondary);
+  }
+  .column-body {
+    display:flex; flex-direction:column;
+    gap:8px;
+    min-height:100px;
+  }
+  .task-card {
+    background:var(--glass);
+    backdrop-filter:blur(12px);
+    border:1px solid var(--glass-border);
+    border-radius:12px;
+    padding:14px;
+    cursor:pointer;
+    transition:all .25s cubic-bezier(0.4,0,0.2,1);
+    position:relative;
+    overflow:hidden;
+  }
+  .task-card::after {
+    content:'';
+    position:absolute; left:0; top:0; bottom:0; width:3px;
+    border-radius:12px 0 0 12px;
+  }
+  .task-card.high::after { background:var(--danger); }
+  .task-card.medium::after { background:var(--warning); }
+  .task-card.low::after { background:var(--success); }
+  .task-card:hover {
+    transform:translateY(-2px) scale(1.01);
+    border-color:var(--border-hover);
+    box-shadow:0 8px 24px rgba(0,0,0,0.3);
+  }
+  .task-card.hidden { display:none; }
+  .task-header {
+    display:flex; align-items:center; justify-content:space-between;
+    margin-bottom:8px;
+  }
+  .task-id {
+    font-size:0.68rem; font-weight:700;
+    color:var(--accent); letter-spacing:0.08em;
+    font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  }
+  .task-priority {
+    font-size:0.62rem; font-weight:700; text-transform:uppercase;
+    padding:2px 7px; border-radius:4px; letter-spacing:0.04em;
+  }
+  .task-priority.high { background:rgba(239,68,68,0.15); color:var(--danger); }
+  .task-priority.medium { background:rgba(245,158,11,0.15); color:var(--warning); }
+  .task-priority.low { background:rgba(16,185,129,0.15); color:var(--success); }
+  .task-title {
+    font-size:0.85rem; font-weight:600; line-height:1.4;
+    color:var(--text);
+    margin-bottom:10px;
+  }
+  .task-meta {
+    display:flex; align-items:center; justify-content:space-between;
+    gap:8px;
+  }
+  .task-assignee {
+    display:flex; align-items:center; gap:6px;
+    font-size:0.78rem; color:var(--text-secondary);
+  }
+  .task-assignee .avatar {
+    width:24px; height:24px; border-radius:50%;
+    background:var(--bg-elevated);
+    display:grid; place-items:center;
+    font-size:0.9rem;
+    border:1px solid var(--border);
+  }
+  .task-type {
+    font-size:0.65rem; color:var(--text-muted);
+    text-transform:uppercase; letter-spacing:0.05em;
+    font-weight:500;
+  }
+  .agents-view { display:none; }
+  .agents-view.active { display:block; }
+  .agents-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+    gap:16px;
+  }
+  .agent-card {
+    background:var(--glass);
+    backdrop-filter:blur(20px);
+    border:1px solid var(--glass-border);
+    border-radius:16px;
+    padding:20px;
+    transition:all .3s;
+  }
+  .agent-card:hover {
+    transform:translateY(-2px);
+    box-shadow:0 12px 32px rgba(0,0,0,0.25);
+    border-color:var(--border-hover);
+  }
+  .agent-header {
+    display:flex; align-items:center; gap:12px;
+    margin-bottom:16px;
+  }
+  .agent-avatar {
+    width:48px; height:48px; border-radius:14px;
+    background:linear-gradient(135deg,var(--accent),#8b5cf6);
+    display:grid; place-items:center;
+    font-size:1.5rem;
+    box-shadow:0 4px 16px var(--accent-glow);
+  }
+  .agent-info h3 {
+    font-size:0.95rem; font-weight:700;
+  }
+  .agent-info p {
+    font-size:0.75rem; color:var(--text-muted);
+  }
+  .agent-stats {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin-bottom:14px;
+  }
+  .agent-stat {
+    text-align:center;
+    padding:8px;
+    background:rgba(255,255,255,0.03);
+    border-radius:10px;
+  }
+  .agent-stat .value {
+    font-size:1.2rem; font-weight:700;
+    display:block;
+  }
+  .agent-stat .label {
+    font-size:0.68rem; color:var(--text-muted);
+    text-transform:uppercase; letter-spacing:0.05em;
+  }
+  .agent-progress {
+    margin-top:12px;
+  }
+  .agent-progress-track {
+    height:6px; border-radius:3px;
+    background:rgba(255,255,255,0.05);
+    overflow:hidden;
+  }
+  .agent-progress-fill {
+    height:100%; border-radius:3px;
+    background:linear-gradient(90deg,var(--success),#34d399);
+    transition:width 1s cubic-bezier(0.4,0,0.2,1);
+  }
+  .agent-tasks {
+    margin-top:14px;
+    display:flex; flex-direction:column;
+    gap:6px;
+  }
+  .agent-task-item {
+    display:flex; align-items:center; justify-content:space-between;
+    padding:8px 10px;
+    background:rgba(255,255,255,0.02);
+    border-radius:8px;
+    font-size:0.78rem;
+    border:1px solid transparent;
+    transition:all .2s;
+  }
+  .agent-task-item:hover {
+    background:rgba(255,255,255,0.04);
+    border-color:var(--border);
+  }
+  .agent-task-item.done {
+    opacity:0.5;
+    text-decoration:line-through;
+  }
+  .agent-task-item .task-pill {
+    font-size:0.6rem; font-weight:600;
+    padding:2px 6px; border-radius:4px;
+    text-transform:uppercase;
+  }
+  .loading {
+    display:flex; align-items:center; justify-content:center;
+    gap:12px; padding:60px; color:var(--text-secondary);
+    font-size:0.9rem;
+  }
+  .spinner {
+    width:20px; height:20px;
+    border:2px solid var(--border);
+    border-top-color:var(--accent);
+    border-radius:50%;
+    animation:spin 1s linear infinite;
+  }
+  @keyframes spin { to { transform:rotate(360deg); } }
+  .empty {
+    text-align:center; padding:40px 20px;
+    color:var(--text-muted); font-size:0.85rem;
+  }
+  @keyframes pulse {
+    0%,100% { opacity:1; }
+    50% { opacity:0.5; }
+  }
+  .live-dot {
+    width:8px; height:8px; border-radius:50%;
+    background:var(--success);
+    animation:pulse 2s ease-in-out infinite;
+  }
+  ::-webkit-scrollbar { width:6px; height:6px; }
+  ::-webkit-scrollbar-track { background:transparent; }
+  ::-webkit-scrollbar-thumb { background:rgba(255,255,255,0.1); border-radius:3px; }
+  ::-webkit-scrollbar-thumb:hover { background:rgba(255,255,255,0.2); }
+
+  /* Task Detail Modal */
+  .modal-overlay {
+    position:fixed; inset:0; z-index:1000;
+    background:rgba(0,0,0,0.7);
+    backdrop-filter:blur(8px);
+    display:none; align-items:center; justify-content:center;
+    padding:20px;
+    opacity:0;
+    transition:opacity 0.3s ease;
+  }
+  .modal-overlay.active {
+    display:flex;
+    opacity:1;
+  }
+  .modal-content {
+    background:var(--bg-elevated);
+    border:1px solid var(--border);
+    border-radius:20px;
+    width:100%; max-width:600px; max-height:90vh;
+    overflow:hidden;
+    transform:scale(0.95) translateY(20px);
+    transition:transform 0.3s cubic-bezier(0.4,0,0.2,1);
+    box-shadow:0 25px 50px rgba(0,0,0,0.5);
+  }
+  .modal-overlay.active .modal-content {
+    transform:scale(1) translateY(0);
+  }
+  .modal-header {
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 24px;
+    border-bottom:1px solid var(--border);
+    background:var(--glass);
+  }
+  .modal-header-left { display:flex; align-items:center; gap:12px; }
+  .modal-priority {
+    font-size:0.65rem; font-weight:700; text-transform:uppercase;
+    padding:4px 10px; border-radius:6px; letter-spacing:0.04em;
+  }
+  .modal-priority.high { background:rgba(239,68,68,0.2); color:var(--danger); }
+  .modal-priority.medium { background:rgba(245,158,11,0.2); color:var(--warning); }
+  .modal-priority.low { background:rgba(16,185,129,0.2); color:var(--success); }
+  .modal-close {
+    width:36px; height:36px; border-radius:10px;
+    background:transparent; border:1px solid var(--border);
+    color:var(--text); cursor:pointer;
+    display:grid; place-items:center;
+    transition:all 0.2s; font-size:1.2rem;
+  }
+  .modal-close:hover { background:var(--bg-hover); border-color:var(--border-hover); }
+  .modal-body {
+    padding:24px;
+    overflow-y:auto; max-height:calc(90vh - 80px);
+  }
+  .modal-title {
+    font-size:1.4rem; font-weight:700; line-height:1.4;
+    margin-bottom:16px; color:var(--text);
+  }
+  .modal-section {
+    margin-bottom:20px;
+  }
+  .modal-section-title {
+    font-size:0.7rem; font-weight:600; text-transform:uppercase;
+    letter-spacing:0.08em; color:var(--text-muted);
+    margin-bottom:8px;
+  }
+  .modal-section-content {
+    font-size:0.9rem; color:var(--text-secondary); line-height:1.6;
+  }
+  .modal-meta-grid {
+    display:grid; grid-template-columns:repeat(2,1fr); gap:16px;
+    margin-bottom:20px;
+  }
+  .modal-meta-item {
+    background:var(--glass);
+    padding:12px 16px; border-radius:12px;
+    border:1px solid var(--glass-border);
+  }
+  .modal-meta-label {
+    font-size:0.65rem; color:var(--text-muted);
+    text-transform:uppercase; letter-spacing:0.06em;
+    margin-bottom:4px;
+  }
+  .modal-meta-value {
+    font-size:0.95rem; font-weight:600; color:var(--text);
+    display:flex; align-items:center; gap:8px;
+  }
+  .modal-avatar {
+    width:28px; height:28px; border-radius:50%;
+    background:var(--bg-elevated);
+    display:grid; place-items:center;
+    font-size:0.9rem; border:1px solid var(--border);
+  }
+  .modal-list {
+    list-style:none; padding:0;
+  }
+  .modal-list li {
+    padding:8px 0; border-bottom:1px solid var(--border);
+    font-size:0.85rem; color:var(--text-secondary);
+    display:flex; align-items:center; gap:8px;
+  }
+  .modal-list li:last-child { border-bottom:none; }
+  .modal-list li::before {
+    content:'•'; color:var(--accent); font-weight:bold;
+  }
+  .modal-status-badge {
+    display:inline-flex; align-items:center; gap:6px;
+    padding:6px 12px; border-radius:20px;
+    font-size:0.75rem; font-weight:600;
+    background:rgba(255,255,255,0.05);
+  }
+  .modal-status-dot {
+    width:8px; height:8px; border-radius:50%;
+  }
+  .modal-dates {
+    display:flex; gap:16px; font-size:0.8rem;
+    color:var(--text-muted); margin-top:20px;
+    padding-top:16px; border-top:1px solid var(--border);
+  }
+
+  /* Project Create Modal */
+  .form-group { margin-bottom:16px; }
+  .form-label {
+    display:block; font-size:0.78rem; font-weight:600;
+    color:var(--text-secondary); margin-bottom:6px;
+    text-transform:uppercase; letter-spacing:0.04em;
+  }
+  .form-input, .form-textarea {
+    width:100%;
+    background:var(--bg);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:10px 14px;
+    color:var(--text);
+    font-size:0.9rem;
+    outline:none;
+    transition:all .2s;
+  }
+  .form-input:focus, .form-textarea:focus {
+    border-color:var(--accent);
+    box-shadow:0 0 0 3px var(--accent-glow);
+  }
+  .form-textarea {
+    min-height:80px;
+    resize:vertical;
+  }
+  .modal-footer {
+    display:flex; justify-content:flex-end; gap:10px;
+    padding:16px 24px;
+    border-top:1px solid var(--border);
+    background:var(--glass);
+  }
+
+  @media (max-width:1024px) {
+    .stats-grid { grid-template-columns:repeat(2,1fr); }
+    .kanban { grid-template-columns:repeat(3,1fr); }
+    .search-box input { width:160px; }
+  }
+  @media (max-width:768px) {
+    .app { padding:12px; }
+    .header { flex-direction:column; align-items:flex-start; }
+    .header-right { width:100%; }
+    .search-box { flex:1; }
+    .search-box input { width:100%; }
+    .stats-grid { grid-template-columns:1fr 1fr; gap:10px; }
+    .stat-value { font-size:1.5rem; }
+    .kanban {
+      display:flex;
+      overflow-x:auto;
+      gap:12px;
+      scroll-snap-type:x mandatory;
+      -webkit-overflow-scrolling:touch;
+      padding-bottom:12px;
+    }
+    .column {
+      min-width:280px;
+      flex-shrink:0;
+      scroll-snap-align:start;
+    }
+    .tabs { width:100%; overflow-x:auto; }
+    .agents-grid { grid-template-columns:1fr; }
+    .modal-content { max-width:95%; }
+  }
+  @media (max-width:420px) {
+    .stats-grid { grid-template-columns:1fr; }
+    .stat-card { padding:16px; }
+    .project-select { width:100%; }
+  }
+</style>
+</head>
+<body>
+
+<div class="ambient"></div>
+
+<div class="app">
+  <header class="header">
+    <div class="header-left">
+      <div class="logo">📊</div>
+      <div class="header-title">
+        <h1>Taskboard</h1>
+        <p id="subtitle">Se încarcă…</p>
+      </div>
+      <select class="project-select" id="projectSelect">
+        <option value="">Se încarcă proiecte…</option>
+      </select>
+      <button class="btn btn-success" id="newProjectBtn" title="Proiect Nou">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Proiect Nou
+      </button>
+    </div>
+    <div class="header-right">
+      <div class="search-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="text" id="searchInput" placeholder="Caută task-uri…">
+      </div>
+      <button class="btn" id="refreshBtn" title="Reîncarcă">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 21h5v-5"/></svg>
+        Refresh
+      </button>
+      <div style="display:flex;align-items:center;gap:6px;font-size:0.75rem;color:var(--text-muted);">
+        <div class="live-dot"></div>
+        <span id="lastUpdate">—</span>
+      </div>
+    </div>
+  </header>
+
+  <div id="loadingState">
+    <div class="loading">
+      <div class="spinner"></div>
+      Se încarcă datele…
+    </div>
+  </div>
+
+  <div id="content" style="display:none;">
+    <div class="stats-grid" id="statsGrid"></div>
+
+    <div class="tabs">
+      <button class="tab active" data-view="kanban">🎯 Kanban</button>
+      <button class="tab" data-view="agents">👥 Echipă</button>
+    </div>
+
+    <div class="kanban-view active" id="kanbanView">
+      <div class="kanban" id="kanban"></div>
+    </div>
+
+    <div class="agents-view" id="agentsView">
+      <div class="agents-grid" id="agentsGrid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Task Detail Modal -->
+<div class="modal-overlay" id="taskModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="modal-header-left">
+        <span class="modal-priority" id="modalPriority">medium</span>
+        <span style="font-size:0.8rem;color:var(--text-muted);font-family:monospace;" id="modalId">TASK-001</span>
+      </div>
+      <button class="modal-close" onclick="closeModal('taskModal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-title" id="modalTitle">Task Title</div>
+      <div class="modal-meta-grid">
+        <div class="modal-meta-item">
+          <div class="modal-meta-label">Status</div>
+          <div class="modal-meta-value">
+            <span class="modal-status-dot" id="modalStatusDot"></span>
+            <span id="modalStatus">In Progress</span>
+          </div>
+        </div>
+        <div class="modal-meta-item">
+          <div class="modal-meta-label">Assignee</div>
+          <div class="modal-meta-value">
+            <div class="modal-avatar" id="modalAssigneeAvatar">👤</div>
+            <span id="modalAssignee">Unassigned</span>
+          </div>
+        </div>
+        <div class="modal-meta-item">
+          <div class="modal-meta-label">Type</div>
+          <div class="modal-meta-value" id="modalType">feature</div>
+        </div>
+        <div class="modal-meta-item">
+          <div class="modal-meta-label">Project</div>
+          <div class="modal-meta-value" id="modalProject">PROJ-002</div>
+        </div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Descriere</div>
+        <div class="modal-section-content" id="modalDescription">No description provided.</div>
+      </div>
+      <div class="modal-section" id="modalRequirementsSection">
+        <div class="modal-section-title">Cerințe</div>
+        <ul class="modal-list" id="modalRequirements"></ul>
+      </div>
+      <div class="modal-section" id="modalAcceptanceSection">
+        <div class="modal-section-title">Criterii de Acceptare</div>
+        <ul class="modal-list" id="modalAcceptance"></ul>
+      </div>
+      <div class="modal-dates">
+        <span>📝 Creat: <span id="modalCreated">—</span></span>
+        <span>🔄 Actualizat: <span id="modalUpdated">—</span></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Create Project Modal -->
+<div class="modal-overlay" id="projectModal">
+  <div class="modal-content" style="max-width:500px;">
+    <div class="modal-header">
+      <div class="modal-header-left">
+        <span style="font-size:1.2rem;">📁</span>
+        <span style="font-weight:700;">Proiect Nou</span>
+      </div>
+      <button class="modal-close" onclick="closeModal('projectModal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">ID Proiect (ex: PROJ-003)</label>
+        <input type="text" class="form-input" id="projectIdInput" placeholder="PROJ-003">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Nume Proiect</label>
+        <input type="text" class="form-input" id="projectNameInput" placeholder="Numele proiectului">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Descriere</label>
+        <textarea class="form-textarea" id="projectDescInput" placeholder="Descriere scurtă a proiectului…"></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" onclick="closeModal('projectModal')">Anulează</button>
+      <button class="btn btn-primary" onclick="createProject()">Crează Proiect</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const STATUS_CONFIG = {
+  inbox:    { label:'Inbox',    color:'#94a3b8', dot:'bg-gray' },
+  todo:     { label:'Todo',     color:'#3b82f6', dot:'bg-blue' },
+  in_progress:{ label:'In Progress', color:'#f59e0b', dot:'bg-amber' },
+  review:   { label:'Review',   color:'#8b5cf6', dot:'bg-violet' },
+  done:     { label:'Done',     color:'#10b981', dot:'bg-emerald' }
+};
+
+let dataCache = null;
+let currentView = 'kanban';
+let searchQuery = '';
+let currentProjectId = 'PROJ-002';
+
+// Fetch data
+async function loadData() {
+  try {
+    const res = await fetch('data.json?v=' + Date.now());
+    if (!res.ok) throw new Error(res.statusText);
+    dataCache = await res.json();
+    renderAll();
+    document.getElementById('loadingState').style.display = 'none';
+    document.getElementById('content').style.display = 'block';
+    updateTimestamp();
+  } catch (e) {
+    document.getElementById('loadingState').innerHTML = `
+      <div class="empty">
+        <div style="font-size:2rem;margin-bottom:8px">⚠️</div>
+        Eroare la încărcarea datelor<br>
+        <span style="font-size:0.8rem;color:var(--text-muted)">${e.message}</span>
+      </div>`;
+  }
+}
+
+function updateTimestamp() {
+  const now = new Date();
+  document.getElementById('lastUpdate').textContent = now.toLocaleTimeString('ro-RO', {hour:'2-digit', minute:'2-digit'});
+}
+
+function populateProjectSelector() {
+  const select = document.getElementById('projectSelect');
+  select.innerHTML = '';
+  Object.entries(dataCache.projects || {}).forEach(([pid, project]) => {
+    const option = document.createElement('option');
+    option.value = pid;
+    option.textContent = `${project.name} (${project.tasks?.length || 0} task-uri)`;
+    if (pid === currentProjectId) option.selected = true;
+    select.appendChild(option);
+  });
+}
+
+function renderAll() {
+  populateProjectSelector();
+  const project = dataCache.projects[currentProjectId];
+  if (!project) return;
+  const tasks = project.tasks || [];
+  const agents = dataCache.agents || {};
+  document.getElementById('subtitle').textContent =
+    `${project.name} · ${tasks.length} task-uri · ${Object.keys(agents).length} agenți`;
+  renderStats(tasks);
+  renderKanban(tasks, agents, project.columns || ['inbox','todo','in_progress','review','done']);
+  renderAgents(tasks, agents);
+}
+
+function renderStats(tasks) {
+  const total = tasks.length;
+  const done = tasks.filter(t => t.status === 'done').length;
+  const high = tasks.filter(t => t.priority === 'high' && t.status !== 'done').length;
+  const wip = tasks.filter(t => t.status === 'in_progress').length;
+  const todo = tasks.filter(t => t.status === 'todo').length;
+  const pct = total ? Math.round((done/total)*100) : 0;
+  const stats = [
+    { icon:'📋', value:total, label:'Total task-uri', sub:`${done} done · ${wip} in progress`, pct:100, cls:'', barCls:'' },
+    { icon:'✅', value:pct+'%', label:'Procent completat', sub:`${done} din ${total}`, pct, cls:'success', barCls:'success' },
+    { icon:'🔥', value:high, label:'High priority active', sub:'Task-uri critice', pct:high?100:0, cls:'danger', barCls:'danger' },
+    { icon:'🎯', value:wip+todo, label:'De lucrat', sub:`${todo} todo · ${wip} in progress`, pct:total?Math.round(((wip+todo)/total)*100):0, cls:'warning', barCls:'warning' }
+  ];
+  document.getElementById('statsGrid').innerHTML = stats.map(s => `
+    <div class="stat-card ${s.cls}">
+      <div class="stat-header">
+        <div class="stat-icon">${s.icon}</div>
+        <span class="stat-badge">${s.pct}%</span>
+      </div>
+      <div class="stat-value">${s.value}</div>
+      <div class="stat-label">${s.label}</div>
+      <div class="stat-bar">
+        <div class="stat-bar-fill ${s.barCls}" style="width:0%" data-width="${s.pct}%"></div>
+      </div>
+    </div>
+  `).join('');
+  setTimeout(() => {
+    document.querySelectorAll('.stat-bar-fill').forEach(bar => {
+      bar.style.width = bar.dataset.width;
+    });
+  }, 100);
+}
+
+function renderKanban(tasks, agents, columns) {
+  const kanban = document.getElementById('kanban');
+  kanban.innerHTML = '';
+  columns.forEach(col => {
+    let colTasks = tasks.filter(t => t.status === col);
+    if (searchQuery) {
+      const q = searchQuery.toLowerCase();
+      colTasks = colTasks.filter(t =>
+        t.title.toLowerCase().includes(q) ||
+        t.id.toLowerCase().includes(q) ||
+        (t.assignee && t.assignee.toLowerCase().includes(q))
+      );
+    }
+    const cfg = STATUS_CONFIG[col] || { label: col, color: '#94a3b8' };
+    const colDiv = document.createElement('div');
+    colDiv.className = 'column';
+    colDiv.innerHTML = `
+      <div class="column-header" style="border-top:3px solid ${cfg.color}">
+        <div class="column-title">
+          <div class="column-dot" style="background:${cfg.color};box-shadow:0 0 8px ${cfg.color}60"></div>
+          ${cfg.label}
+        </div>
+        <span class="column-count">${colTasks.length}</span>
+      </div>
+      <div class="column-body" id="col-${col}"></div>
+    `;
+    const body = colDiv.querySelector('.column-body');
+    if (colTasks.length === 0) {
+      body.innerHTML = `<div class="empty">Niciun task</div>`;
+    } else {
+      colTasks.forEach(task => {
+        const agent = agents[task.assignee] || {};
+        const card = document.createElement('div');
+        card.className = `task-card ${task.priority || 'medium'}`;
+        card.innerHTML = `
+          <div class="task-header">
+            <span class="task-id">${task.id}</span>
+            <span class="task-priority ${task.priority || 'medium'}">${task.priority || 'medium'}</span>
+          </div>
+          <div class="task-title">${task.title}</div>
+          <div class="task-meta">
+            <div class="task-assignee">
+              <div class="avatar">${agent.emoji || '👤'}</div>
+              <span>${agent.name || task.assignee || '—'}</span>
+            </div>
+            <span class="task-type">${task.type || 'task'}</span>
+          </div>
+        `;
+        card.addEventListener('click', () => openTaskModal(task, agent));
+        body.appendChild(card);
+      });
+    }
+    kanban.appendChild(colDiv);
+  });
+}
+
+function renderAgents(tasks, agents) {
+  const grid = document.getElementById('agentsGrid');
+  grid.innerHTML = '';
+  Object.entries(agents).forEach(([aid, agent]) => {
+    const agentTasks = tasks.filter(t => t.assignee === aid);
+    const total = agentTasks.length;
+    const done = agentTasks.filter(t => t.status === 'done').length;
+    const pct = total ? Math.round((done/total)*100) : 0;
+    const active = agentTasks.filter(t => t.status !== 'done');
+    const card = document.createElement('div');
+    card.className = 'agent-card';
+    card.innerHTML = `
+      <div class="agent-header">
+        <div class="agent-avatar">${agent.emoji || '👤'}</div>
+        <div class="agent-info">
+          <h3>${agent.name || aid}</h3>
+          <p>${agent.telegram || ''}</p>
+        </div>
+      </div>
+      <div class="agent-stats">
+        <div class="agent-stat"><span class="value">${total}</span><span class="label">Total</span></div>
+        <div class="agent-stat"><span class="value" style="color:var(--success)">${done}</span><span class="label">Done</span></div>
+        <div class="agent-stat"><span class="value">${total-done}</span><span class="label">Active</span></div>
+      </div>
+      <div class="agent-progress">
+        <div class="agent-progress-track"><div class="agent-progress-fill" style="width:${pct}%"></div></div>
+        <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:0.7rem;color:var(--text-muted)">
+          <span>Progres</span><span>${pct}%</span>
+        </div>
+      </div>
+      ${active.length > 0 ? `
+        <div class="agent-tasks">
+          ${active.slice(0,5).map(t => `
+            <div class="agent-task-item">
+              <span>${t.id} · ${t.title.substring(0,35)}${t.title.length>35?'…':''}</span>
+              <span class="task-pill" style="background:${(STATUS_CONFIG[t.status]?.color||'#94a3b8')}20;color:${STATUS_CONFIG[t.status]?.color||'#94a3b8'}">${STATUS_CONFIG[t.status]?.label || t.status}</span>
+            </div>
+          `).join('')}
+          ${active.length > 5 ? `<div style="text-align:center;font-size:0.7rem;color:var(--text-muted);padding:4px;">+${active.length - 5} altele</div>` : ''}
+        </div>
+      ` : '<div style="text-align:center;padding:12px;color:var(--text-muted);font-size:0.8rem;">✅ Toate task-urile completate</div>'}
+    `;
+    grid.appendChild(card);
+  });
+  // Total card
+  const total = tasks.length;
+  const done = tasks.filter(t => t.status === 'done').length;
+  const pct = total ? Math.round((done/total)*100) : 0;
+  const totalCard = document.createElement('div');
+  totalCard.className = 'agent-card';
+  totalCard.style.cssText = 'background:linear-gradient(135deg,rgba(59,130,246,0.1),rgba(139,92,246,0.1));border-color:rgba(59,130,246,0.2);';
+  totalCard.innerHTML = `
+    <div class="agent-header">
+      <div class="agent-avatar" style="background:linear-gradient(135deg,var(--accent),#8b5cf6);font-size:1.2rem;">🤖</div>
+      <div class="agent-info"><h3>ECHIPA TOTAL</h3><p>Progres global</p></div>
+    </div>
+    <div class="agent-stats">
+      <div class="agent-stat"><span class="value">${total}</span><span class="label">Total</span></div>
+      <div class="agent-stat"><span class="value" style="color:var(--success)">${done}</span><span class="label">Done</span></div>
+      <div class="agent-stat"><span class="value">${pct}%</span><span class="label">Progres</span></div>
+    </div>
+    <div class="agent-progress"><div class="agent-progress-track"><div class="agent-progress-fill" style="width:${pct}%"></div></div></div>
+  `;
+  grid.appendChild(totalCard);
+}
+
+// Modal functions
+function openTaskModal(task, agent) {
+  const modal = document.getElementById('taskModal');
+  const priorityEl = document.getElementById('modalPriority');
+  priorityEl.textContent = task.priority || 'medium';
+  priorityEl.className = 'modal-priority ' + (task.priority || 'medium');
+  document.getElementById('modalId').textContent = task.id;
+  document.getElementById('modalTitle').textContent = task.title;
+  const statusCfg = STATUS_CONFIG[task.status] || { label: task.status, color: '#94a3b8' };
+  document.getElementById('modalStatus').textContent = statusCfg.label;
+  document.getElementById('modalStatusDot').style.background = statusCfg.color;
+  document.getElementById('modalAssigneeAvatar').textContent = agent.emoji || '👤';
+  document.getElementById('modalAssignee').textContent = agent.name || task.assignee || 'Unassigned';
+  document.getElementById('modalType').textContent = task.type || 'task';
+  document.getElementById('modalProject').textContent = currentProjectId || '—';
+  document.getElementById('modalDescription').textContent = task.description || 'Nicio descriere disponibilă.';
+  const reqSection = document.getElementById('modalRequirementsSection');
+  const reqList = document.getElementById('modalRequirements');
+  if (task.requirements && task.requirements.length > 0) {
+    reqSection.style.display = 'block';
+    reqList.innerHTML = task.requirements.map(r => `<li>${r}</li>`).join('');
+  } else {
+    reqSection.style.display = 'none';
+  }
+  const accSection = document.getElementById('modalAcceptanceSection');
+  const accList = document.getElementById('modalAcceptance');
+  if (task.acceptance_criteria && task.acceptance_criteria.length > 0) {
+    accSection.style.display = 'block';
+    accList.innerHTML = task.acceptance_criteria.map(a => `<li>${a}</li>`).join('');
+  } else {
+    accSection.style.display = 'none';
+  }
+  const created = task.created_at ? new Date(task.created_at).toLocaleString('ro-RO') : '—';
+  const updated = task.updated_at ? new Date(task.updated_at).toLocaleString('ro-RO') : '—';
+  document.getElementById('modalCreated').textContent = created;
+  document.getElementById('modalUpdated').textContent = updated;
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(modalId) {
+  const modal = document.getElementById(modalId);
+  modal.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// Close modal on overlay click
+document.querySelectorAll('.modal-overlay').forEach(modal => {
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal(modal.id);
+  });
+});
+
+// Close modal on Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeModal('taskModal');
+    closeModal('projectModal');
+  }
+});
+
+// Project Modal
+function openProjectModal() {
+  document.getElementById('projectModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+async function createProject() {
+  const id = document.getElementById('projectIdInput').value.trim();
+  const name = document.getElementById('projectNameInput').value.trim();
+  const desc = document.getElementById('projectDescInput').value.trim();
+  
+  if (!id || !name) {
+    alert('ID și Numele proiectului sunt obligatorii!');
+    return;
+  }
+  
+  if (dataCache.projects[id]) {
+    alert('Acest ID de proiect există deja!');
+    return;
+  }
+  
+  try {
+    const res = await fetch('/api/projects', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ key: id, name: name, description: desc })
+    });
+    const result = await res.json();
+    if (result.success) {
+      // Add to local data
+      dataCache.projects[id] = {
+        id: id,
+        name: name,
+        description: desc,
+        status: 'active',
+        created_at: new Date().toISOString(),
+        tasks: [],
+        columns: ['inbox','todo','in_progress','review','done'],
+        next_task_id: 1
+      };
+      currentProjectId = id;
+      populateProjectSelector();
+      renderAll();
+      closeModal('projectModal');
+      // Clear form
+      document.getElementById('projectIdInput').value = '';
+      document.getElementById('projectNameInput').value = '';
+      document.getElementById('projectDescInput').value = '';
+    } else {
+      alert('Eroare: ' + (result.error || 'Unknown error'));
+    }
+  } catch (e) {
+    // Fallback: add locally if API fails
+    dataCache.projects[id] = {
+      id: id,
+      name: name,
+      description: desc,
+      status: 'active',
+      created_at: new Date().toISOString(),
+      tasks: [],
+      columns: ['inbox','todo','in_progress','review','done'],
+      next_task_id: 1
+    };
+    currentProjectId = id;
+    populateProjectSelector();
+    renderAll();
+    closeModal('projectModal');
+  }
+}
+
+document.getElementById('newProjectBtn').addEventListener('click', openProjectModal);
+
+// Project change
+document.getElementById('projectSelect').addEventListener('change', (e) => {
+  currentProjectId = e.target.value;
+  renderAll();
+});
+
+// Search
+let searchTimeout;
+document.getElementById('searchInput').addEventListener('input', e => {
+  clearTimeout(searchTimeout);
+  searchTimeout = setTimeout(() => {
+    searchQuery = e.target.value.trim();
+    if (dataCache) renderAll();
+  }, 200);
+});
+
+// Tabs
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    const view = tab.dataset.view;
+    document.querySelectorAll('.kanban-view,.agents-view').forEach(v => v.classList.remove('active'));
+    document.getElementById(view + 'View').classList.add('active');
+  });
+});
+
+// Refresh
+document.getElementById('refreshBtn').addEventListener('click', () => {
+  document.getElementById('loadingState').style.display = 'block';
+  document.getElementById('content').style.display = 'none';
+  loadData();
+});
+
+// Auto refresh every 30s
+setInterval(() => {
+  if (document.visibilityState === 'visible') {
+    loadData();
+  }
+}, 30000);
+
+// Initial load
+loadData();
+</script>
+
+</body>
+</html>

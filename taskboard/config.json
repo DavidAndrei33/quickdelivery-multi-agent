@@ -1,0 +1,153 @@
+{
+  "version": "3.0.0",
+  "architecture": "event-bus",
+  "description": "Multi-project taskboard with Event Bus architecture",
+  "last_updated": "2026-04-19T17:59:00Z",
+  
+  "event_bus": {
+    "type": "redis-pubsub",
+    "redis_url": "redis://localhost:6379",
+    "channels": {
+      "global": [
+        "task.created",
+        "task.assigned", 
+        "task.status_changed",
+        "task.completed",
+        "task.blocked",
+        "agent.notify",
+        "project.created"
+      ],
+      "agent_specific": "agent.{agent_id}"
+    }
+  },
+
+  "agents": {
+    "product-architect": {
+      "name": "Product-Architect",
+      "emoji": "🎯",
+      "role": "Product Owner + Orchestrator",
+      "color": "#e94560",
+      "telegram": "@ProductArchitectbot",
+      "subscribed_events": ["task.completed", "task.blocked", "task.created"],
+      "can_create_tasks": true,
+      "can_assign_tasks": true,
+      "responsibilities": ["product_specs", "roadmap", "orchestration"]
+    },
+    "backend-architect": {
+      "name": "Backend-Architect",
+      "emoji": "⚙️",
+      "role": "API/DB Architect",
+      "color": "#4ecdc4",
+      "telegram": "@BackendArchitectbot",
+      "subscribed_events": ["task.assigned"],
+      "can_create_tasks": false,
+      "can_assign_tasks": false,
+      "responsibilities": ["api_design", "database", "infrastructure"]
+    },
+    "frontend-architect": {
+      "name": "Frontend-Architect",
+      "emoji": "🎨",
+      "role": "UI/UX Architect",
+      "color": "#ff6b6b",
+      "telegram": "@FrontendArchitectbot",
+      "subscribed_events": ["task.assigned"],
+      "can_create_tasks": false,
+      "can_assign_tasks": false,
+      "responsibilities": ["ui_ux", "design_system", "components"]
+    },
+    "builder-modules": {
+      "name": "Builder-Modules",
+      "emoji": "🛠️",
+      "role": "Web Developer",
+      "color": "#95e1d3",
+      "telegram": "@BuilderModulesBot",
+      "subscribed_events": ["task.assigned"],
+      "can_create_tasks": false,
+      "can_assign_tasks": false,
+      "responsibilities": ["web_apps", "frontend_impl", "backend_impl"]
+    },
+    "builder-mobile": {
+      "name": "Builder-Mobile",
+      "emoji": "📱",
+      "role": "Mobile Developer",
+      "color": "#ffd93d",
+      "telegram": "@BuilderMobilebot",
+      "subscribed_events": ["task.assigned"],
+      "can_create_tasks": false,
+      "can_assign_tasks": false,
+      "responsibilities": ["ios", "android", "react_native"]
+    },
+    "reviewer-all": {
+      "name": "Reviewer-All",
+      "emoji": "👁️",
+      "role": "Code Reviewer",
+      "color": "#a8d8ea",
+      "telegram": "@ReviewerAllbot",
+      "subscribed_events": ["task.status_changed"],
+      "can_create_tasks": false,
+      "can_assign_tasks": false,
+      "responsibilities": ["code_review", "security_audit", "quality"]
+    },
+    "operations-all": {
+      "name": "Operations-All",
+      "emoji": "🚀",
+      "role": "DevOps Engineer",
+      "color": "#6c5ce7",
+      "telegram": "@operatioooooooonsaaabot",
+      "subscribed_events": ["task.assigned", "agent.notify"],
+      "can_create_tasks": false,
+      "can_assign_tasks": false,
+      "responsibilities": ["ci_cd", "deploy", "monitoring", "infrastructure"]
+    },
+    "specialists-all": {
+      "name": "Specialists-All",
+      "emoji": "🔬",
+      "role": "Research/BA",
+      "color": "#fd79a8",
+      "telegram": "@Specialistibot",
+      "subscribed_events": ["task.created"],
+      "can_create_tasks": false,
+      "can_assign_tasks": false,
+      "responsibilities": ["research", "business_analysis", "data_science"]
+    }
+  },
+
+  "projects_index": {
+    "quickdelivery": {
+      "name": "QuickDelivery",
+      "description": "Food delivery platform",
+      "status": "active",
+      "path": ".project-brain/projects/quickdelivery/taskboard.json",
+      "environments": {
+        "dev": { "url": "http://localhost:3000", "status": "ready" },
+        "staging": { "url": "https://staging.quickdelivery.homes", "status": "not_deployed" },
+        "prod": { "url": "https://quickdelivery.homes", "status": "live" }
+      }
+    }
+  },
+
+  "task_types": {
+    "feature": { "icon": "✨", "color": "#00b894" },
+    "bug": { "icon": "🐛", "color": "#e17055" },
+    "refactor": { "icon": "♻️", "color": "#74b9ff" },
+    "docs": { "icon": "📚", "color": "#a29bfe" },
+    "test": { "icon": "🧪", "color": "#fd79a8" },
+    "devops": { "icon": "🚀", "color": "#6c5ce7" },
+    "research": { "icon": "🔬", "color": "#fdcb6e" }
+  },
+
+  "priorities": {
+    "critical": { "color": "#d63031", "weight": 4 },
+    "high": { "color": "#e17055", "weight": 3 },
+    "medium": { "color": "#fdcb6e", "weight": 2 },
+    "low": { "color": "#00b894", "weight": 1 }
+  },
+
+  "columns": {
+    "inbox": { "label": "Inbox", "color": "#636e72" },
+    "todo": { "label": "To Do", "color": "#74b9ff" },
+    "in_progress": { "label": "In Progress", "color": "#fdcb6e" },
+    "review": { "label": "Review", "color": "#a29bfe" },
+    "done": { "label": "Done", "color": "#00b894" }
+  }
+}
