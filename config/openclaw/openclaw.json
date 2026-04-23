@@ -1,0 +1,542 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.2.3-1",
+    "lastTouchedAt": "2026-04-22T17:33:00.917Z"
+  },
+  "env": {
+    "GITHUB_TOKEN": "<REDACTED_GITHUB_TOKEN>",
+    "MOONSHOT_API_KEY": "<REDACTED_MOONSHOT_API_KEY>"
+  },
+  "wizard": {
+    "lastRunAt": "2026-04-22T17:33:00.910Z",
+    "lastRunVersion": "2026.2.3-1",
+    "lastRunCommand": "onboard",
+    "lastRunMode": "local"
+  },
+  "auth": {
+    "profiles": {
+      "kimi-coding:default": {
+        "provider": "kimi-coding",
+        "mode": "api_key"
+      },
+      "kimi-coding:homeplan": {
+        "provider": "kimi-coding",
+        "mode": "api_key"
+      },
+      "kimi:default": {
+        "provider": "kimi",
+        "mode": "api_key"
+      },
+      "openai-codex:default": {
+        "provider": "openai-codex",
+        "mode": "oauth"
+      },
+      "moonshot:default": {
+        "provider": "moonshot",
+        "mode": "api_key"
+      }
+    }
+  },
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "kimi-coding": {
+        "baseUrl": "https://api.kimi.com/coding/v1",
+        "api": "openai-completions",
+        "apiKey": "<REDACTED_KIMI-CODING_API_KEY>",
+        "models": [
+          {
+            "id": "kimi-for-coding",
+            "name": "Kimi For Coding",
+            "reasoning": true,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 262144,
+            "maxTokens": 32768,
+            "headers": {
+              "User-Agent": "KimiCLI/0.77"
+            },
+            "compat": {
+              "supportsDeveloperRole": false
+            }
+          }
+        ]
+      },
+      "kimi": {
+        "baseUrl": "https://api.moonshot.ai/v1",
+        "api": "anthropic-messages",
+        "models": [
+          {
+            "id": "kimi-code",
+            "name": "Kimi Code",
+            "reasoning": true,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 262144,
+            "maxTokens": 32768
+          }
+        ]
+      },
+      "moonshot": {
+        "baseUrl": "https://api.moonshot.ai/v1",
+        "apiKey": "<REDACTED_MOONSHOT_API_KEY>",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "kimi-k2.6",
+            "name": "Kimi K2.6",
+            "reasoning": false,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 262144,
+            "maxTokens": 8192
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "kimi-coding/kimi-for-coding"
+      },
+      "models": {
+        "moonshot/kimi-k2.6": {
+          "alias": "Kimi K2.6"
+        },
+        "kimi-coding/kimi-for-coding": {
+          "alias": "Kimi For Coding"
+        },
+        "kimi-coding/k2p5": {
+          "alias": "Kimi K2.5"
+        },
+        "kimi/kimi-code": {
+          "alias": "Kimi"
+        },
+        "openai-codex/gpt-5.1": {}
+      },
+      "workspace": "/root/.openclaw/workspace",
+      "compaction": {
+        "mode": "safeguard"
+      },
+      "maxConcurrent": 4,
+      "subagents": {
+        "maxConcurrent": 12
+      }
+    },
+    "list": [
+      {
+        "id": "main",
+        "default": true,
+        "name": "Manifest",
+        "workspace": "/root/.openclaw/workspace",
+        "model": {
+          "primary": "kimi-coding/kimi-for-coding"
+        },
+        "identity": {
+          "name": "Manifest",
+          "emoji": "\u2728"
+        }
+      },
+      {
+        "id": "product-architect",
+        "name": "Product-Architect",
+        "workspace": "/workspace/shared/agents/product-architect",
+        "model": {
+          "primary": "kimi-coding/kimi-for-coding"
+        },
+        "identity": {
+          "name": "Product-Architect",
+          "emoji": "\ud83c\udfaf"
+        }
+      },
+      {
+        "id": "frontend-architect",
+        "name": "Frontend-Architect",
+        "workspace": "/workspace/shared/agents/frontend-architect",
+        "model": {
+          "primary": "kimi-coding/kimi-for-coding"
+        },
+        "identity": {
+          "name": "Frontend-Architect",
+          "emoji": "\ud83c\udfa8"
+        }
+      },
+      {
+        "id": "backend-architect",
+        "name": "Backend-Architect",
+        "workspace": "/workspace/shared/agents/backend-architect",
+        "model": {
+          "primary": "kimi-coding/kimi-for-coding"
+        },
+        "identity": {
+          "name": "Backend-Architect",
+          "emoji": "\u2699\ufe0f"
+        }
+      },
+      {
+        "id": "builder-mobile",
+        "name": "Builder-Mobile",
+        "workspace": "/workspace/shared/agents/builders/mobile",
+        "model": {
+          "primary": "kimi-coding/kimi-for-coding"
+        },
+        "skills": [
+          "web-quality-skills",
+          "appdev-skill"
+        ],
+        "identity": {
+          "name": "Builder-Mobile",
+          "emoji": "\ud83d\udcf1"
+        }
+      },
+      {
+        "id": "builder-modules",
+        "name": "Builder-Modules",
+        "workspace": "/workspace/shared/agents/builder-modules",
+        "model": {
+          "primary": "kimi-coding/kimi-for-coding"
+        },
+        "identity": {
+          "name": "Builder-Modules",
+          "emoji": "\ud83d\udee0\ufe0f"
+        }
+      },
+      {
+        "id": "reviewer-all",
+        "name": "Reviewer-All",
+        "workspace": "/workspace/shared/agents/reviewer-all",
+        "model": {
+          "primary": "kimi-coding/kimi-for-coding"
+        },
+        "identity": {
+          "name": "Reviewer-All",
+          "emoji": "\ud83d\udc41\ufe0f"
+        }
+      },
+      {
+        "id": "operations-all",
+        "name": "Operations-All",
+        "workspace": "/workspace/shared/agents/operations-all",
+        "model": {
+          "primary": "kimi-coding/kimi-for-coding"
+        },
+        "identity": {
+          "name": "Operations-All",
+          "emoji": "\ud83d\ude80"
+        }
+      },
+      {
+        "id": "specialists-all",
+        "name": "Specialists-All",
+        "workspace": "/workspace/shared/agents/specialists-all",
+        "model": {
+          "primary": "kimi-coding/kimi-for-coding"
+        },
+        "identity": {
+          "name": "Specialists-All",
+          "emoji": "\ud83d\udd2c"
+        }
+      }
+    ]
+  },
+  "tools": {
+    "profile": "coding",
+    "allow": [
+      "*"
+    ]
+  },
+  "bindings": [
+    {
+      "agentId": "product-architect",
+      "match": {
+        "channel": "telegram",
+        "accountId": "product-architect"
+      }
+    },
+    {
+      "agentId": "frontend-architect",
+      "match": {
+        "channel": "telegram",
+        "accountId": "frontend-architect"
+      }
+    },
+    {
+      "agentId": "backend-architect",
+      "match": {
+        "channel": "telegram",
+        "accountId": "backend-architect"
+      }
+    },
+    {
+      "agentId": "builder-modules",
+      "match": {
+        "channel": "telegram",
+        "accountId": "builder-modules"
+      }
+    },
+    {
+      "agentId": "builder-mobile",
+      "match": {
+        "channel": "telegram",
+        "accountId": "builder-mobile"
+      }
+    },
+    {
+      "agentId": "reviewer-all",
+      "match": {
+        "channel": "telegram",
+        "accountId": "reviewer-all"
+      }
+    },
+    {
+      "agentId": "operations-all",
+      "match": {
+        "channel": "telegram",
+        "accountId": "operations-all"
+      }
+    },
+    {
+      "agentId": "specialists-all",
+      "match": {
+        "channel": "telegram",
+        "accountId": "specialists-all"
+      }
+    }
+  ],
+  "messages": {
+    "ackReactionScope": "group-mentions"
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true
+  },
+  "session": {
+    "dmScope": "per-channel-peer"
+  },
+  "hooks": {
+    "internal": {
+      "enabled": true,
+      "entries": {
+        "smart-memory-curator": {
+          "enabled": true
+        },
+        "agent-context-sync": {
+          "enabled": true
+        },
+        "delivery-health-monitor": {
+          "enabled": true
+        },
+        "audit-logger": {
+          "enabled": true
+        },
+        "dashboard-sync": {
+          "enabled": true
+        },
+        "emergency-alert": {
+          "enabled": true
+        },
+        "robot-lifecycle": {
+          "enabled": true
+        },
+        "trading-orchestrator": {
+          "enabled": true
+        },
+        "team-orchestrator": {
+          "enabled": true
+        },
+        "bug-tracker": {
+          "enabled": true
+        },
+        "task-coordinator": {
+          "enabled": true
+        },
+        "agent-recovery": {
+          "enabled": true
+        },
+        "project-brain": {
+          "enabled": true
+        },
+        "boot-md": {
+          "enabled": true
+        },
+        "bootstrap-extra-files": {
+          "enabled": true
+        },
+        "command-logger": {
+          "enabled": true
+        },
+        "session-memory": {
+          "enabled": true
+        }
+      }
+    }
+  },
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "dmPolicy": "allowlist",
+      "allowFrom": [
+        "310970306"
+      ],
+      "groupPolicy": "allowlist",
+      "streamMode": "partial",
+      "accounts": {
+        "main": {
+          "enabled": true,
+          "dmPolicy": "allowlist",
+          "botToken": "7913186291:AAH_CWiOlcn4hUHWePSNItI1E9h65JFE9kY",
+          "allowFrom": [
+            310970306
+          ],
+          "groupPolicy": "allowlist",
+          "streamMode": "partial"
+        },
+        "product-architect": {
+          "enabled": true,
+          "dmPolicy": "allowlist",
+          "botToken": "8655823375:AAEOGA_U-2GPxOh7RQ_UAdmSVw39WiXNVEM",
+          "allowFrom": [
+            310970306
+          ],
+          "groupPolicy": "allowlist",
+          "streamMode": "partial"
+        },
+        "frontend-architect": {
+          "enabled": true,
+          "dmPolicy": "allowlist",
+          "botToken": "7886816164:AAHjgOmKROXauVwjCJggYxXBvOzHa6E4Owg",
+          "allowFrom": [
+            310970306
+          ],
+          "groupPolicy": "allowlist",
+          "streamMode": "partial"
+        },
+        "backend-architect": {
+          "enabled": true,
+          "dmPolicy": "allowlist",
+          "botToken": "8735759440:AAFKtiNDzHTLOgqrBNpmS0SASpUbjyQ44d4",
+          "allowFrom": [
+            310970306
+          ],
+          "groupPolicy": "allowlist",
+          "streamMode": "partial"
+        },
+        "builder-modules": {
+          "enabled": true,
+          "dmPolicy": "allowlist",
+          "botToken": "8733103134:AAGhmgWe8F7OnkwIj9cUlPMoba5kT81saaY",
+          "allowFrom": [
+            310970306
+          ],
+          "groupPolicy": "allowlist",
+          "streamMode": "partial"
+        },
+        "builder-mobile": {
+          "enabled": true,
+          "dmPolicy": "allowlist",
+          "botToken": "8558320820:AAF-n7nsTuFkz_WsDelq9yDRIV2uH-eU9K8",
+          "allowFrom": [
+            310970306
+          ],
+          "groupPolicy": "allowlist",
+          "streamMode": "partial"
+        },
+        "reviewer-all": {
+          "enabled": true,
+          "dmPolicy": "allowlist",
+          "botToken": "8792284879:AAEs1EbFMXMLuCbATAClF3yRi26sQprhTpk",
+          "allowFrom": [
+            310970306
+          ],
+          "groupPolicy": "allowlist",
+          "streamMode": "partial"
+        },
+        "operations-all": {
+          "enabled": true,
+          "dmPolicy": "allowlist",
+          "botToken": "8257009639:AAHX_x7MSa6MnG5boTlIvWgBItxYxLCU0O4",
+          "allowFrom": [
+            310970306
+          ],
+          "groupPolicy": "allowlist",
+          "streamMode": "partial"
+        },
+        "specialists-all": {
+          "enabled": true,
+          "dmPolicy": "allowlist",
+          "botToken": "8632171147:AAG6_S1D5eXS3Ztfs1WfDdI9iSC9piBHZDg",
+          "allowFrom": [
+            310970306
+          ],
+          "groupPolicy": "allowlist",
+          "streamMode": "partial"
+        },
+        "default": {
+          "dmPolicy": "pairing",
+          "botToken": "7913186291:AAGUx0DgRlZ_7C_HVVDnVQqgyaJnvMGnkKU",
+          "groupPolicy": "allowlist",
+          "streamMode": "partial"
+        }
+      }
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "loopback",
+    "controlUi": {
+      "allowInsecureAuth": true
+    },
+    "auth": {
+      "mode": "token",
+      "token": "9e93e267b8cc6673bbffee0c6676cb5b6b22981ca53e9694"
+    },
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    }
+  },
+  "skills": {
+    "load": {
+      "extraDirs": [
+        "/root/clawd/skills"
+      ]
+    },
+    "install": {
+      "nodeManager": "npm"
+    }
+  },
+  "plugins": {
+    "entries": {
+      "telegram": {
+        "enabled": true
+      }
+    }
+  }
+}
